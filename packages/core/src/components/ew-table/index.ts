@@ -120,10 +120,9 @@ export class EwTable extends BaseComponent {
       
       // 选择列
       if (column.type === 'selection') {
-        const checkbox = this.createElement('input', {
-          type: 'checkbox',
+        const checkbox = this.createElement('ew-checkbox', {
           class: 'ew-table__checkbox',
-          ...(this.isAllSelected() ? { checked: '' } : {}),
+          ...(this.isAllSelected() ? { 'model-value': 'true' } : {}),
           ...(this.isIndeterminate() ? { indeterminate: '' } : {})
         });
         checkbox.addEventListener('change', this.handleSelectAll.bind(this));
@@ -187,10 +186,9 @@ export class EwTable extends BaseComponent {
           
           // 选择列
           if (column.type === 'selection') {
-            const checkbox = this.createElement('input', {
-              type: 'checkbox',
+            const checkbox = this.createElement('ew-checkbox', {
               class: 'ew-table__checkbox',
-              ...(this.isRowSelected(row) ? { checked: '' } : {})
+              ...(this.isRowSelected(row) ? { 'model-value': 'true' } : {})
             });
             checkbox.addEventListener('change', () => this.handleSelectRow(row));
             td.appendChild(checkbox);

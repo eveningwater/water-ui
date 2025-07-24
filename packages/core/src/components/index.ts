@@ -5,4 +5,5 @@ export { EwTable } from './ew-table';
 export { EwTableColumn } from './ew-table/ew-table-column';
 export { EwModal } from './ew-modal';
 export { EwCheckbox } from './ew-checkbox';
-export { EwCheckboxGroup } from './ew-checkbox/ew-checkbox-group'; 
+export { EwCheckboxGroup } from './ew-checkbox/ew-checkbox-group';
+export { EwCheckboxButton } from './ew-checkbox-button'; 

@@ -300,4 +300,17 @@ export const tableStyles = `
       padding: var(--ew-spacing-2, 8px) var(--ew-spacing-3, 12px);
     }
   }
+
+  /* 表格中的checkbox样式 */
+  .ew-table__checkbox {
+    margin: 0;
+  }
+
+  .ew-table__checkbox .ew-checkbox__inner {
+    margin-right: 0;
+  }
+
+  .ew-table__checkbox .ew-checkbox__label {
+    display: none;
+  }
 `; 

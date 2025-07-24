@@ -340,6 +340,14 @@
                         </div>
                     </div>
                     <div class="demo-item">
+                        <h3>带边框复选框</h3>
+                        <div class="input-group">
+                            <ew-checkbox label="选项1" value="1" border></ew-checkbox>
+                            <ew-checkbox label="选项2" value="2" border model-value="true"></ew-checkbox>
+                            <ew-checkbox label="禁用选项" value="3" border disabled></ew-checkbox>
+                        </div>
+                    </div>
+                    <div class="demo-item">
                         <h3>复选框尺寸</h3>
                         <div class="input-group">
                             <ew-checkbox label="小尺寸" value="small" size="small"></ew-checkbox>
@@ -365,6 +373,25 @@
                                 <ew-checkbox label="选项1" value="1"></ew-checkbox>
                                 <ew-checkbox label="选项2" value="2"></ew-checkbox>
                                 <ew-checkbox label="选项3" value="3"></ew-checkbox>
+                            </ew-checkbox-group>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>复选框按钮</h3>
+                        <div class="input-group">
+                            <ew-checkbox-button label="选项1" value="1"></ew-checkbox-button>
+                            <ew-checkbox-button label="选项2" value="2" model-value="true"></ew-checkbox-button>
+                            <ew-checkbox-button label="禁用选项" value="3" disabled></ew-checkbox-button>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>复选框按钮组</h3>
+                        <div class="input-group">
+                            <ew-checkbox-group id="checkboxButtonGroup" model-value='["1", "3"]'>
+                                <ew-checkbox-button label="选项1" value="1"></ew-checkbox-button>
+                                <ew-checkbox-button label="选项2" value="2"></ew-checkbox-button>
+                                <ew-checkbox-button label="选项3" value="3"></ew-checkbox-button>
+                                <ew-checkbox-button label="选项4" value="4"></ew-checkbox-button>
                             </ew-checkbox-group>
                         </div>
                     </div>
