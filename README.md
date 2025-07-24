@@ -1,61 +1,167 @@
 # Water UI
 
-基于原生Web Components的现代化UI组件库
+一个基于原生 Web Components 的跨框架组件库，提供现代化的 UI 组件和工具函数。
 
 ## 特性
 
-- 🎨 **原生Web Components** - 无需框架依赖，可在任意框架中使用
-- 🎯 **丰富的组件** - 包含Button、Input、Table、Modal等常用组件
-- 🎨 **主题系统** - 支持CSS变量自定义主题
-- 📦 **多包架构** - 组件、工具函数、图标等分包管理
-- 🧪 **完善测试** - 单元测试覆盖
-- 📚 **详细文档** - 完整的API文档和示例
-- 🚀 **现代化构建** - 基于Vite的快速构建
+- 🚀 **原生 Web Components** - 基于标准 Web Components 技术，无需框架依赖
+- 🎨 **跨框架兼容** - 可在 React、Vue、Angular 等任何框架中使用
+- 🎯 **TypeScript 支持** - 完整的 TypeScript 类型定义
+- 📦 **模块化架构** - 多包 monorepo 结构，按需引入
+- 🧪 **完整测试** - 全面的单元测试覆盖
+- 🎨 **主题系统** - 支持默认和暗色主题
+- 🔧 **工具函数** - 丰富的工具函数库
+
+## 安装
+
+```bash
+# 安装核心组件库
+npm install @water-ui/core
+
+# 安装工具函数
+npm install @water-ui/utils
+
+# 安装图标库
+npm install @water-ui/icons
+
+# 安装主题
+npm install @water-ui/themes
+```
 
 ## 快速开始
 
-### 安装
-
-```bash
-npm install @water-ui/core
-```
-
-### 使用
+### 1. 引入组件
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://unpkg.com/@water-ui/core/dist/style.css">
+  <script type="module">
+    import '@water-ui/core';
+  </script>
 </head>
 <body>
-  <w-button type="primary">点击我</w-button>
-  <w-input placeholder="请输入内容"></w-input>
-  
-  <script type="module">
-    import '@water-ui/core/dist/index.js';
-  </script>
+  <ew-button type="primary">点击我</ew-button>
+  <ew-input placeholder="请输入内容"></ew-input>
+  <ew-modal title="标题" model-value="false">
+    <p>这是弹框内容</p>
+  </ew-modal>
 </body>
 </html>
 ```
 
+### 2. 使用主题
+
+```html
+<head>
+  <link rel="stylesheet" href="@water-ui/themes/dist/default.css">
+  <!-- 或者使用暗色主题 -->
+  <link rel="stylesheet" href="@water-ui/themes/dist/dark.css">
+</head>
+```
+
+### 3. 使用工具函数
+
+```javascript
+import { debounce, throttle, deepClone } from '@water-ui/utils';
+
+// 防抖
+const debouncedFn = debounce(() => {
+  console.log('防抖执行');
+}, 300);
+
+// 节流
+const throttledFn = throttle(() => {
+  console.log('节流执行');
+}, 300);
+
+// 深拷贝
+const cloned = deepClone(originalObject);
+```
+
+## 组件列表
+
+### 基础组件
+
+- `ew-button` - 按钮组件
+- `ew-input` - 输入框组件
+- `ew-modal` - 弹框组件
+- `ew-table` - 表格组件
+
+### 属性支持
+
+每个组件都支持丰富的属性配置：
+
+```html
+<!-- 按钮组件 -->
+<ew-button 
+  type="primary" 
+  size="large" 
+  disabled 
+  loading>
+  加载中
+</ew-button>
+
+<!-- 输入框组件 -->
+<ew-input 
+  type="password" 
+  placeholder="请输入密码"
+  clearable 
+  show-password>
+</ew-input>
+
+<!-- 弹框组件 -->
+<ew-modal 
+  title="确认操作"
+  model-value="true"
+  show-close
+  show-cancel-button
+  show-confirm-button>
+  <p>确定要执行此操作吗？</p>
+</ew-modal>
+```
+
 ## 开发
 
-```bash
-# 安装依赖
-pnpm install
+### 环境要求
 
-# 开发模式
+- Node.js >= 16
+- pnpm >= 7
+
+### 安装依赖
+
+```bash
+pnpm install
+```
+
+### 开发模式
+
+```bash
+# 启动所有包的开发模式
 pnpm dev
 
-# 构建
+# 启动特定包的开发模式
+pnpm --filter @water-ui/core dev
+```
+
+### 构建
+
+```bash
+# 构建所有包
 pnpm build
 
-# 运行测试
+# 构建特定包
+pnpm --filter @water-ui/core build
+```
+
+### 测试
+
+```bash
+# 运行所有测试
 pnpm test
 
-# 启动文档站点
-pnpm docs:dev
+# 运行特定包的测试
+pnpm --filter @water-ui/core test
 ```
 
 ## 项目结构
@@ -63,23 +169,33 @@ pnpm docs:dev
 ```
 water-ui/
 ├── packages/
-│   ├── core/           # 核心组件
-│   ├── icons/          # 图标包
-│   ├── utils/          # 工具函数
-│   ├── themes/         # 主题包
-│   ├── docs/           # 文档站点
-│   └── storybook/      # Storybook
-├── examples/           # 示例项目
+│   ├── core/           # 核心组件库
+│   ├── utils/          # 工具函数库
+│   ├── icons/          # 图标库
+│   └── themes/         # 主题包
+├── examples/           # 示例文件
+├── docs/              # 文档
 └── tests/             # 测试文件
 ```
 
-## 浏览器支持
+## 贡献
 
-- Chrome 67+
-- Firefox 63+
-- Safari 10.1+
-- Edge 79+
+欢迎提交 Issue 和 Pull Request！
+
+### 开发流程
+
+1. Fork 项目
+2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
+3. 提交更改 (`git commit -m 'Add some amazing feature'`)
+4. 推送到分支 (`git push origin feature/amazing-feature`)
+5. 创建 Pull Request
 
 ## 许可证
 
-MIT 
+MIT License
+
+## 相关链接
+
+- [GitHub 仓库](https://github.com/eveningwater/water-ui)
+- [在线文档](https://water-ui.vercel.app)
+- [组件演示](https://water-ui.vercel.app/examples) 
