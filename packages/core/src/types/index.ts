@@ -146,4 +146,33 @@ export interface ComponentEvents {
   keydown?: (event: KeyboardEvent) => void;
   keyup?: (event: KeyboardEvent) => void;
   keypress?: (event: KeyboardEvent) => void;
+}
+
+// Checkbox 组件属性
+export interface CheckboxProps extends BaseComponentProps {
+  modelValue?: boolean;
+  label?: string;
+  value?: string | number | boolean;
+  name?: string;
+  indeterminate?: boolean;
+  border?: boolean;
+  button?: boolean;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  trueLabel?: string | number;
+  falseLabel?: string | number;
+  id?: string;
+  controls?: string;
+}
+
+// Checkbox Group 组件属性
+export interface CheckboxGroupProps extends BaseComponentProps {
+  modelValue?: (string | number | boolean)[];
+  min?: number;
+  max?: number;
+  textColor?: string;
+  fill?: string;
+  size?: 'small' | 'medium' | 'large';
+  disabled?: boolean;
+  name?: string;
 } 

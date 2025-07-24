@@ -1,5 +1,5 @@
-import { BaseComponent } from '../../utils/base-component';
-import { TableColumn } from '../../types';
+import { BaseComponent } from '../../../utils/base-component';
+import { TableColumn } from '../../../types';
 
 export class EwTableColumn extends BaseComponent {
   private columnProps: TableColumn = {};
