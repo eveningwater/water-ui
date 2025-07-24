@@ -7,6 +7,7 @@ export class EwInput extends BaseComponent {
   private inputProps: InputProps = {};
   private inputElement: HTMLInputElement | null = null;
   private isPasswordVisible: boolean = false;
+  private clearButton: HTMLElement | null = null;
 
   protected initProps(): void {
     super.initProps();
@@ -57,11 +58,14 @@ export class EwInput extends BaseComponent {
     inputWrapper.appendChild(input);
 
     // 添加清除按钮
-    if (clearable && !disabled && !readonly && this.inputProps.value) {
-      const clearButton = this.createElement('span', { class: 'ew-input__clear' });
-      clearButton.innerHTML = ClearIcon({ size: '16px' });
-      clearButton.addEventListener('click', this.handleClear.bind(this));
-      inputWrapper.appendChild(clearButton);
+    if (clearable && !disabled && !readonly) {
+      this.clearButton = this.createElement('span', { 
+        class: 'ew-input__clear',
+        style: this.inputProps.value ? 'display: flex' : 'display: none'
+      });
+      this.clearButton.innerHTML = ClearIcon({ size: '16px' });
+      this.clearButton.addEventListener('click', this.handleClear.bind(this));
+      inputWrapper.appendChild(this.clearButton);
     }
 
     // 添加密码切换按钮
@@ -107,7 +111,15 @@ export class EwInput extends BaseComponent {
     this.inputProps.value = target.value;
     this.dispatchCustomEvent('input', target.value);
     this.dispatchCustomEvent('change', target.value);
-    this.render(); // 重新渲染以更新清除按钮
+    
+    // 更新清除按钮显示状态，而不是重新渲染整个组件
+    this.updateClearButton();
+  }
+
+  private updateClearButton(): void {
+    if (this.clearButton) {
+      this.clearButton.style.display = this.inputProps.value ? 'flex' : 'none';
+    }
   }
 
   private handleFocus(event: Event): void {
@@ -129,7 +141,7 @@ export class EwInput extends BaseComponent {
       this.inputElement.focus();
       this.dispatchCustomEvent('input', '');
       this.dispatchCustomEvent('change', '');
-      this.render(); // 重新渲染以更新清除按钮
+      this.updateClearButton();
     }
   }
 
