@@ -19,7 +19,9 @@ export class EwRadio extends BaseComponent {
       checked: this.hasAttribute('checked'),
       defaultChecked: this.hasAttribute('default-checked'),
       id: this.getAttribute('id') || '',
-      controls: this.getAttribute('controls') || ''
+      controls: this.getAttribute('controls') || '',
+      disabled: this.hasAttribute('disabled'),
+      size: (this.getAttribute('size') as 'small' | 'medium' | 'large') || 'medium'
     };
 
     // 初始化状态

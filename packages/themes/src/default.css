@@ -1,68 +1,107 @@
 /* Water UI - 默认主题 */
 :root {
-  /* 颜色系统 */
-  --ew-color-primary: #3b82f6;
-  --ew-color-primary-light: #60a5fa;
-  --ew-color-primary-dark: #2563eb;
-  --ew-color-success: #10b981;
-  --ew-color-warning: #f59e0b;
-  --ew-color-danger: #ef4444;
-  --ew-color-info: #6b7280;
+  /* 流水主题色彩系统 */
+  --ew-color-primary: #0ea5e9; /* 清澈的蓝色 */
+  --ew-color-primary-light: #38bdf8; /* 浅蓝色 */
+  --ew-color-primary-dark: #0284c7; /* 深蓝色 */
+  --ew-color-primary-hover: #0ea5e9;
+  --ew-color-primary-active: #0369a1;
+  --ew-color-primary-disabled: #93c5fd;
+  
+  --ew-color-success: #10b981; /* 翠绿色 */
+  --ew-color-success-light: #34d399;
+  --ew-color-success-dark: #059669;
+  --ew-color-success-hover: #10b981;
+  --ew-color-success-active: #047857;
+  --ew-color-success-disabled: #6ee7b7;
+  
+  --ew-color-warning: #f59e0b; /* 琥珀色 */
+  --ew-color-warning-light: #fbbf24;
+  --ew-color-warning-dark: #d97706;
+  --ew-color-warning-hover: #f59e0b;
+  --ew-color-warning-active: #b45309;
+  --ew-color-warning-disabled: #fcd34d;
+  
+  --ew-color-danger: #ef4444; /* 珊瑚红 */
+  --ew-color-danger-light: #f87171;
+  --ew-color-danger-dark: #dc2626;
+  --ew-color-danger-hover: #ef4444;
+  --ew-color-danger-active: #b91c1c;
+  --ew-color-danger-disabled: #fca5a5;
+  
+  --ew-color-info: #06b6d4; /* 青色 */
+  --ew-color-info-light: #22d3ee;
+  --ew-color-info-dark: #0891b2;
+  --ew-color-info-hover: #06b6d4;
+  --ew-color-info-active: #0e7490;
+  --ew-color-info-disabled: #67e8f9;
 
-  /* 中性色 */
+  /* 中性色彩 - 流水质感 */
   --ew-color-white: #ffffff;
-  --ew-color-black: #000000;
-  --ew-color-gray-50: #f9fafb;
-  --ew-color-gray-100: #f3f4f6;
-  --ew-color-gray-200: #e5e7eb;
-  --ew-color-gray-300: #d1d5db;
-  --ew-color-gray-400: #9ca3af;
-  --ew-color-gray-500: #6b7280;
-  --ew-color-gray-600: #4b5563;
-  --ew-color-gray-700: #374151;
-  --ew-color-gray-800: #1f2937;
-  --ew-color-gray-900: #111827;
-
-  /* 背景色 */
+  --ew-color-black: #0f172a;
+  --ew-color-transparent: transparent;
+  
+  /* 背景色彩 - 清澈透明感 */
   --ew-bg-color: #ffffff;
   --ew-bg-color-page: #f8fafc;
-  --ew-bg-color-overlay: rgba(0, 0, 0, 0.5);
-
-  /* 文字颜色 */
-  --ew-text-color-primary: #1f2937;
-  --ew-text-color-regular: #4b5563;
-  --ew-text-color-secondary: #6b7280;
-  --ew-text-color-placeholder: #9ca3af;
-  --ew-text-color-disabled: #d1d5db;
-
-  /* 边框颜色 */
-  --ew-border-color: #e5e7eb;
-  --ew-border-color-light: #f3f4f6;
-  --ew-border-color-dark: #d1d5db;
-
-  /* 阴影 */
-  --ew-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --ew-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --ew-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --ew-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --ew-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-  /* 圆角 */
-  --ew-border-radius-sm: 4px;
-  --ew-border-radius: 6px;
-  --ew-border-radius-md: 8px;
-  --ew-border-radius-lg: 12px;
-  --ew-border-radius-full: 9999px;
-
-  /* 字体 */
-  --ew-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --ew-font-size-xs: 12px;
-  --ew-font-size-sm: 14px;
-  --ew-font-size-base: 16px;
-  --ew-font-size-lg: 18px;
-  --ew-font-size-xl: 20px;
-
-  /* 间距 */
+  --ew-bg-color-overlay: rgba(15, 23, 42, 0.6);
+  --ew-bg-color-disabled: #f1f5f9;
+  --ew-bg-color-hover: #f8fafc;
+  --ew-bg-color-active: #e2e8f0;
+  
+  /* 文字色彩 - 清澈易读 */
+  --ew-text-color: #334155;
+  --ew-text-color-primary: #1e293b;
+  --ew-text-color-regular: #475569;
+  --ew-text-color-secondary: #64748b;
+  --ew-text-color-placeholder: #94a3b8;
+  --ew-text-color-disabled: #cbd5e1;
+  --ew-text-color-inverse: #ffffff;
+  
+  /* 边框色彩 - 流水边界 */
+  --ew-border-color: #e2e8f0;
+  --ew-border-color-light: #f1f5f9;
+  --ew-border-color-lighter: #f8fafc;
+  --ew-border-color-extra-light: #fafafa;
+  --ew-border-color-dark: #cbd5e1;
+  --ew-border-color-darker: #94a3b8;
+  --ew-border-color-disabled: #e2e8f0;
+  
+  /* 阴影系统 - 流水波纹效果 */
+  --ew-shadow-light: 0 1px 3px 0 rgba(14, 165, 233, 0.1), 0 1px 2px 0 rgba(14, 165, 233, 0.06);
+  --ew-shadow-base: 0 4px 6px -1px rgba(14, 165, 233, 0.1), 0 2px 4px -1px rgba(14, 165, 233, 0.06);
+  --ew-shadow-dark: 0 10px 15px -3px rgba(14, 165, 233, 0.1), 0 4px 6px -2px rgba(14, 165, 233, 0.05);
+  --ew-shadow-dropdown: 0 10px 15px -3px rgba(14, 165, 233, 0.1), 0 4px 6px -2px rgba(14, 165, 233, 0.05);
+  --ew-shadow-tooltip: 0 10px 15px -3px rgba(14, 165, 233, 0.1), 0 4px 6px -2px rgba(14, 165, 233, 0.05);
+  
+  /* 圆角系统 - 流水圆润 */
+  --ew-border-radius: 8px;
+  --ew-border-radius-small: 4px;
+  --ew-border-radius-base: 8px;
+  --ew-border-radius-large: 12px;
+  --ew-border-radius-round: 50%;
+  --ew-border-radius-circle: 50%;
+  
+  /* 字体系统 - 清澈易读 */
+  --ew-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --ew-font-size-extra-large: 20px;
+  --ew-font-size-large: 18px;
+  --ew-font-size-medium: 16px;
+  --ew-font-size-base: 14px;
+  --ew-font-size-small: 13px;
+  --ew-font-size-extra-small: 12px;
+  --ew-font-size-mini: 10px;
+  
+  /* 行高系统 */
+  --ew-line-height-extra-tight: 1;
+  --ew-line-height-tight: 1.25;
+  --ew-line-height-snug: 1.375;
+  --ew-line-height-normal: 1.5;
+  --ew-line-height-relaxed: 1.625;
+  --ew-line-height-loose: 2;
+  
+  /* 间距系统 - 流水节奏 */
+  --ew-spacing-0: 0;
   --ew-spacing-1: 4px;
   --ew-spacing-2: 8px;
   --ew-spacing-3: 12px;
@@ -72,13 +111,18 @@
   --ew-spacing-8: 32px;
   --ew-spacing-10: 40px;
   --ew-spacing-12: 48px;
-
-  /* 过渡动画 */
-  --ew-transition-fast: 150ms ease-in-out;
-  --ew-transition: 200ms ease-in-out;
-  --ew-transition-slow: 300ms ease-in-out;
-
-  /* Z-index */
+  --ew-spacing-16: 64px;
+  --ew-spacing-20: 80px;
+  --ew-spacing-24: 96px;
+  --ew-spacing-32: 128px;
+  
+  /* 过渡动画 - 流水般流畅 */
+  --ew-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ew-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ew-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ew-transition-bounce: 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Z-index 层级 */
   --ew-z-index-dropdown: 1000;
   --ew-z-index-sticky: 1020;
   --ew-z-index-fixed: 1030;
@@ -86,6 +130,32 @@
   --ew-z-index-modal: 1050;
   --ew-z-index-popover: 1060;
   --ew-z-index-tooltip: 1070;
+  --ew-z-index-toast: 1080;
+  
+  /* 特殊效果 - 流水波纹 */
+  --ew-ripple-color: rgba(14, 165, 233, 0.2);
+  --ew-ripple-duration: 600ms;
+  --ew-ripple-scale: 2.5;
+  
+  /* 组件特定变量 */
+  --ew-button-padding-x: 16px;
+  --ew-button-padding-y: 8px;
+  --ew-button-min-height: 36px;
+  --ew-button-font-size: 14px;
+  --ew-button-border-radius: 8px;
+  
+  --ew-input-padding-x: 12px;
+  --ew-input-padding-y: 8px;
+  --ew-input-height: 36px;
+  --ew-input-font-size: 14px;
+  --ew-input-border-radius: 8px;
+  
+  --ew-table-border-radius: 8px;
+  --ew-table-header-bg: #f8fafc;
+  --ew-table-row-hover-bg: #f1f5f9;
+  
+  --ew-modal-border-radius: 12px;
+  --ew-modal-backdrop-blur: 8px;
 }
 
 /* 全局重置 */
@@ -94,28 +164,30 @@
 }
 
 body {
+  margin: 0;
   font-family: var(--ew-font-family);
   font-size: var(--ew-font-size-base);
-  line-height: 1.5;
-  color: var(--ew-text-color-primary);
+  line-height: var(--ew-line-height-normal);
+  color: var(--ew-text-color);
   background-color: var(--ew-bg-color-page);
-  margin: 0;
-  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* 焦点样式 */
+/* 焦点样式 - 流水波纹效果 */
 :focus-visible {
   outline: 2px solid var(--ew-color-primary);
   outline-offset: 2px;
+  border-radius: var(--ew-border-radius-small);
 }
 
 /* 禁用状态 */
-[disabled] {
+:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-/* 工具类 */
+/* 屏幕阅读器专用 */
 .ew-sr-only {
   position: absolute;
   width: 1px;
@@ -126,4 +198,55 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* 流水波纹动画 */
+@keyframes ew-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(var(--ew-ripple-scale));
+    opacity: 0;
+  }
+}
+
+/* 流水流动动画 */
+@keyframes ew-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 流水波纹效果 */
+.ew-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ew-ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--ew-ripple-color);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ew-ripple:active::before {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  transition: 0s;
 } 

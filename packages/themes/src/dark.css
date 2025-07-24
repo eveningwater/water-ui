@@ -1,181 +1,235 @@
 /* Water UI - 暗色主题 */
-[data-theme="dark"],
-.dark {
-  /* 颜色系统 */
-  --ew-color-primary: #60a5fa;
-  --ew-color-primary-light: #93c5fd;
-  --ew-color-primary-dark: #3b82f6;
-  --ew-color-success: #34d399;
-  --ew-color-warning: #fbbf24;
-  --ew-color-danger: #f87171;
-  --ew-color-info: #9ca3af;
+[data-theme="dark"], .dark {
+  /* 流水暗色主题色彩系统 */
+  --ew-color-primary: #38bdf8; /* 暗色下的清澈蓝色 */
+  --ew-color-primary-light: #7dd3fc;
+  --ew-color-primary-dark: #0ea5e9;
+  --ew-color-primary-hover: #38bdf8;
+  --ew-color-primary-active: #0284c7;
+  --ew-color-primary-disabled: #0c4a6e;
+  
+  --ew-color-success: #34d399; /* 暗色下的翠绿色 */
+  --ew-color-success-light: #6ee7b7;
+  --ew-color-success-dark: #10b981;
+  --ew-color-success-hover: #34d399;
+  --ew-color-success-active: #059669;
+  --ew-color-success-disabled: #064e3b;
+  
+  --ew-color-warning: #fbbf24; /* 暗色下的琥珀色 */
+  --ew-color-warning-light: #fcd34d;
+  --ew-color-warning-dark: #f59e0b;
+  --ew-color-warning-hover: #fbbf24;
+  --ew-color-warning-active: #d97706;
+  --ew-color-warning-disabled: #78350f;
+  
+  --ew-color-danger: #f87171; /* 暗色下的珊瑚红 */
+  --ew-color-danger-light: #fca5a5;
+  --ew-color-danger-dark: #ef4444;
+  --ew-color-danger-hover: #f87171;
+  --ew-color-danger-active: #dc2626;
+  --ew-color-danger-disabled: #7f1d1d;
+  
+  --ew-color-info: #22d3ee; /* 暗色下的青色 */
+  --ew-color-info-light: #67e8f9;
+  --ew-color-info-dark: #06b6d4;
+  --ew-color-info-hover: #22d3ee;
+  --ew-color-info-active: #0891b2;
+  --ew-color-info-disabled: #164e63;
 
-  /* 中性色 */
-  --ew-color-white: #1f2937;
-  --ew-color-black: #ffffff;
-  --ew-color-gray-50: #111827;
-  --ew-color-gray-100: #1f2937;
-  --ew-color-gray-200: #374151;
-  --ew-color-gray-300: #4b5563;
-  --ew-color-gray-400: #6b7280;
-  --ew-color-gray-500: #9ca3af;
-  --ew-color-gray-600: #d1d5db;
-  --ew-color-gray-700: #e5e7eb;
-  --ew-color-gray-800: #f3f4f6;
-  --ew-color-gray-900: #f9fafb;
-
-  /* 背景色 */
-  --ew-bg-color: #1f2937;
-  --ew-bg-color-page: #111827;
-  --ew-bg-color-overlay: rgba(0, 0, 0, 0.7);
-
-  /* 文字颜色 */
-  --ew-text-color-primary: #f9fafb;
-  --ew-text-color-regular: #e5e7eb;
-  --ew-text-color-secondary: #d1d5db;
-  --ew-text-color-placeholder: #9ca3af;
-  --ew-text-color-disabled: #6b7280;
-
-  /* 边框颜色 */
-  --ew-border-color: #374151;
-  --ew-border-color-light: #4b5563;
-  --ew-border-color-dark: #6b7280;
-
-  /* 阴影 */
-  --ew-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --ew-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --ew-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --ew-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-  --ew-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  /* 暗色背景 - 深水质感 */
+  --ew-bg-color: #0f172a;
+  --ew-bg-color-page: #020617;
+  --ew-bg-color-overlay: rgba(2, 6, 23, 0.8);
+  --ew-bg-color-disabled: #1e293b;
+  --ew-bg-color-hover: #1e293b;
+  --ew-bg-color-active: #334155;
+  
+  /* 暗色文字 - 清澈对比 */
+  --ew-text-color: #e2e8f0;
+  --ew-text-color-primary: #f8fafc;
+  --ew-text-color-regular: #cbd5e1;
+  --ew-text-color-secondary: #94a3b8;
+  --ew-text-color-placeholder: #64748b;
+  --ew-text-color-disabled: #475569;
+  --ew-text-color-inverse: #0f172a;
+  
+  /* 暗色边框 - 流水边界 */
+  --ew-border-color: #334155;
+  --ew-border-color-light: #475569;
+  --ew-border-color-lighter: #64748b;
+  --ew-border-color-extra-light: #94a3b8;
+  --ew-border-color-dark: #1e293b;
+  --ew-border-color-darker: #0f172a;
+  --ew-border-color-disabled: #1e293b;
+  
+  /* 暗色阴影 - 流水波纹效果 */
+  --ew-shadow-light: 0 1px 3px 0 rgba(56, 189, 248, 0.2), 0 1px 2px 0 rgba(56, 189, 248, 0.1);
+  --ew-shadow-base: 0 4px 6px -1px rgba(56, 189, 248, 0.2), 0 2px 4px -1px rgba(56, 189, 248, 0.1);
+  --ew-shadow-dark: 0 10px 15px -3px rgba(56, 189, 248, 0.2), 0 4px 6px -2px rgba(56, 189, 248, 0.1);
+  --ew-shadow-dropdown: 0 10px 15px -3px rgba(56, 189, 248, 0.2), 0 4px 6px -2px rgba(56, 189, 248, 0.1);
+  --ew-shadow-tooltip: 0 10px 15px -3px rgba(56, 189, 248, 0.2), 0 4px 6px -2px rgba(56, 189, 248, 0.1);
+  
+  /* 特殊效果 - 暗色流水波纹 */
+  --ew-ripple-color: rgba(56, 189, 248, 0.3);
+  
+  /* 组件特定变量 - 暗色适配 */
+  --ew-table-header-bg: #1e293b;
+  --ew-table-row-hover-bg: #334155;
 }
 
 /* 暗色主题下的特殊样式调整 */
+
+/* 按钮在暗色主题下的样式 */
 [data-theme="dark"] .ew-button,
 .dark .ew-button {
-  background: var(--ew-color-gray-800, #f3f4f6);
-  border-color: var(--ew-border-color, #374151);
-  color: var(--ew-text-color-regular, #e5e7eb);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border: 1px solid #475569;
+  color: #e2e8f0;
 }
 
 [data-theme="dark"] .ew-button:hover,
 .dark .ew-button:hover {
-  background: var(--ew-color-gray-700, #e5e7eb);
-  border-color: var(--ew-color-primary-light, #93c5fd);
-  color: var(--ew-color-primary-light, #93c5fd);
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+  border-color: #64748b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
 }
 
+[data-theme="dark"] .ew-button:active,
+.dark .ew-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(56, 189, 248, 0.15);
+}
+
+/* 输入框在暗色主题下的样式 */
 [data-theme="dark"] .ew-input__wrapper,
 .dark .ew-input__wrapper {
-  background: var(--ew-color-gray-800, #f3f4f6);
-  border-color: var(--ew-border-color, #374151);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border: 1px solid #475569;
 }
 
 [data-theme="dark"] .ew-input__wrapper:hover,
 .dark .ew-input__wrapper:hover {
-  border-color: var(--ew-color-primary-light, #93c5fd);
+  border-color: #64748b;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
 }
 
 [data-theme="dark"] .ew-input__wrapper:focus-within,
 .dark .ew-input__wrapper:focus-within {
-  border-color: var(--ew-color-primary, #60a5fa);
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
 }
 
+[data-theme="dark"] .ew-input__inner,
+.dark .ew-input__inner {
+  background: transparent;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .ew-input__inner::placeholder,
+.dark .ew-input__inner::placeholder {
+  color: #64748b;
+}
+
+/* 表格在暗色主题下的样式 */
 [data-theme="dark"] .ew-table,
 .dark .ew-table {
-  background: var(--ew-color-gray-800, #f3f4f6);
-  color: var(--ew-text-color-regular, #e5e7eb);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid #334155;
 }
 
 [data-theme="dark"] .ew-table thead,
 .dark .ew-table thead {
-  background: var(--ew-color-gray-900, #f9fafb);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
 }
 
 [data-theme="dark"] .ew-table th,
 .dark .ew-table th {
-  background: var(--ew-color-gray-900, #f9fafb);
-  color: var(--ew-text-color-primary, #f9fafb);
-  border-bottom-color: var(--ew-border-color, #374151);
+  background: transparent;
+  color: #e2e8f0;
+  border-bottom: 1px solid #475569;
 }
 
 [data-theme="dark"] .ew-table td,
 .dark .ew-table td {
-  border-bottom-color: var(--ew-border-color-light, #4b5563);
+  color: #cbd5e1;
+  border-bottom: 1px solid #334155;
 }
 
-[data-theme="dark"] .ew-table tr:hover,
-.dark .ew-table tr:hover {
-  background: var(--ew-color-gray-700, #e5e7eb);
+[data-theme="dark"] .ew-table tbody tr:hover,
+.dark .ew-table tbody tr:hover {
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
 }
 
-[data-theme="dark"] .ew-modal,
-.dark .ew-modal {
-  background: var(--ew-color-gray-800, #f3f4f6);
-  color: var(--ew-text-color-regular, #e5e7eb);
+/* 模态框在暗色主题下的样式 */
+[data-theme="dark"] .ew-modal__content,
+.dark .ew-modal__content {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid #334155;
+  box-shadow: 0 25px 50px -12px rgba(56, 189, 248, 0.25);
+}
+
+[data-theme="dark"] .ew-modal__header,
+.dark .ew-modal__header {
+  border-bottom: 1px solid #334155;
 }
 
 [data-theme="dark"] .ew-modal__title,
 .dark .ew-modal__title {
-  color: var(--ew-text-color-primary, #f9fafb);
+  color: #f8fafc;
 }
 
-[data-theme="dark"] .ew-modal__close:hover,
-.dark .ew-modal__close:hover {
-  background: var(--ew-color-gray-700, #e5e7eb);
-  color: var(--ew-text-color-primary, #f9fafb);
+[data-theme="dark"] .ew-modal__body,
+.dark .ew-modal__body {
+  color: #cbd5e1;
 }
 
 [data-theme="dark"] .ew-modal__footer,
 .dark .ew-modal__footer {
-  border-top-color: var(--ew-border-color-light, #4b5563);
+  border-top: 1px solid #334155;
 }
 
-[data-theme="dark"] .ew-modal__btn,
-.dark .ew-modal__btn {
-  background: var(--ew-color-gray-700, #e5e7eb);
-  border-color: var(--ew-border-color, #374151);
-  color: var(--ew-text-color-regular, #e5e7eb);
+/* 滚动条在暗色主题下的样式 */
+[data-theme="dark"] ::-webkit-scrollbar,
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-[data-theme="dark"] .ew-modal__btn:hover,
-.dark .ew-modal__btn:hover {
-  background: var(--ew-color-gray-600, #d1d5db);
-  border-color: var(--ew-color-primary-light, #93c5fd);
-  color: var(--ew-color-primary-light, #93c5fd);
+[data-theme="dark"] ::-webkit-scrollbar-track,
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 4px;
 }
 
-/* 暗色主题下的滚动条样式 */
-[data-theme="dark"] .ew-modal__body::-webkit-scrollbar-track,
-.dark .ew-modal__body::-webkit-scrollbar-track {
-  background: var(--ew-color-gray-700, #e5e7eb);
+[data-theme="dark"] ::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+  border-radius: 4px;
 }
 
-[data-theme="dark"] .ew-modal__body::-webkit-scrollbar-thumb,
-.dark .ew-modal__body::-webkit-scrollbar-thumb {
-  background: var(--ew-color-gray-500, #9ca3af);
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
 }
 
-[data-theme="dark"] .ew-modal__body::-webkit-scrollbar-thumb:hover,
-.dark .ew-modal__body::-webkit-scrollbar-thumb:hover {
-  background: var(--ew-color-gray-400, #6b7280);
-}
-
-/* 暗色主题下的焦点样式 */
+/* 焦点样式在暗色主题下的调整 */
 [data-theme="dark"] :focus-visible,
 .dark :focus-visible {
-  outline-color: var(--ew-color-primary, #60a5fa);
+  outline-color: #38bdf8;
 }
 
-/* 暗色主题下的禁用状态 */
-[data-theme="dark"] [disabled],
-.dark [disabled] {
-  opacity: 0.4;
+/* 禁用状态在暗色主题下的调整 */
+[data-theme="dark"] :disabled,
+.dark :disabled {
+  background: #1e293b !important;
+  color: #475569 !important;
+  border-color: #334155 !important;
 }
 
-/* 暗色主题下的加载动画 */
+/* 加载动画在暗色主题下的调整 */
 [data-theme="dark"] .ew-loading-spinner,
 .dark .ew-loading-spinner {
-  border-color: var(--ew-color-gray-600, #d1d5db);
-  border-top-color: var(--ew-color-primary, #60a5fa);
+  border-color: #334155;
+  border-top-color: #38bdf8;
 } 
