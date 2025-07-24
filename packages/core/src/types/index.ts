@@ -175,4 +175,28 @@ export interface CheckboxGroupProps extends BaseComponentProps {
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   name?: string;
+}
+
+// Radio 组件属性
+export interface RadioProps extends BaseComponentProps {
+  modelValue?: string | number | boolean;
+  label?: string;
+  value?: string | number | boolean;
+  name?: string;
+  border?: boolean;
+  button?: boolean;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  id?: string;
+  controls?: string;
+}
+
+// Radio Group 组件属性
+export interface RadioGroupProps extends BaseComponentProps {
+  modelValue?: string | number | boolean;
+  size?: 'small' | 'medium' | 'large';
+  disabled?: boolean;
+  textColor?: string;
+  fill?: string;
+  name?: string;
 } 

@@ -416,6 +416,84 @@
                     </div>
                 </div>
             </div>
+
+            <div class="section">
+                <h2>🔘 单选框组件</h2>
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <h3>基础单选框</h3>
+                        <div class="input-group">
+                            <ew-radio label="选项1" value="1" name="basic"></ew-radio>
+                            <ew-radio label="选项2" value="2" name="basic" model-value="true"></ew-radio>
+                            <ew-radio label="禁用选项" value="3" name="basic" disabled></ew-radio>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>带边框单选框</h3>
+                        <div class="input-group">
+                            <ew-radio label="选项1" value="1" name="border" border></ew-radio>
+                            <ew-radio label="选项2" value="2" name="border" border model-value="true"></ew-radio>
+                            <ew-radio label="禁用选项" value="3" name="border" border disabled></ew-radio>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>单选框尺寸</h3>
+                        <div class="input-group">
+                            <ew-radio label="小尺寸" value="small" name="size" size="small"></ew-radio>
+                            <ew-radio label="默认尺寸" value="medium" name="size"></ew-radio>
+                            <ew-radio label="大尺寸" value="large" name="size" size="large"></ew-radio>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>单选框组</h3>
+                        <div class="input-group">
+                            <ew-radio-group id="radioGroup" model-value="2">
+                                <ew-radio label="选项1" value="1"></ew-radio>
+                                <ew-radio label="选项2" value="2"></ew-radio>
+                                <ew-radio label="选项3" value="3"></ew-radio>
+                                <ew-radio label="选项4" value="4"></ew-radio>
+                            </ew-radio-group>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>按钮样式</h3>
+                        <div class="input-group">
+                            <ew-radio-group id="buttonGroup" button>
+                                <ew-radio label="选项1" value="1"></ew-radio>
+                                <ew-radio label="选项2" value="2"></ew-radio>
+                                <ew-radio label="选项3" value="3"></ew-radio>
+                            </ew-radio-group>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>单选框按钮</h3>
+                        <div class="input-group">
+                            <ew-radio-button label="选项1" value="1" name="button"></ew-radio-button>
+                            <ew-radio-button label="选项2" value="2" name="button" model-value="true"></ew-radio-button>
+                            <ew-radio-button label="禁用选项" value="3" name="button" disabled></ew-radio-button>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>单选框按钮组</h3>
+                        <div class="input-group">
+                            <ew-radio-group id="radioButtonGroup" model-value="2">
+                                <ew-radio-button label="选项1" value="1"></ew-radio-button>
+                                <ew-radio-button label="选项2" value="2"></ew-radio-button>
+                                <ew-radio-button label="选项3" value="3"></ew-radio-button>
+                                <ew-radio-button label="选项4" value="4"></ew-radio-button>
+                            </ew-radio-group>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>单选框操作</h3>
+                        <div class="button-group">
+                            <ew-button type="primary" onclick="getRadioValue()">获取选中值</ew-button>
+                            <ew-button type="success" onclick="setRadioValue()">设置为选项3</ew-button>
+                            <ew-button type="warning" onclick="clearRadioValue()">清空选择</ew-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -528,6 +606,30 @@
             const checkboxGroup = document.getElementById('checkboxGroup');
             if (checkboxGroup) {
                 checkboxGroup.clearSelection();
+            }
+        };
+        
+        // 单选框操作
+        window.getRadioValue = function() {
+            const radioGroup = document.getElementById('radioGroup');
+            if (radioGroup) {
+                const selectedValue = radioGroup.getValue();
+                console.log('选中的值:', selectedValue);
+                alert(`选中的值: ${selectedValue}`);
+            }
+        };
+
+        window.setRadioValue = function() {
+            const radioGroup = document.getElementById('radioGroup');
+            if (radioGroup) {
+                radioGroup.setValue('3');
+            }
+        };
+
+        window.clearRadioValue = function() {
+            const radioGroup = document.getElementById('radioGroup');
+            if (radioGroup) {
+                radioGroup.setValue('');
             }
         };
         
