@@ -1,0 +1,145 @@
+/* Water UI 暗色主题 */
+
+[data-theme="dark"] {
+  /* 主色调 */
+  --ew-primary-color: #409eff;
+  --ew-primary-hover: #66b1ff;
+  --ew-primary-active: #3a8ee6;
+  --ew-primary-light: #1a1a1a;
+  --ew-primary-light-3: #2a2a2a;
+  --ew-primary-light-5: #3a3a3a;
+  --ew-primary-light-7: #4a4a4a;
+  --ew-primary-light-8: #5a5a5a;
+  --ew-primary-light-9: #6a6a6a;
+  --ew-primary-dark-2: #337ecc;
+
+  /* 成功色 */
+  --ew-success-color: #67c23a;
+  --ew-success-hover: #85ce61;
+  --ew-success-active: #5daf34;
+  --ew-success-light: #1a1a1a;
+  --ew-success-light-3: #2a2a2a;
+  --ew-success-light-5: #3a3a3a;
+  --ew-success-light-7: #4a4a4a;
+  --ew-success-light-8: #5a5a5a;
+  --ew-success-light-9: #6a6a6a;
+  --ew-success-dark-2: #529b2e;
+
+  /* 警告色 */
+  --ew-warning-color: #e6a23c;
+  --ew-warning-hover: #ebb563;
+  --ew-warning-active: #cf9236;
+  --ew-warning-light: #1a1a1a;
+  --ew-warning-light-3: #2a2a2a;
+  --ew-warning-light-5: #3a3a3a;
+  --ew-warning-light-7: #4a4a4a;
+  --ew-warning-light-8: #5a5a5a;
+  --ew-warning-light-9: #6a6a6a;
+  --ew-warning-dark-2: #b88230;
+
+  /* 危险色 */
+  --ew-danger-color: #f56c6c;
+  --ew-danger-hover: #f78989;
+  --ew-danger-active: #dd6161;
+  --ew-danger-light: #1a1a1a;
+  --ew-danger-light-3: #2a2a2a;
+  --ew-danger-light-5: #3a3a3a;
+  --ew-danger-light-7: #4a4a4a;
+  --ew-danger-light-8: #5a5a5a;
+  --ew-danger-light-9: #6a6a6a;
+  --ew-danger-dark-2: #c45656;
+
+  /* 信息色 */
+  --ew-info-color: #909399;
+  --ew-info-hover: #a6a9ad;
+  --ew-info-active: #82848a;
+  --ew-info-light: #1a1a1a;
+  --ew-info-light-3: #2a2a2a;
+  --ew-info-light-5: #3a3a3a;
+  --ew-info-light-7: #4a4a4a;
+  --ew-info-light-8: #5a5a5a;
+  --ew-info-light-9: #6a6a6a;
+  --ew-info-dark-2: #73767a;
+
+  /* 文字颜色 */
+  --ew-text-color-primary: #e5eaf3;
+  --ew-text-color-regular: #cfd3dc;
+  --ew-text-color-secondary: #a3a6ad;
+  --ew-text-color-placeholder: #8d9095;
+  --ew-text-color-disabled: #6c6e72;
+
+  /* 边框颜色 */
+  --ew-border-color-base: #4c4d4f;
+  --ew-border-color-light: #414243;
+  --ew-border-color-lighter: #363637;
+  --ew-border-color-extra-light: #2b2b2c;
+  --ew-border-color-dark: #58585b;
+  --ew-border-color-darker: #636466;
+
+  /* 填充颜色 */
+  --ew-fill-color-base: #303030;
+  --ew-fill-color-blank: #141414;
+  --ew-fill-color-light: #262727;
+  --ew-fill-color-lighter: #1d1d1d;
+  --ew-fill-color-extra-light: #191919;
+  --ew-fill-color-dark: #39393a;
+  --ew-fill-color-darker: #424243;
+
+  /* 背景颜色 */
+  --ew-bg-color: #141414;
+  --ew-bg-color-page: #0a0a0a;
+  --ew-bg-color-overlay: #1d1e1f;
+
+  /* 组件特定颜色 */
+  --ew-button-bg: #141414;
+  --ew-button-border-color: #4c4d4f;
+  --ew-input-bg: #141414;
+  --ew-input-border-color: #4c4d4f;
+  --ew-table-bg: #141414;
+  --ew-table-header-bg: #1d1d1d;
+  --ew-table-border-color: #363637;
+  --ew-modal-bg: #1d1e1f;
+
+  /* 阴影 */
+  --ew-box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 0, 0, 0.2);
+  --ew-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 0, 0, 0.3);
+  --ew-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+
+  /* 圆角 */
+  --ew-border-radius-base: 4px;
+  --ew-border-radius-small: 2px;
+  --ew-border-radius-round: 20px;
+  --ew-border-radius-circle: 100%;
+
+  /* 字体 */
+  --ew-font-size-extra-large: 20px;
+  --ew-font-size-large: 18px;
+  --ew-font-size-medium: 16px;
+  --ew-font-size-base: 14px;
+  --ew-font-size-small: 13px;
+  --ew-font-size-extra-small: 12px;
+
+  /* 间距 */
+  --ew-spacing-base: 8px;
+  --ew-spacing-small: 4px;
+  --ew-spacing-large: 16px;
+  --ew-spacing-extra-large: 24px;
+
+  /* 过渡动画 */
+  --ew-transition-duration: 0.3s;
+  --ew-transition-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ew-transition-all: all var(--ew-transition-duration) var(--ew-transition-function);
+  --ew-transition-fade: opacity var(--ew-transition-duration) var(--ew-transition-function);
+  --ew-transition-transform: transform var(--ew-transition-duration) var(--ew-transition-function);
+
+  /* Z-index */
+  --ew-index-normal: 1;
+  --ew-index-top: 1000;
+  --ew-index-popper: 2000;
+  --ew-index-spinner: 3000;
+  --ew-index-message: 4000;
+  --ew-index-notification: 5000;
+  --ew-index-modal: 6000;
+  --ew-index-popup: 7000;
+  --ew-index-tooltip: 8000;
+} 

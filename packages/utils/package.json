@@ -1,0 +1,36 @@
+{
+  "name": "@water-ui/utils",
+  "version": "1.0.0",
+  "description": "Water UI 工具函数包",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist",
+    "dev": "vite",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "vitest": "^0.34.0",
+    "jsdom": "^22.0.0"
+  },
+  "keywords": [
+    "water-ui",
+    "utils",
+    "helpers"
+  ],
+  "author": "Water UI Team",
+  "license": "MIT"
+} 

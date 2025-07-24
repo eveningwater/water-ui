@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water UI 组件库示例</title>
+  <!-- 引入主题样式 -->
+  <link rel="stylesheet" href="../packages/themes/dist/style.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .section {
+      margin-bottom: 40px;
+      padding: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+    }
+    .section h2 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #409eff;
+      padding-bottom: 10px;
+    }
+    .demo-row {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .demo-item {
+      margin: 5px;
+    }
+    .code-block {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Water UI 组件库示例</h1>
+    
+    <!-- 按钮组件 -->
+    <div class="section">
+      <h2>按钮组件 (ew-button)</h2>
+      <div class="demo-row">
+        <ew-button class="demo-item">默认按钮</ew-button>
+        <ew-button type="primary" class="demo-item">主要按钮</ew-button>
+        <ew-button type="success" class="demo-item">成功按钮</ew-button>
+        <ew-button type="warning" class="demo-item">警告按钮</ew-button>
+        <ew-button type="danger" class="demo-item">危险按钮</ew-button>
+        <ew-button type="info" class="demo-item">信息按钮</ew-button>
+      </div>
+      <div class="demo-row">
+        <ew-button plain class="demo-item">朴素按钮</ew-button>
+        <ew-button type="primary" plain class="demo-item">朴素主要按钮</ew-button>
+        <ew-button round class="demo-item">圆角按钮</ew-button>
+        <ew-button type="primary" round class="demo-item">圆角主要按钮</ew-button>
+      </div>
+      <div class="demo-row">
+        <ew-button size="small" class="demo-item">小按钮</ew-button>
+        <ew-button size="large" class="demo-item">大按钮</ew-button>
+        <ew-button disabled class="demo-item">禁用按钮</ew-button>
+      </div>
+      <div class="code-block">
+&lt;ew-button&gt;默认按钮&lt;/ew-button&gt;
+&lt;ew-button type="primary"&gt;主要按钮&lt;/ew-button&gt;
+&lt;ew-button type="success"&gt;成功按钮&lt;/ew-button&gt;
+      </div>
+    </div>
+
+    <!-- 输入框组件 -->
+    <div class="section">
+      <h2>输入框组件 (ew-input)</h2>
+      <div class="demo-row">
+        <ew-input placeholder="请输入内容" class="demo-item"></ew-input>
+        <ew-input placeholder="禁用状态" disabled class="demo-item"></ew-input>
+        <ew-input placeholder="只读状态" readonly class="demo-item"></ew-input>
+      </div>
+      <div class="demo-row">
+        <ew-input type="password" placeholder="密码输入" class="demo-item"></ew-input>
+        <ew-input size="small" placeholder="小尺寸" class="demo-item"></ew-input>
+        <ew-input size="large" placeholder="大尺寸" class="demo-item"></ew-input>
+      </div>
+      <div class="code-block">
+&lt;ew-input placeholder="请输入内容"&gt;&lt;/ew-input&gt;
+&lt;ew-input type="password" placeholder="密码输入"&gt;&lt;/ew-input&gt;
+&lt;ew-input disabled placeholder="禁用状态"&gt;&lt;/ew-input&gt;
+      </div>
+    </div>
+
+    <!-- 表格组件 -->
+    <div class="section">
+      <h2>表格组件 (ew-table)</h2>
+      <ew-table border stripe>
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>城市</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>张三</td>
+            <td>25</td>
+            <td>北京</td>
+          </tr>
+          <tr>
+            <td>李四</td>
+            <td>30</td>
+            <td>上海</td>
+          </tr>
+          <tr>
+            <td>王五</td>
+            <td>28</td>
+            <td>广州</td>
+          </tr>
+        </tbody>
+      </ew-table>
+      <div class="code-block">
+&lt;ew-table border stripe&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;姓名&lt;/th&gt;
+      &lt;th&gt;年龄&lt;/th&gt;
+      &lt;th&gt;城市&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;张三&lt;/td&gt;
+      &lt;td&gt;25&lt;/td&gt;
+      &lt;td&gt;北京&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/ew-table&gt;
+      </div>
+    </div>
+
+    <!-- 弹窗组件 -->
+    <div class="section">
+      <h2>弹窗组件 (ew-modal)</h2>
+      <div class="demo-row">
+        <ew-button type="primary" onclick="showModal()">打开弹窗</ew-button>
+      </div>
+      
+      <ew-modal id="demoModal" title="示例弹窗" show-close show-cancel-button show-confirm-button>
+        <p>这是一个示例弹窗的内容。</p>
+        <p>你可以在这里放置任何内容。</p>
+      </ew-modal>
+      
+      <div class="code-block">
+&lt;ew-modal id="demoModal" title="示例弹窗" show-close show-cancel-button show-confirm-button&gt;
+  &lt;p&gt;这是一个示例弹窗的内容。&lt;/p&gt;
+&lt;/ew-modal&gt;
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入组件库 -->
+  <script type="module">
+    import { EwButton, EwInput, EwTable, EwModal } from '../packages/core/dist/index.esm.js';
+    
+    // 全局函数用于测试弹窗
+    window.showModal = function() {
+      const modal = document.getElementById('demoModal');
+      if (modal) {
+        modal.setAttribute('model-value', 'true');
+      }
+    };
+    
+    console.log('Water UI 组件库已加载');
+    console.log('可用组件:', { EwButton, EwInput, EwTable, EwModal });
+  </script>
+</body>
+</html> 
