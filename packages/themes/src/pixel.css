@@ -1,0 +1,461 @@
+/* Water UI - 像素画主题 */
+[data-theme="pixel"], .pixel {
+  /* 像素画主题色彩系统 */
+  --ew-color-primary: #ff6b6b; /* 像素红 */
+  --ew-color-primary-light: #ff8e8e; /* 浅像素红 */
+  --ew-color-primary-dark: #e55555; /* 深像素红 */
+  --ew-color-primary-hover: #ff5252;
+  --ew-color-primary-active: #d32f2f;
+  --ew-color-primary-disabled: #ffcdd2;
+
+  --ew-color-success: #4caf50; /* 像素绿 */
+  --ew-color-success-light: #66bb6a;
+  --ew-color-success-dark: #388e3c;
+  --ew-color-success-hover: #45a049;
+  --ew-color-success-active: #2e7d32;
+  --ew-color-success-disabled: #c8e6c9;
+
+  --ew-color-warning: #ff9800; /* 像素橙 */
+  --ew-color-warning-light: #ffb74d;
+  --ew-color-warning-dark: #f57c00;
+  --ew-color-warning-hover: #ff8f00;
+  --ew-color-warning-active: #ef6c00;
+  --ew-color-warning-disabled: #ffe0b2;
+
+  --ew-color-danger: #f44336; /* 像素红 */
+  --ew-color-danger-light: #ef5350;
+  --ew-color-danger-dark: #d32f2f;
+  --ew-color-danger-hover: #e53935;
+  --ew-color-danger-active: #c62828;
+  --ew-color-danger-disabled: #ffcdd2;
+
+  --ew-color-info: #2196f3; /* 像素蓝 */
+  --ew-color-info-light: #42a5f5;
+  --ew-color-info-dark: #1976d2;
+  --ew-color-info-hover: #1e88e5;
+  --ew-color-info-active: #1565c0;
+  --ew-color-info-disabled: #bbdefb;
+
+  /* 中性色彩系统 */
+  --ew-color-white: #ffffff;
+  --ew-color-black: #000000;
+  --ew-color-gray-50: #fafafa;
+  --ew-color-gray-100: #f5f5f5;
+  --ew-color-gray-200: #eeeeee;
+  --ew-color-gray-300: #e0e0e0;
+  --ew-color-gray-400: #bdbdbd;
+  --ew-color-gray-500: #9e9e9e;
+  --ew-color-gray-600: #757575;
+  --ew-color-gray-700: #616161;
+  --ew-color-gray-800: #424242;
+  --ew-color-gray-900: #212121;
+
+  /* 背景色彩 */
+  --ew-bg-color: #ffffff;
+  --ew-bg-color-secondary: #f5f5f5;
+  --ew-bg-color-tertiary: #eeeeee;
+  --ew-bg-color-disabled: #f5f5f5;
+  --ew-bg-color-overlay: rgba(0, 0, 0, 0.5);
+
+  /* 文字色彩 */
+  --ew-text-color: #212121;
+  --ew-text-color-primary: #000000;
+  --ew-text-color-secondary: #757575;
+  --ew-text-color-placeholder: #9e9e9e;
+  --ew-text-color-disabled: #bdbdbd;
+  --ew-text-color-inverse: #ffffff;
+
+  /* 边框色彩 */
+  --ew-border-color: #e0e0e0;
+  --ew-border-color-light: #f5f5f5;
+  --ew-border-color-dark: #bdbdbd;
+  --ew-border-color-disabled: #e0e0e0;
+
+  /* 像素化阴影系统 */
+  --ew-shadow-light: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  --ew-shadow-base: 4px 4px 0px rgba(0, 0, 0, 0.15);
+  --ew-shadow-dark: 6px 6px 0px rgba(0, 0, 0, 0.2);
+  --ew-shadow-dropdown: 4px 4px 0px rgba(0, 0, 0, 0.15);
+  --ew-shadow-tooltip: 4px 4px 0px rgba(0, 0, 0, 0.15);
+
+  /* 像素化边框半径 */
+  --ew-border-radius: 0px; /* 像素风格无圆角 */
+  --ew-border-radius-small: 0px;
+  --ew-border-radius-large: 0px;
+
+  /* 字体系统 */
+  --ew-font-family: 'Press Start 2P', 'Zpix', 'Courier New', monospace;
+  --ew-font-size-xs: 8px;
+  --ew-font-size-sm: 10px;
+  --ew-font-size-base: 12px;
+  --ew-font-size-lg: 14px;
+  --ew-font-size-xl: 16px;
+  --ew-font-size-2xl: 18px;
+  --ew-font-size-3xl: 20px;
+
+  /* 行高 */
+  --ew-line-height-tight: 1.2;
+  --ew-line-height-normal: 1.4;
+  --ew-line-height-relaxed: 1.6;
+
+  /* 间距系统 */
+  --ew-spacing-1: 4px;
+  --ew-spacing-2: 8px;
+  --ew-spacing-3: 12px;
+  --ew-spacing-4: 16px;
+  --ew-spacing-5: 20px;
+  --ew-spacing-6: 24px;
+  --ew-spacing-8: 32px;
+  --ew-spacing-10: 40px;
+  --ew-spacing-12: 48px;
+
+  /* 过渡动画 */
+  --ew-transition: 0.1s steps(1); /* 像素化步进动画 */
+
+  /* Z-index层级 */
+  --ew-z-index-dropdown: 1000;
+  --ew-z-index-sticky: 1020;
+  --ew-z-index-fixed: 1030;
+  --ew-z-index-modal-backdrop: 1040;
+  --ew-z-index-modal: 1050;
+  --ew-z-index-popover: 1060;
+  --ew-z-index-tooltip: 1070;
+
+  /* 特殊效果 - 像素波纹 */
+  --ew-ripple-color: rgba(255, 107, 107, 0.3);
+  --ew-ripple-duration: 200ms;
+  --ew-ripple-scale: 1.5;
+
+  /* 组件特定变量 */
+  --ew-button-padding-x: 16px;
+  --ew-button-padding-y: 8px;
+  --ew-button-min-height: 32px;
+  --ew-button-font-size: 12px;
+  --ew-button-border-radius: 0px;
+
+  --ew-input-height: 32px;
+  --ew-input-padding-x: 12px;
+  --ew-input-padding-y: 6px;
+  --ew-input-border-radius: 0px;
+
+  --ew-table-border-radius: 0px;
+  --ew-table-header-bg: #f5f5f5;
+  --ew-table-row-hover-bg: #eeeeee;
+
+  --ew-modal-border-radius: 0px;
+  --ew-modal-backdrop-blur: 0px;
+}
+
+/* 像素化全局重置 */
+[data-theme="pixel"] *,
+.pixel * {
+  box-sizing: border-box;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+[data-theme="pixel"] body,
+.pixel body {
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-base);
+  line-height: var(--ew-line-height-normal);
+  color: var(--ew-text-color);
+  background-color: var(--ew-bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* 像素化焦点样式 */
+[data-theme="pixel"] :focus-visible,
+.pixel :focus-visible {
+  outline: 2px solid var(--ew-color-primary);
+  outline-offset: 2px;
+}
+
+/* 像素化禁用样式 */
+[data-theme="pixel"] :disabled,
+.pixel :disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 屏幕阅读器专用类 */
+[data-theme="pixel"] .ew-sr-only,
+.pixel .ew-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 像素化动画 */
+@keyframes ew-pixel-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(var(--ew-ripple-scale));
+    opacity: 0;
+  }
+}
+
+@keyframes ew-pixel-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes ew-pixel-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes ew-pixel-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 像素化按钮样式覆盖 */
+[data-theme="pixel"] .ew-button,
+.pixel .ew-button {
+  border: 2px solid var(--ew-color-primary);
+  background: var(--ew-bg-color);
+  color: var(--ew-text-color);
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-base);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: var(--ew-shadow-base);
+  transition: var(--ew-transition);
+}
+
+[data-theme="pixel"] .ew-button:hover,
+.pixel .ew-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--ew-shadow-dark);
+}
+
+[data-theme="pixel"] .ew-button:active,
+.pixel .ew-button:active {
+  transform: translate(0, 0);
+  box-shadow: var(--ew-shadow-light);
+}
+
+[data-theme="pixel"] .ew-button--primary,
+.pixel .ew-button--primary {
+  background: var(--ew-color-primary);
+  color: var(--ew-color-white);
+  border-color: var(--ew-color-primary-dark);
+}
+
+/* 像素化输入框样式覆盖 */
+[data-theme="pixel"] .ew-input__wrapper,
+.pixel .ew-input__wrapper {
+  border: 2px solid var(--ew-border-color);
+  background: var(--ew-bg-color);
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-base);
+  box-shadow: var(--ew-shadow-light);
+}
+
+[data-theme="pixel"] .ew-input__wrapper:focus-within,
+.pixel .ew-input__wrapper:focus-within {
+  border-color: var(--ew-color-primary);
+  box-shadow: var(--ew-shadow-base);
+}
+
+/* 像素化表格样式覆盖 */
+[data-theme="pixel"] .ew-table,
+.pixel .ew-table {
+  border: 2px solid var(--ew-border-color);
+  background: var(--ew-bg-color);
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-base);
+  box-shadow: var(--ew-shadow-base);
+}
+
+[data-theme="pixel"] .ew-table th,
+.pixel .ew-table th {
+  background: var(--ew-table-header-bg);
+  border-bottom: 2px solid var(--ew-border-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+[data-theme="pixel"] .ew-table td,
+.pixel .ew-table td {
+  border-bottom: 1px solid var(--ew-border-color-light);
+}
+
+/* 像素化模态框样式覆盖 */
+[data-theme="pixel"] .ew-modal__content,
+.pixel .ew-modal__content {
+  border: 3px solid var(--ew-color-primary);
+  background: var(--ew-bg-color);
+  font-family: var(--ew-font-family);
+  box-shadow: var(--ew-shadow-dark);
+}
+
+[data-theme="pixel"] .ew-modal__header,
+.pixel .ew-modal__header {
+  background: var(--ew-color-primary);
+  color: var(--ew-color-white);
+  border-bottom: 2px solid var(--ew-color-primary-dark);
+}
+
+[data-theme="pixel"] .ew-modal__title,
+.pixel .ew-modal__title {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 像素化复选框样式覆盖 */
+[data-theme="pixel"] .ew-checkbox__inner,
+.pixel .ew-checkbox__inner {
+  border: 2px solid var(--ew-border-color);
+  background: var(--ew-bg-color);
+  box-shadow: var(--ew-shadow-light);
+}
+
+[data-theme="pixel"] .ew-checkbox__input:checked + .ew-checkbox__inner,
+.pixel .ew-checkbox__input:checked + .ew-checkbox__inner {
+  border-color: var(--ew-color-primary);
+  background: var(--ew-color-primary);
+  box-shadow: var(--ew-shadow-base);
+}
+
+/* 像素化单选框样式覆盖 */
+[data-theme="pixel"] .ew-radio__inner,
+.pixel .ew-radio__inner {
+  border: 2px solid var(--ew-border-color);
+  background: var(--ew-bg-color);
+  box-shadow: var(--ew-shadow-light);
+}
+
+[data-theme="pixel"] .ew-radio__input:checked + .ew-radio__inner,
+.pixel .ew-radio__input:checked + .ew-radio__inner {
+  border-color: var(--ew-color-primary);
+  background: var(--ew-color-primary);
+  box-shadow: var(--ew-shadow-base);
+}
+
+/* 像素化按钮样式 */
+[data-theme="pixel"] .ew-radio--button .ew-radio__label,
+[data-theme="pixel"] .ew-checkbox--button .ew-checkbox__label,
+.pixel .ew-radio--button .ew-radio__label,
+.pixel .ew-checkbox--button .ew-checkbox__label {
+  border: 2px solid var(--ew-border-color);
+  background: var(--ew-bg-color);
+  color: var(--ew-text-color);
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-base);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: var(--ew-shadow-light);
+  transition: var(--ew-transition);
+}
+
+[data-theme="pixel"] .ew-radio--button .ew-radio__input:checked + .ew-radio__label,
+[data-theme="pixel"] .ew-checkbox--button .ew-checkbox__input:checked + .ew-checkbox__label,
+.pixel .ew-radio--button .ew-radio__input:checked + .ew-radio__label,
+.pixel .ew-checkbox--button .ew-checkbox__input:checked + .ew-checkbox__label {
+  background: var(--ew-color-primary);
+  color: var(--ew-color-white);
+  border-color: var(--ew-color-primary-dark);
+  box-shadow: var(--ew-shadow-base);
+}
+
+/* 像素化滚动条 */
+[data-theme="pixel"] ::-webkit-scrollbar,
+.pixel ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme="pixel"] ::-webkit-scrollbar-track,
+.pixel ::-webkit-scrollbar-track {
+  background: var(--ew-bg-color-secondary);
+  border: 1px solid var(--ew-border-color);
+}
+
+[data-theme="pixel"] ::-webkit-scrollbar-thumb,
+.pixel ::-webkit-scrollbar-thumb {
+  background: var(--ew-color-primary);
+  border: 1px solid var(--ew-color-primary-dark);
+}
+
+[data-theme="pixel"] ::-webkit-scrollbar-thumb:hover,
+.pixel ::-webkit-scrollbar-thumb:hover {
+  background: var(--ew-color-primary-dark);
+}
+
+/* 像素化选择框 */
+[data-theme="pixel"] ::selection,
+.pixel ::selection {
+  background: var(--ew-color-primary);
+  color: var(--ew-color-white);
+}
+
+/* 像素化占位符 */
+[data-theme="pixel"] ::placeholder,
+.pixel ::placeholder {
+  color: var(--ew-text-color-placeholder);
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-base);
+}
+
+/* 像素化链接 */
+[data-theme="pixel"] a,
+.pixel a {
+  color: var(--ew-color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: var(--ew-transition);
+}
+
+[data-theme="pixel"] a:hover,
+.pixel a:hover {
+  border-bottom-color: var(--ew-color-primary);
+}
+
+/* 像素化代码块 */
+[data-theme="pixel"] code,
+.pixel code {
+  background: var(--ew-bg-color-secondary);
+  border: 1px solid var(--ew-border-color);
+  padding: 2px 4px;
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-sm);
+}
+
+/* 像素化引用块 */
+[data-theme="pixel"] blockquote,
+.pixel blockquote {
+  border-left: 4px solid var(--ew-color-primary);
+  padding-left: var(--ew-spacing-4);
+  margin: var(--ew-spacing-4) 0;
+  background: var(--ew-bg-color-secondary);
+  padding: var(--ew-spacing-4);
+  font-style: italic;
+} 

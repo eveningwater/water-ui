@@ -15,12 +15,15 @@ export class EwCheckboxButton extends BaseComponent {
       value: this.getAttribute('value') || '',
       name: this.getAttribute('name') || '',
       border: this.hasAttribute('border'),
+      button: this.hasAttribute('button'),
       checked: this.hasAttribute('checked'),
       defaultChecked: this.hasAttribute('default-checked'),
       trueLabel: this.getAttribute('true-label') || 'true',
       falseLabel: this.getAttribute('false-label') || 'false',
       id: this.getAttribute('id') || '',
-      controls: this.getAttribute('controls') || ''
+      controls: this.getAttribute('controls') || '',
+      disabled: this.hasAttribute('disabled'),
+      size: (this.getAttribute('size') as 'small' | 'medium' | 'large') || 'medium'
     };
 
     // 初始化状态

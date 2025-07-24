@@ -57,6 +57,15 @@ export class EwRadio extends BaseComponent {
     input.addEventListener('change', this.handleChange.bind(this));
     input.addEventListener('focus', this.handleFocus.bind(this));
     input.addEventListener('blur', this.handleBlur.bind(this));
+    
+    // 为禁用状态添加额外的事件阻止
+    if (this.radioProps.disabled) {
+      input.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      });
+    }
 
     // 组装组件
     radioContainer.appendChild(input);
@@ -96,6 +105,9 @@ export class EwRadio extends BaseComponent {
     const target = event.target as HTMLInputElement;
     
     if (this.radioProps.disabled) {
+      // 阻止事件传播和默认行为
+      event.preventDefault();
+      event.stopPropagation();
       return;
     }
 

@@ -27,7 +27,7 @@
     "components",
     "water-ui"
   ],
-  "author": "Water UI Team",
+  "author": "eveningwater(854806732@qq.com)",
   "license": "MIT",
   "dependencies": {
     "@water-ui/icons": "workspace:*",

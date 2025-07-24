@@ -11,14 +11,16 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./default.css": "./dist/default.css",
-    "./dark.css": "./dist/dark.css"
+    "./themes/light": "./dist/themes/theme-light.css",
+    "./themes/dark": "./dist/themes/theme-dark.css",
+    "./themes/pixel": "./dist/themes/theme-pixel.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist",
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist && node build-themes.js",
+    "build:themes": "node build-themes.js",
     "dev": "vite"
   },
   "devDependencies": {

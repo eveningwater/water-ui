@@ -23,7 +23,9 @@ export class EwCheckbox extends BaseComponent {
       trueLabel: this.getAttribute('true-label') || 'true',
       falseLabel: this.getAttribute('false-label') || 'false',
       id: this.getAttribute('id') || '',
-      controls: this.getAttribute('controls') || ''
+      controls: this.getAttribute('controls') || '',
+      disabled: this.hasAttribute('disabled'),
+      size: (this.getAttribute('size') as 'small' | 'medium' | 'large') || 'medium'
     };
 
     // 初始化状态
@@ -61,6 +63,15 @@ export class EwCheckbox extends BaseComponent {
     input.addEventListener('change', this.handleChange.bind(this));
     input.addEventListener('focus', this.handleFocus.bind(this));
     input.addEventListener('blur', this.handleBlur.bind(this));
+    
+    // 为禁用状态添加额外的事件阻止
+    if (this.checkboxProps.disabled) {
+      input.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      });
+    }
 
     // 组装组件
     checkboxContainer.appendChild(input);
@@ -100,6 +111,9 @@ export class EwCheckbox extends BaseComponent {
     const target = event.target as HTMLInputElement;
     
     if (this.checkboxProps.disabled) {
+      // 阻止事件传播和默认行为
+      event.preventDefault();
+      event.stopPropagation();
       return;
     }
 

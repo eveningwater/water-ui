@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water UI - 主题演示</title>
+    
+    <!-- 导入字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        
+    <!-- 导入主题CSS文件 -->
+    <link rel="stylesheet" href="../packages/themes/dist/themes/theme-light.css" id="theme-light">
+    <link rel="stylesheet" href="../packages/themes/dist/themes/theme-dark.css" id="theme-dark">
+    <link rel="stylesheet" href="../packages/themes/dist/themes/theme-pixel.css" id="theme-pixel">
+        
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+            background: #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .demo-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 2px solid #333;
+            background: white;
+        }
+
+        .demo-section h2 {
+            margin-top: 0;
+            color: #ff6b6b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .component-item {
+            padding: 15px;
+            border: 2px solid #ddd;
+            text-align: center;
+        }
+
+        .component-item h3 {
+            margin-top: 0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .table-demo {
+            overflow-x: auto;
+        }
+
+        .form-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .pixel-art-decoration {
+            position: relative;
+        }
+
+        .pixel-art-decoration::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: 
+                linear-gradient(45deg, transparent 40%, #ff6b6b 40%, #ff6b6b 60%, transparent 60%),
+                linear-gradient(-45deg, transparent 40%, #ff6b6b 40%, #ff6b6b 60%, transparent 60%);
+            background-size: 10px 10px;
+            z-index: -1;
+        }
+
+        .theme-info {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+
+        /* 主题切换样式 */
+        .theme-light {
+            display: block;
+        }
+        
+        .theme-dark, .theme-pixel {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-light {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-dark {
+            display: block;
+        }
+
+        [data-theme="pixel"] .theme-light {
+            display: none;
+        }
+
+        [data-theme="pixel"] .theme-pixel {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-info">
+        当前主题: <span id="currentTheme">light</span>
+    </div>
+
+    <div class="theme-switcher">
+        <ew-button id="lightTheme" type="primary">浅色主题</ew-button>
+        <ew-button id="darkTheme" type="primary">深色主题</ew-button>
+        <ew-button id="pixelTheme" type="primary">像素主题</ew-button>
+    </div>
+
+    <div class="demo-container">
+        <div class="pixel-art-decoration">
+            <h1 style="text-align: center; color: #ff6b6b; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 40px;">
+                🎮 Water UI 主题演示 🎮
+            </h1>
+        </div>
+
+        <!-- 按钮组件演示 -->
+        <div class="demo-section">
+            <h2>按钮组件</h2>
+            <div class="component-grid">
+                <div class="component-item">
+                    <h3>主要按钮</h3>
+                    <ew-button type="primary">主要按钮</ew-button>
+                </div>
+                <div class="component-item">
+                    <h3>成功按钮</h3>
+                    <ew-button type="success">成功按钮</ew-button>
+                </div>
+                <div class="component-item">
+                    <h3>警告按钮</h3>
+                    <ew-button type="warning">警告按钮</ew-button>
+                </div>
+                <div class="component-item">
+                    <h3>危险按钮</h3>
+                    <ew-button type="danger">危险按钮</ew-button>
+                </div>
+                <div class="component-item">
+                    <h3>信息按钮</h3>
+                    <ew-button type="info">信息按钮</ew-button>
+                </div>
+                <div class="component-item">
+                    <h3>朴素按钮</h3>
+                    <ew-button type="plain">朴素按钮</ew-button>
+                </div>
+                <div class="component-item">
+                    <h3>禁用按钮</h3>
+                    <ew-button disabled>禁用按钮</ew-button>
+                </div>
+                <div class="component-item">
+                    <h3>加载按钮</h3>
+                    <ew-button loading>加载中</ew-button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 输入框组件演示 -->
+        <div class="demo-section">
+            <h2>输入框组件</h2>
+            <div class="form-demo">
+                <div class="form-group">
+                    <label>普通输入框</label>
+                    <ew-input placeholder="请输入内容"></ew-input>
+                </div>
+                <div class="form-group">
+                    <label>密码输入框</label>
+                    <ew-input type="password" placeholder="请输入密码"></ew-input>
+                </div>
+                <div class="form-group">
+                    <label>带前缀的输入框</label>
+                    <ew-input prefix="🔍" placeholder="搜索内容"></ew-input>
+                </div>
+                <div class="form-group">
+                    <label>带后缀的输入框</label>
+                    <ew-input suffix="📧" placeholder="邮箱地址"></ew-input>
+                </div>
+                <div class="form-group">
+                    <label>禁用输入框</label>
+                    <ew-input disabled placeholder="禁用状态"></ew-input>
+                </div>
+                <div class="form-group">
+                    <label>只读输入框</label>
+                    <ew-input readonly value="只读内容"></ew-input>
+                </div>
+            </div>
+        </div>
+
+        <!-- 复选框组件演示 -->
+        <div class="demo-section">
+            <h2>复选框组件</h2>
+            <div class="component-grid">
+                <div class="component-item">
+                    <h3>基础复选框</h3>
+                    <ew-checkbox label="选项1"></ew-checkbox>
+                </div>
+                <div class="component-item">
+                    <h3>选中状态</h3>
+                    <ew-checkbox label="选项2" checked></ew-checkbox>
+                </div>
+                <div class="component-item">
+                    <h3>禁用状态</h3>
+                    <ew-checkbox label="选项3" disabled></ew-checkbox>
+                </div>
+                <div class="component-item">
+                    <h3>边框样式</h3>
+                    <ew-checkbox label="选项4" border></ew-checkbox>
+                </div>
+            </div>
+        </div>
+
+        <!-- 复选框组演示 -->
+        <div class="demo-section">
+            <h2>复选框组</h2>
+            <ew-checkbox-group model-value='["option1"]'>
+                <ew-checkbox value="option1" label="像素游戏"></ew-checkbox>
+                <ew-checkbox value="option2" label="复古风格"></ew-checkbox>
+                <ew-checkbox value="option3" label="8位音乐"></ew-checkbox>
+                <ew-checkbox value="option4" label="像素艺术"></ew-checkbox>
+            </ew-checkbox-group>
+        </div>
+
+        <!-- 单选框组件演示 -->
+        <div class="demo-section">
+            <h2>单选框组件</h2>
+            <div class="component-grid">
+                <div class="component-item">
+                    <h3>基础单选框</h3>
+                    <ew-radio label="选项1" name="demo"></ew-radio>
+                </div>
+                <div class="component-item">
+                    <h3>选中状态</h3>
+                    <ew-radio label="选项2" name="demo" checked></ew-radio>
+                </div>
+                <div class="component-item">
+                    <h3>禁用状态</h3>
+                    <ew-radio label="选项3" name="demo" disabled></ew-radio>
+                </div>
+                <div class="component-item">
+                    <h3>边框样式</h3>
+                    <ew-radio label="选项4" name="demo" border></ew-radio>
+                </div>
+            </div>
+        </div>
+
+        <!-- 单选框组演示 -->
+        <div class="demo-section">
+            <h2>单选框组</h2>
+            <ew-radio-group model-value="option1">
+                <ew-radio value="option1" label="超级马里奥"></ew-radio>
+                <ew-radio value="option2" label="塞尔达传说"></ew-radio>
+                <ew-radio value="option3" label="俄罗斯方块"></ew-radio>
+                <ew-radio value="option4" label="吃豆人"></ew-radio>
+            </ew-radio-group>
+        </div>
+
+        <!-- 按钮样式单选框组演示 -->
+        <div class="demo-section">
+            <h2>按钮样式单选框组</h2>
+            <ew-radio-group model-value="easy" button>
+                <ew-radio-button value="easy" label="简单"></ew-radio-button>
+                <ew-radio-button value="normal" label="普通"></ew-radio-button>
+                <ew-radio-button value="hard" label="困难"></ew-radio-button>
+                <ew-radio-button value="extreme" label="极限"></ew-radio-button>
+            </ew-radio-group>
+        </div>
+
+        <!-- 按钮样式复选框组演示 -->
+        <div class="demo-section">
+            <h2>按钮样式复选框组</h2>
+            <ew-checkbox-group model-value='["red"]' button>
+                <ew-checkbox-button value="red" label="红色"></ew-checkbox-button>
+                <ew-checkbox-button value="green" label="绿色"></ew-checkbox-button>
+                <ew-checkbox-button value="blue" label="蓝色"></ew-checkbox-button>
+                <ew-checkbox-button value="yellow" label="黄色"></ew-checkbox-button>
+            </ew-checkbox-group>
+        </div>
+
+        <!-- 表格组件演示 -->
+        <div class="demo-section">
+            <h2>表格组件</h2>
+            <div class="table-demo">
+                <ew-table>
+                    <ew-table-column prop="name" label="游戏名称" width="200"></ew-table-column>
+                    <ew-table-column prop="year" label="发行年份" width="120"></ew-table-column>
+                    <ew-table-column prop="platform" label="平台" width="120"></ew-table-column>
+                    <ew-table-column prop="genre" label="类型" width="120"></ew-table-column>
+                    <ew-table-column prop="rating" label="评分" width="100"></ew-table-column>
+                </ew-table>
+            </div>
+        </div>
+
+        <!-- 模态框演示 -->
+        <div class="demo-section">
+            <h2>模态框组件</h2>
+            <ew-button type="primary" onclick="openModal()">打开模态框</ew-button>
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <ew-modal id="demoModal" title="主题风格模态框">
+        <div slot="body">
+            <p>这是一个主题风格的模态框演示！</p>
+            <p>🎮 感受不同主题的魅力 🎮</p>
+        </div>
+        <div slot="footer">
+            <ew-button onclick="closeModal()">取消</ew-button>
+            <ew-button type="primary" onclick="closeModal()">确定</ew-button>
+        </div>
+    </ew-modal>
+
+    <!-- 导入组件脚本 -->
+    <script type="module">
+        import '../packages/core/dist/index.esm.js';
+
+        // 简化的主题切换功能
+        window.setTheme = function(theme) {
+            // 移除所有主题属性
+            document.documentElement.removeAttribute('data-theme');
+            
+            // 设置新主题
+            if (theme === 'dark' || theme === 'pixel') {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+            
+            // 保存到localStorage
+            localStorage.setItem('ew-theme', theme);
+            
+            // 更新显示
+            updateThemeInfo();
+            
+            // 触发事件
+            window.dispatchEvent(new CustomEvent('ew-theme-change', { detail: { theme } }));
+        };
+
+        window.getTheme = function() {
+            return localStorage.getItem('ew-theme') || 'light';
+        };
+
+        // 主题切换功能
+        document.getElementById('lightTheme').addEventListener('click', () => {
+            setTheme('light');
+        });
+
+        document.getElementById('darkTheme').addEventListener('click', () => {
+            setTheme('dark');
+        });
+
+        document.getElementById('pixelTheme').addEventListener('click', () => {
+            setTheme('pixel');
+        });
+
+        function updateThemeInfo() {
+            const currentTheme = window.getTheme();
+            document.getElementById('currentTheme').textContent = currentTheme;
+        }
+
+        // 监听主题变化事件
+        window.addEventListener('ew-theme-change', (event) => {
+            console.log('Theme changed to:', event.detail.theme);
+        });
+
+        // 模态框功能
+        window.openModal = function() {
+            const modal = document.getElementById('demoModal');
+            modal.setAttribute('visible', 'true');
+        };
+
+        window.closeModal = function() {
+            const modal = document.getElementById('demoModal');
+            modal.removeAttribute('visible');
+        };
+
+        // 表格数据
+        const tableData = [
+            { name: '超级马里奥兄弟', year: '1985', platform: 'NES', genre: '平台跳跃', rating: '9.5' },
+            { name: '塞尔达传说', year: '1986', platform: 'NES', genre: '动作冒险', rating: '9.8' },
+            { name: '俄罗斯方块', year: '1984', platform: '多平台', genre: '益智', rating: '9.0' },
+            { name: '吃豆人', year: '1980', platform: '街机', genre: '迷宫', rating: '9.2' },
+            { name: '魂斗罗', year: '1987', platform: 'NES', genre: '射击', rating: '8.8' }
+        ];
+
+        // 初始化表格数据
+        setTimeout(() => {
+            const table = document.querySelector('ew-table');
+            if (table) {
+                table.setAttribute('data', JSON.stringify(tableData));
+            }
+        }, 100);
+
+        // 初始化主题
+        const savedTheme = window.getTheme();
+        if (savedTheme !== 'light') {
+            window.setTheme(savedTheme);
+        }
+        updateThemeInfo();
+    </script>
+</body>
+</html> 
