@@ -6,6 +6,7 @@ import { inputStyles } from './index-style';
 export class EwInput extends BaseComponent {
   private inputProps: InputProps = {};
   private inputElement: HTMLInputElement | null = null;
+  private isPasswordVisible: boolean = false;
 
   protected initProps(): void {
     super.initProps();
@@ -31,10 +32,14 @@ export class EwInput extends BaseComponent {
     // 创建输入框容器
     const inputContainer = this.createElement('div', { class: this.getInputClasses() });
 
+    // 创建输入框包装器
+    const inputWrapper = this.createElement('div', { class: 'ew-input__wrapper' });
+
     // 创建输入框
     const input = this.createElement('input', {
-      type: type === 'password' && showPassword ? 'text' : type || 'text',
+      type: type === 'password' && this.isPasswordVisible ? 'text' : type || 'text',
       placeholder: placeholder || '',
+      value: this.inputProps.value || '',
       ...(disabled ? { disabled: '' } : {}),
       ...(readonly ? { readonly: '' } : {}),
       class: 'ew-input__inner'
@@ -49,23 +54,25 @@ export class EwInput extends BaseComponent {
     input.addEventListener('blur', this.handleBlur.bind(this));
     input.addEventListener('keydown', this.handleKeydown.bind(this));
 
-    inputContainer.appendChild(input);
+    inputWrapper.appendChild(input);
 
     // 添加清除按钮
-    if (clearable && !disabled && !readonly) {
+    if (clearable && !disabled && !readonly && this.inputProps.value) {
       const clearButton = this.createElement('span', { class: 'ew-input__clear' });
       clearButton.innerHTML = ClearIcon({ size: '16px' });
       clearButton.addEventListener('click', this.handleClear.bind(this));
-      inputContainer.appendChild(clearButton);
+      inputWrapper.appendChild(clearButton);
     }
 
     // 添加密码切换按钮
     if (type === 'password' && showPassword && !disabled && !readonly) {
       const passwordToggle = this.createElement('span', { class: 'ew-input__password-toggle' });
-      passwordToggle.innerHTML = showPassword ? EyeIcon({ size: '16px' }) : EyeOffIcon({ size: '16px' });
+      passwordToggle.innerHTML = this.isPasswordVisible ? EyeOffIcon({ size: '16px' }) : EyeIcon({ size: '16px' });
       passwordToggle.addEventListener('click', this.handlePasswordToggle.bind(this));
-      inputContainer.appendChild(passwordToggle);
+      inputWrapper.appendChild(passwordToggle);
     }
+
+    inputContainer.appendChild(inputWrapper);
 
     // 添加插槽内容
     const slot = this.createElement('slot');
@@ -100,6 +107,7 @@ export class EwInput extends BaseComponent {
     this.inputProps.value = target.value;
     this.dispatchCustomEvent('input', target.value);
     this.dispatchCustomEvent('change', target.value);
+    this.render(); // 重新渲染以更新清除按钮
   }
 
   private handleFocus(event: Event): void {
@@ -127,7 +135,7 @@ export class EwInput extends BaseComponent {
 
   private handlePasswordToggle(): void {
     if (this.inputProps.type === 'password') {
-      this.inputProps.showPassword = !this.inputProps.showPassword;
+      this.isPasswordVisible = !this.isPasswordVisible;
       this.render();
     }
   }

@@ -97,6 +97,22 @@
             top: 20px;
             right: 20px;
             z-index: 1000;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .theme-toggle:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
         .table-demo {
@@ -131,10 +147,47 @@
             color: #64748b;
             margin: 0;
         }
+        
+        /* 暗色主题样式 */
+        body.dark {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        
+        body.dark .container {
+            background: #1f2937;
+            color: #f9fafb;
+        }
+        
+        body.dark .section h2 {
+            color: #f9fafb;
+            border-bottom-color: #374151;
+        }
+        
+        body.dark .demo-item {
+            background: #374151;
+            border-color: #4b5563;
+        }
+        
+        body.dark .demo-item h3 {
+            color: #e5e7eb;
+        }
+        
+        body.dark .feature-card {
+            background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+            border-color: #6b7280;
+        }
+        
+        body.dark .feature-card h3 {
+            color: #f9fafb;
+        }
+        
+        body.dark .feature-card p {
+            color: #d1d5db;
+        }
     </style>
 </head>
 <body>
-    <button class="theme-toggle ew-button ew-button--primary" onclick="toggleTheme()">
+    <button class="theme-toggle" onclick="toggleTheme()">
         切换主题
     </button>
 
@@ -307,7 +360,7 @@
     </ew-modal>
 
     <script type="module">
-        import '@water-ui/core';
+        import '../packages/core/dist/index.esm.js';
         
         // 弹框控制
         window.showModal = function() {
