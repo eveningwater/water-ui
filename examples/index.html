@@ -294,36 +294,25 @@
                 <div class="demo-item">
                     <h3>基础表格</h3>
                     <div class="table-demo">
-                        <ew-table border>
-                            <thead>
-                                <tr>
-                                    <th>姓名</th>
-                                    <th>年龄</th>
-                                    <th>职业</th>
-                                    <th>城市</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>张三</td>
-                                    <td>25</td>
-                                    <td>前端工程师</td>
-                                    <td>北京</td>
-                                </tr>
-                                <tr>
-                                    <td>李四</td>
-                                    <td>30</td>
-                                    <td>产品经理</td>
-                                    <td>上海</td>
-                                </tr>
-                                <tr>
-                                    <td>王五</td>
-                                    <td>28</td>
-                                    <td>UI设计师</td>
-                                    <td>深圳</td>
-                                </tr>
-                            </tbody>
+                        <ew-table id="basicTable" border stripe>
+                            <ew-table-column type="selection" width="50"></ew-table-column>
+                            <ew-table-column type="index" label="#" width="60"></ew-table-column>
+                            <ew-table-column prop="name" label="姓名" width="120"></ew-table-column>
+                            <ew-table-column prop="age" label="年龄" width="80" sortable></ew-table-column>
+                            <ew-table-column prop="job" label="职业" width="150"></ew-table-column>
+                            <ew-table-column prop="city" label="城市" width="120"></ew-table-column>
+                            <ew-table-column prop="salary" label="薪资" width="100" align="right"></ew-table-column>
                         </ew-table>
+                    </div>
+                </div>
+                
+                <div class="demo-item">
+                    <h3>表格操作</h3>
+                    <div class="button-group">
+                        <ew-button type="primary" onclick="addRow()">添加行</ew-button>
+                        <ew-button type="success" onclick="getSelectedRows()">获取选中行</ew-button>
+                        <ew-button type="warning" onclick="clearSelection()">清除选择</ew-button>
+                        <ew-button type="danger" onclick="removeLastRow()">删除最后一行</ew-button>
                     </div>
                 </div>
             </div>
@@ -353,6 +342,70 @@
 
     <script type="module">
         import '../packages/core/dist/index.esm.js';
+        
+        // 表格数据
+        let tableData = [
+            { id: 1, name: '张三', age: 25, job: '前端工程师', city: '北京', salary: 15000 },
+            { id: 2, name: '李四', age: 30, job: '产品经理', city: '上海', salary: 20000 },
+            { id: 3, name: '王五', age: 28, job: 'UI设计师', city: '深圳', salary: 18000 },
+            { id: 4, name: '赵六', age: 32, job: '后端工程师', city: '杭州', salary: 22000 },
+            { id: 5, name: '钱七', age: 26, job: '测试工程师', city: '广州', salary: 12000 }
+        ];
+        
+        // 初始化表格数据
+        function initTable() {
+            const table = document.getElementById('basicTable');
+            if (table) {
+                table.setData(tableData);
+            }
+        }
+        
+        // 添加行
+        window.addRow = function() {
+            const newId = tableData.length + 1;
+            const newRow = {
+                id: newId,
+                name: `用户${newId}`,
+                age: Math.floor(Math.random() * 20) + 20,
+                job: ['前端工程师', '后端工程师', '产品经理', 'UI设计师', '测试工程师'][Math.floor(Math.random() * 5)],
+                city: ['北京', '上海', '深圳', '杭州', '广州'][Math.floor(Math.random() * 5)],
+                salary: Math.floor(Math.random() * 15000) + 10000
+            };
+            tableData.push(newRow);
+            const table = document.getElementById('basicTable');
+            if (table) {
+                table.setData(tableData);
+            }
+        };
+        
+        // 获取选中行
+        window.getSelectedRows = function() {
+            const table = document.getElementById('basicTable');
+            if (table) {
+                const selectedRows = table.getSelectedRows();
+                console.log('选中的行:', selectedRows);
+                alert(`选中了 ${selectedRows.length} 行数据`);
+            }
+        };
+        
+        // 清除选择
+        window.clearSelection = function() {
+            const table = document.getElementById('basicTable');
+            if (table) {
+                table.clearSelection();
+            }
+        };
+        
+        // 删除最后一行
+        window.removeLastRow = function() {
+            if (tableData.length > 0) {
+                tableData.pop();
+                const table = document.getElementById('basicTable');
+                if (table) {
+                    table.setData(tableData);
+                }
+            }
+        };
         
         // 弹框控制
         window.showModal = function() {
@@ -389,6 +442,18 @@
                 e.target.setAttribute('model-value', 'false');
             }
         });
+        
+        // 监听表格事件
+        document.addEventListener('selection-change', function(e) {
+            console.log('选择变化:', e.detail);
+        });
+        
+        document.addEventListener('sort-change', function(e) {
+            console.log('排序变化:', e.detail);
+        });
+        
+        // 初始化表格
+        setTimeout(initTable, 100);
     </script>
 </body>
 </html> 
