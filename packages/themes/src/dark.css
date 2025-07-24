@@ -1,145 +1,181 @@
-/* Water UI 暗色主题 */
+/* Water UI - 暗色主题 */
+[data-theme="dark"],
+.dark {
+  /* 颜色系统 */
+  --ew-color-primary: #60a5fa;
+  --ew-color-primary-light: #93c5fd;
+  --ew-color-primary-dark: #3b82f6;
+  --ew-color-success: #34d399;
+  --ew-color-warning: #fbbf24;
+  --ew-color-danger: #f87171;
+  --ew-color-info: #9ca3af;
 
-[data-theme="dark"] {
-  /* 主色调 */
-  --ew-primary-color: #409eff;
-  --ew-primary-hover: #66b1ff;
-  --ew-primary-active: #3a8ee6;
-  --ew-primary-light: #1a1a1a;
-  --ew-primary-light-3: #2a2a2a;
-  --ew-primary-light-5: #3a3a3a;
-  --ew-primary-light-7: #4a4a4a;
-  --ew-primary-light-8: #5a5a5a;
-  --ew-primary-light-9: #6a6a6a;
-  --ew-primary-dark-2: #337ecc;
+  /* 中性色 */
+  --ew-color-white: #1f2937;
+  --ew-color-black: #ffffff;
+  --ew-color-gray-50: #111827;
+  --ew-color-gray-100: #1f2937;
+  --ew-color-gray-200: #374151;
+  --ew-color-gray-300: #4b5563;
+  --ew-color-gray-400: #6b7280;
+  --ew-color-gray-500: #9ca3af;
+  --ew-color-gray-600: #d1d5db;
+  --ew-color-gray-700: #e5e7eb;
+  --ew-color-gray-800: #f3f4f6;
+  --ew-color-gray-900: #f9fafb;
 
-  /* 成功色 */
-  --ew-success-color: #67c23a;
-  --ew-success-hover: #85ce61;
-  --ew-success-active: #5daf34;
-  --ew-success-light: #1a1a1a;
-  --ew-success-light-3: #2a2a2a;
-  --ew-success-light-5: #3a3a3a;
-  --ew-success-light-7: #4a4a4a;
-  --ew-success-light-8: #5a5a5a;
-  --ew-success-light-9: #6a6a6a;
-  --ew-success-dark-2: #529b2e;
-
-  /* 警告色 */
-  --ew-warning-color: #e6a23c;
-  --ew-warning-hover: #ebb563;
-  --ew-warning-active: #cf9236;
-  --ew-warning-light: #1a1a1a;
-  --ew-warning-light-3: #2a2a2a;
-  --ew-warning-light-5: #3a3a3a;
-  --ew-warning-light-7: #4a4a4a;
-  --ew-warning-light-8: #5a5a5a;
-  --ew-warning-light-9: #6a6a6a;
-  --ew-warning-dark-2: #b88230;
-
-  /* 危险色 */
-  --ew-danger-color: #f56c6c;
-  --ew-danger-hover: #f78989;
-  --ew-danger-active: #dd6161;
-  --ew-danger-light: #1a1a1a;
-  --ew-danger-light-3: #2a2a2a;
-  --ew-danger-light-5: #3a3a3a;
-  --ew-danger-light-7: #4a4a4a;
-  --ew-danger-light-8: #5a5a5a;
-  --ew-danger-light-9: #6a6a6a;
-  --ew-danger-dark-2: #c45656;
-
-  /* 信息色 */
-  --ew-info-color: #909399;
-  --ew-info-hover: #a6a9ad;
-  --ew-info-active: #82848a;
-  --ew-info-light: #1a1a1a;
-  --ew-info-light-3: #2a2a2a;
-  --ew-info-light-5: #3a3a3a;
-  --ew-info-light-7: #4a4a4a;
-  --ew-info-light-8: #5a5a5a;
-  --ew-info-light-9: #6a6a6a;
-  --ew-info-dark-2: #73767a;
+  /* 背景色 */
+  --ew-bg-color: #1f2937;
+  --ew-bg-color-page: #111827;
+  --ew-bg-color-overlay: rgba(0, 0, 0, 0.7);
 
   /* 文字颜色 */
-  --ew-text-color-primary: #e5eaf3;
-  --ew-text-color-regular: #cfd3dc;
-  --ew-text-color-secondary: #a3a6ad;
-  --ew-text-color-placeholder: #8d9095;
-  --ew-text-color-disabled: #6c6e72;
+  --ew-text-color-primary: #f9fafb;
+  --ew-text-color-regular: #e5e7eb;
+  --ew-text-color-secondary: #d1d5db;
+  --ew-text-color-placeholder: #9ca3af;
+  --ew-text-color-disabled: #6b7280;
 
   /* 边框颜色 */
-  --ew-border-color-base: #4c4d4f;
-  --ew-border-color-light: #414243;
-  --ew-border-color-lighter: #363637;
-  --ew-border-color-extra-light: #2b2b2c;
-  --ew-border-color-dark: #58585b;
-  --ew-border-color-darker: #636466;
-
-  /* 填充颜色 */
-  --ew-fill-color-base: #303030;
-  --ew-fill-color-blank: #141414;
-  --ew-fill-color-light: #262727;
-  --ew-fill-color-lighter: #1d1d1d;
-  --ew-fill-color-extra-light: #191919;
-  --ew-fill-color-dark: #39393a;
-  --ew-fill-color-darker: #424243;
-
-  /* 背景颜色 */
-  --ew-bg-color: #141414;
-  --ew-bg-color-page: #0a0a0a;
-  --ew-bg-color-overlay: #1d1e1f;
-
-  /* 组件特定颜色 */
-  --ew-button-bg: #141414;
-  --ew-button-border-color: #4c4d4f;
-  --ew-input-bg: #141414;
-  --ew-input-border-color: #4c4d4f;
-  --ew-table-bg: #141414;
-  --ew-table-header-bg: #1d1d1d;
-  --ew-table-border-color: #363637;
-  --ew-modal-bg: #1d1e1f;
+  --ew-border-color: #374151;
+  --ew-border-color-light: #4b5563;
+  --ew-border-color-dark: #6b7280;
 
   /* 阴影 */
-  --ew-box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 0, 0, 0.2);
-  --ew-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 0, 0, 0.3);
-  --ew-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+  --ew-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --ew-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --ew-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --ew-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --ew-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
 
-  /* 圆角 */
-  --ew-border-radius-base: 4px;
-  --ew-border-radius-small: 2px;
-  --ew-border-radius-round: 20px;
-  --ew-border-radius-circle: 100%;
+/* 暗色主题下的特殊样式调整 */
+[data-theme="dark"] .ew-button,
+.dark .ew-button {
+  background: var(--ew-color-gray-800, #f3f4f6);
+  border-color: var(--ew-border-color, #374151);
+  color: var(--ew-text-color-regular, #e5e7eb);
+}
 
-  /* 字体 */
-  --ew-font-size-extra-large: 20px;
-  --ew-font-size-large: 18px;
-  --ew-font-size-medium: 16px;
-  --ew-font-size-base: 14px;
-  --ew-font-size-small: 13px;
-  --ew-font-size-extra-small: 12px;
+[data-theme="dark"] .ew-button:hover,
+.dark .ew-button:hover {
+  background: var(--ew-color-gray-700, #e5e7eb);
+  border-color: var(--ew-color-primary-light, #93c5fd);
+  color: var(--ew-color-primary-light, #93c5fd);
+}
 
-  /* 间距 */
-  --ew-spacing-base: 8px;
-  --ew-spacing-small: 4px;
-  --ew-spacing-large: 16px;
-  --ew-spacing-extra-large: 24px;
+[data-theme="dark"] .ew-input__wrapper,
+.dark .ew-input__wrapper {
+  background: var(--ew-color-gray-800, #f3f4f6);
+  border-color: var(--ew-border-color, #374151);
+}
 
-  /* 过渡动画 */
-  --ew-transition-duration: 0.3s;
-  --ew-transition-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-  --ew-transition-all: all var(--ew-transition-duration) var(--ew-transition-function);
-  --ew-transition-fade: opacity var(--ew-transition-duration) var(--ew-transition-function);
-  --ew-transition-transform: transform var(--ew-transition-duration) var(--ew-transition-function);
+[data-theme="dark"] .ew-input__wrapper:hover,
+.dark .ew-input__wrapper:hover {
+  border-color: var(--ew-color-primary-light, #93c5fd);
+}
 
-  /* Z-index */
-  --ew-index-normal: 1;
-  --ew-index-top: 1000;
-  --ew-index-popper: 2000;
-  --ew-index-spinner: 3000;
-  --ew-index-message: 4000;
-  --ew-index-notification: 5000;
-  --ew-index-modal: 6000;
-  --ew-index-popup: 7000;
-  --ew-index-tooltip: 8000;
+[data-theme="dark"] .ew-input__wrapper:focus-within,
+.dark .ew-input__wrapper:focus-within {
+  border-color: var(--ew-color-primary, #60a5fa);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+[data-theme="dark"] .ew-table,
+.dark .ew-table {
+  background: var(--ew-color-gray-800, #f3f4f6);
+  color: var(--ew-text-color-regular, #e5e7eb);
+}
+
+[data-theme="dark"] .ew-table thead,
+.dark .ew-table thead {
+  background: var(--ew-color-gray-900, #f9fafb);
+}
+
+[data-theme="dark"] .ew-table th,
+.dark .ew-table th {
+  background: var(--ew-color-gray-900, #f9fafb);
+  color: var(--ew-text-color-primary, #f9fafb);
+  border-bottom-color: var(--ew-border-color, #374151);
+}
+
+[data-theme="dark"] .ew-table td,
+.dark .ew-table td {
+  border-bottom-color: var(--ew-border-color-light, #4b5563);
+}
+
+[data-theme="dark"] .ew-table tr:hover,
+.dark .ew-table tr:hover {
+  background: var(--ew-color-gray-700, #e5e7eb);
+}
+
+[data-theme="dark"] .ew-modal,
+.dark .ew-modal {
+  background: var(--ew-color-gray-800, #f3f4f6);
+  color: var(--ew-text-color-regular, #e5e7eb);
+}
+
+[data-theme="dark"] .ew-modal__title,
+.dark .ew-modal__title {
+  color: var(--ew-text-color-primary, #f9fafb);
+}
+
+[data-theme="dark"] .ew-modal__close:hover,
+.dark .ew-modal__close:hover {
+  background: var(--ew-color-gray-700, #e5e7eb);
+  color: var(--ew-text-color-primary, #f9fafb);
+}
+
+[data-theme="dark"] .ew-modal__footer,
+.dark .ew-modal__footer {
+  border-top-color: var(--ew-border-color-light, #4b5563);
+}
+
+[data-theme="dark"] .ew-modal__btn,
+.dark .ew-modal__btn {
+  background: var(--ew-color-gray-700, #e5e7eb);
+  border-color: var(--ew-border-color, #374151);
+  color: var(--ew-text-color-regular, #e5e7eb);
+}
+
+[data-theme="dark"] .ew-modal__btn:hover,
+.dark .ew-modal__btn:hover {
+  background: var(--ew-color-gray-600, #d1d5db);
+  border-color: var(--ew-color-primary-light, #93c5fd);
+  color: var(--ew-color-primary-light, #93c5fd);
+}
+
+/* 暗色主题下的滚动条样式 */
+[data-theme="dark"] .ew-modal__body::-webkit-scrollbar-track,
+.dark .ew-modal__body::-webkit-scrollbar-track {
+  background: var(--ew-color-gray-700, #e5e7eb);
+}
+
+[data-theme="dark"] .ew-modal__body::-webkit-scrollbar-thumb,
+.dark .ew-modal__body::-webkit-scrollbar-thumb {
+  background: var(--ew-color-gray-500, #9ca3af);
+}
+
+[data-theme="dark"] .ew-modal__body::-webkit-scrollbar-thumb:hover,
+.dark .ew-modal__body::-webkit-scrollbar-thumb:hover {
+  background: var(--ew-color-gray-400, #6b7280);
+}
+
+/* 暗色主题下的焦点样式 */
+[data-theme="dark"] :focus-visible,
+.dark :focus-visible {
+  outline-color: var(--ew-color-primary, #60a5fa);
+}
+
+/* 暗色主题下的禁用状态 */
+[data-theme="dark"] [disabled],
+.dark [disabled] {
+  opacity: 0.4;
+}
+
+/* 暗色主题下的加载动画 */
+[data-theme="dark"] .ew-loading-spinner,
+.dark .ew-loading-spinner {
+  border-color: var(--ew-color-gray-600, #d1d5db);
+  border-top-color: var(--ew-color-primary, #60a5fa);
 } 

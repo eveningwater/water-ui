@@ -3,206 +3,287 @@ export const buttonStyles = `
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border: 1px solid var(--ew-border-color-base, #dcdfe6);
-    border-radius: 4px;
-    background: var(--ew-button-bg, #ffffff);
-    color: var(--ew-text-color-regular, #606266);
-    font-size: 14px;
+    gap: var(--ew-spacing-2, 8px);
+    padding: var(--ew-spacing-2, 8px) var(--ew-spacing-4, 16px);
+    border: 1px solid var(--ew-border-color, #e5e7eb);
+    border-radius: var(--ew-border-radius, 6px);
+    background: var(--ew-bg-color, #ffffff);
+    color: var(--ew-text-color-regular, #4b5563);
+    font-family: var(--ew-font-family);
+    font-size: var(--ew-font-size-sm, 14px);
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.5;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--ew-transition, 200ms ease-in-out);
     user-select: none;
     outline: none;
     text-decoration: none;
     box-sizing: border-box;
-    min-height: 32px;
+    min-height: 36px;
     min-width: 80px;
+    position: relative;
+    overflow: hidden;
   }
 
   .ew-button:hover {
-    border-color: var(--ew-primary-color, #409eff);
-    color: var(--ew-primary-color, #409eff);
+    border-color: var(--ew-color-primary, #3b82f6);
+    color: var(--ew-color-primary, #3b82f6);
+    transform: translateY(-1px);
+    box-shadow: var(--ew-shadow, 0 1px 3px 0 rgba(0, 0, 0, 0.1));
   }
 
   .ew-button:active {
-    transform: translateY(1px);
+    transform: translateY(0);
+    box-shadow: var(--ew-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
   }
 
-  .ew-button:focus {
-    box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+  .ew-button:focus-visible {
+    outline: 2px solid var(--ew-color-primary, #3b82f6);
+    outline-offset: 2px;
   }
 
+  /* 主要按钮 */
   .ew-button--primary {
-    background: var(--ew-primary-color, #409eff);
-    border-color: var(--ew-primary-color, #409eff);
-    color: #ffffff;
+    background: var(--ew-color-primary, #3b82f6);
+    border-color: var(--ew-color-primary, #3b82f6);
+    color: var(--ew-color-white, #ffffff);
   }
 
   .ew-button--primary:hover {
-    background: var(--ew-primary-hover, #66b1ff);
-    border-color: var(--ew-primary-hover, #66b1ff);
-    color: #ffffff;
+    background: var(--ew-color-primary-dark, #2563eb);
+    border-color: var(--ew-color-primary-dark, #2563eb);
+    color: var(--ew-color-white, #ffffff);
   }
 
+  /* 成功按钮 */
   .ew-button--success {
-    background: var(--ew-success-color, #67c23a);
-    border-color: var(--ew-success-color, #67c23a);
-    color: #ffffff;
+    background: var(--ew-color-success, #10b981);
+    border-color: var(--ew-color-success, #10b981);
+    color: var(--ew-color-white, #ffffff);
   }
 
   .ew-button--success:hover {
-    background: var(--ew-success-hover, #85ce61);
-    border-color: var(--ew-success-hover, #85ce61);
-    color: #ffffff;
+    background: #059669;
+    border-color: #059669;
+    color: var(--ew-color-white, #ffffff);
   }
 
+  /* 警告按钮 */
   .ew-button--warning {
-    background: var(--ew-warning-color, #e6a23c);
-    border-color: var(--ew-warning-color, #e6a23c);
-    color: #ffffff;
+    background: var(--ew-color-warning, #f59e0b);
+    border-color: var(--ew-color-warning, #f59e0b);
+    color: var(--ew-color-white, #ffffff);
   }
 
   .ew-button--warning:hover {
-    background: var(--ew-warning-hover, #ebb563);
-    border-color: var(--ew-warning-hover, #ebb563);
-    color: #ffffff;
+    background: #d97706;
+    border-color: #d97706;
+    color: var(--ew-color-white, #ffffff);
   }
 
+  /* 危险按钮 */
   .ew-button--danger {
-    background: var(--ew-danger-color, #f56c6c);
-    border-color: var(--ew-danger-color, #f56c6c);
-    color: #ffffff;
+    background: var(--ew-color-danger, #ef4444);
+    border-color: var(--ew-color-danger, #ef4444);
+    color: var(--ew-color-white, #ffffff);
   }
 
   .ew-button--danger:hover {
-    background: var(--ew-danger-hover, #f78989);
-    border-color: var(--ew-danger-hover, #f78989);
-    color: #ffffff;
+    background: #dc2626;
+    border-color: #dc2626;
+    color: var(--ew-color-white, #ffffff);
   }
 
+  /* 信息按钮 */
   .ew-button--info {
-    background: var(--ew-info-color, #909399);
-    border-color: var(--ew-info-color, #909399);
-    color: #ffffff;
+    background: var(--ew-color-info, #6b7280);
+    border-color: var(--ew-color-info, #6b7280);
+    color: var(--ew-color-white, #ffffff);
   }
 
   .ew-button--info:hover {
-    background: var(--ew-info-hover, #a6a9ad);
-    border-color: var(--ew-info-hover, #a6a9ad);
-    color: #ffffff;
+    background: #4b5563;
+    border-color: #4b5563;
+    color: var(--ew-color-white, #ffffff);
   }
 
+  /* 朴素按钮 */
   .ew-button--plain {
     background: transparent;
   }
 
   .ew-button--plain.ew-button--primary {
-    color: var(--ew-primary-color, #409eff);
+    color: var(--ew-color-primary, #3b82f6);
   }
 
   .ew-button--plain.ew-button--success {
-    color: var(--ew-success-color, #67c23a);
+    color: var(--ew-color-success, #10b981);
   }
 
   .ew-button--plain.ew-button--warning {
-    color: var(--ew-warning-color, #e6a23c);
+    color: var(--ew-color-warning, #f59e0b);
   }
 
   .ew-button--plain.ew-button--danger {
-    color: var(--ew-danger-color, #f56c6c);
+    color: var(--ew-color-danger, #ef4444);
   }
 
   .ew-button--plain.ew-button--info {
-    color: var(--ew-info-color, #909399);
+    color: var(--ew-color-info, #6b7280);
   }
 
+  /* 圆角按钮 */
   .ew-button--round {
-    border-radius: 20px;
+    border-radius: var(--ew-border-radius-full, 9999px);
   }
 
+  /* 圆形按钮 */
   .ew-button--circle {
-    border-radius: 50%;
-    padding: 8px;
-    min-width: 32px;
-    min-height: 32px;
-    width: 32px;
-    height: 32px;
+    border-radius: var(--ew-border-radius-full, 9999px);
+    padding: var(--ew-spacing-2, 8px);
+    min-width: 36px;
+    min-height: 36px;
+    width: 36px;
+    height: 36px;
   }
 
+  /* 文本按钮 */
   .ew-button--text {
     background: transparent;
     border: none;
     padding: 0;
-    color: var(--ew-primary-color, #409eff);
+    color: var(--ew-color-primary, #3b82f6);
   }
 
   .ew-button--text:hover {
-    background: rgba(64, 158, 255, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     border: none;
   }
 
+  /* 链接按钮 */
   .ew-button--link {
     background: transparent;
     border: none;
     padding: 0;
-    color: var(--ew-primary-color, #409eff);
+    color: var(--ew-color-primary, #3b82f6);
     text-decoration: underline;
   }
 
   .ew-button--link:hover {
-    color: var(--ew-primary-hover, #66b1ff);
+    color: var(--ew-color-primary-dark, #2563eb);
     background: transparent;
     border: none;
   }
 
+  /* 禁用和加载状态 */
   .ew-button--disabled,
   .ew-button--loading {
     cursor: not-allowed;
     opacity: 0.6;
+    transform: none !important;
   }
 
   .ew-button--disabled:hover,
   .ew-button--loading:hover {
-    border-color: var(--ew-border-color-base, #dcdfe6);
-    color: var(--ew-text-color-regular, #606266);
-    background: var(--ew-button-bg, #ffffff);
+    border-color: var(--ew-border-color, #e5e7eb);
+    color: var(--ew-text-color-regular, #4b5563);
+    background: var(--ew-bg-color, #ffffff);
+    transform: none;
+    box-shadow: none;
   }
 
+  /* 尺寸变体 */
   .ew-button--small {
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: var(--ew-spacing-1, 4px) var(--ew-spacing-3, 12px);
+    font-size: var(--ew-font-size-xs, 12px);
     min-height: 28px;
   }
 
-  .ew-button--large {
-    padding: 12px 20px;
-    font-size: 16px;
-    min-height: 40px;
+  .ew-button--small.ew-button--circle {
+    min-width: 28px;
+    min-height: 28px;
+    width: 28px;
+    height: 28px;
   }
 
+  .ew-button--large {
+    padding: var(--ew-spacing-3, 12px) var(--ew-spacing-5, 20px);
+    font-size: var(--ew-font-size-base, 16px);
+    min-height: 44px;
+  }
+
+  .ew-button--large.ew-button--circle {
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  /* 图标 */
   .ew-button__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 16px;
+    height: 16px;
   }
 
+  .ew-button--small .ew-button__icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .ew-button--large .ew-button__icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* 加载状态 */
   .ew-button__loading {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 16px;
+    height: 16px;
+  }
+
+  .ew-button--small .ew-button__loading {
+    width: 14px;
+    height: 14px;
+  }
+
+  .ew-button--large .ew-button__loading {
+    width: 18px;
+    height: 18px;
   }
 
   .ew-loading-spinner {
-    width: 14px;
-    height: 14px;
+    width: 100%;
+    height: 100%;
     animation: ew-spin 1s linear infinite;
   }
 
   @keyframes ew-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+  }
+
+  /* 波纹效果 */
+  .ew-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+
+  .ew-button:active::before {
+    width: 100px;
+    height: 100px;
   }
 `; 

@@ -1,622 +1,129 @@
-/* Water UI 默认主题 */
-
+/* Water UI - 默认主题 */
 :root {
-  /* 主色调 */
-  --ew-primary-color: #409eff;
-  --ew-primary-hover: #66b1ff;
-  --ew-primary-active: #3a8ee6;
-  --ew-primary-light: #ecf5ff;
-  --ew-primary-light-3: #79bbff;
-  --ew-primary-light-5: #a0cfff;
-  --ew-primary-light-7: #c6e2ff;
-  --ew-primary-light-8: #d9ecff;
-  --ew-primary-light-9: #ecf5ff;
-  --ew-primary-dark-2: #337ecc;
+  /* 颜色系统 */
+  --ew-color-primary: #3b82f6;
+  --ew-color-primary-light: #60a5fa;
+  --ew-color-primary-dark: #2563eb;
+  --ew-color-success: #10b981;
+  --ew-color-warning: #f59e0b;
+  --ew-color-danger: #ef4444;
+  --ew-color-info: #6b7280;
 
-  /* 成功色 */
-  --ew-success-color: #67c23a;
-  --ew-success-hover: #85ce61;
-  --ew-success-active: #5daf34;
-  --ew-success-light: #f0f9ff;
-  --ew-success-light-3: #95d475;
-  --ew-success-light-5: #b3e19d;
-  --ew-success-light-7: #d1edc4;
-  --ew-success-light-8: #e1f3d8;
-  --ew-success-light-9: #f0f9eb;
-  --ew-success-dark-2: #529b2e;
+  /* 中性色 */
+  --ew-color-white: #ffffff;
+  --ew-color-black: #000000;
+  --ew-color-gray-50: #f9fafb;
+  --ew-color-gray-100: #f3f4f6;
+  --ew-color-gray-200: #e5e7eb;
+  --ew-color-gray-300: #d1d5db;
+  --ew-color-gray-400: #9ca3af;
+  --ew-color-gray-500: #6b7280;
+  --ew-color-gray-600: #4b5563;
+  --ew-color-gray-700: #374151;
+  --ew-color-gray-800: #1f2937;
+  --ew-color-gray-900: #111827;
 
-  /* 警告色 */
-  --ew-warning-color: #e6a23c;
-  --ew-warning-hover: #ebb563;
-  --ew-warning-active: #cf9236;
-  --ew-warning-light: #fdf6ec;
-  --ew-warning-light-3: #eebe77;
-  --ew-warning-light-5: #f3d19e;
-  --ew-warning-light-7: #f8e3c5;
-  --ew-warning-light-8: #faecd8;
-  --ew-warning-light-9: #fdf6ec;
-  --ew-warning-dark-2: #b88230;
-
-  /* 危险色 */
-  --ew-danger-color: #f56c6c;
-  --ew-danger-hover: #f78989;
-  --ew-danger-active: #dd6161;
-  --ew-danger-light: #fef0f0;
-  --ew-danger-light-3: #f89898;
-  --ew-danger-light-5: #fab6b6;
-  --ew-danger-light-7: #fcd3d3;
-  --ew-danger-light-8: #fde2e2;
-  --ew-danger-light-9: #fef0f0;
-  --ew-danger-dark-2: #c45656;
-
-  /* 信息色 */
-  --ew-info-color: #909399;
-  --ew-info-hover: #a6a9ad;
-  --ew-info-active: #82848a;
-  --ew-info-light: #f4f4f5;
-  --ew-info-light-3: #b1b3b8;
-  --ew-info-light-5: #c8c9cc;
-  --ew-info-light-7: #dedfe0;
-  --ew-info-light-8: #e9e9eb;
-  --ew-info-light-9: #f4f4f5;
-  --ew-info-dark-2: #73767a;
+  /* 背景色 */
+  --ew-bg-color: #ffffff;
+  --ew-bg-color-page: #f8fafc;
+  --ew-bg-color-overlay: rgba(0, 0, 0, 0.5);
 
   /* 文字颜色 */
-  --ew-text-color-primary: #303133;
-  --ew-text-color-regular: #606266;
-  --ew-text-color-secondary: #909399;
-  --ew-text-color-placeholder: #c0c4cc;
-  --ew-text-color-disabled: #c0c4cc;
+  --ew-text-color-primary: #1f2937;
+  --ew-text-color-regular: #4b5563;
+  --ew-text-color-secondary: #6b7280;
+  --ew-text-color-placeholder: #9ca3af;
+  --ew-text-color-disabled: #d1d5db;
 
   /* 边框颜色 */
-  --ew-border-color-base: #dcdfe6;
-  --ew-border-color-light: #e4e7ed;
-  --ew-border-color-lighter: #ebeef5;
-  --ew-border-color-extra-light: #f2f6fc;
-  --ew-border-color-dark: #d4d7de;
-  --ew-border-color-darker: #cdd0d6;
-
-  /* 填充颜色 */
-  --ew-fill-color-base: #f0f2f5;
-  --ew-fill-color-blank: #ffffff;
-  --ew-fill-color-light: #f5f7fa;
-  --ew-fill-color-lighter: #fafafa;
-  --ew-fill-color-extra-light: #fafcff;
-  --ew-fill-color-dark: #ebedf0;
-  --ew-fill-color-darker: #e6e8eb;
-
-  /* 背景颜色 */
-  --ew-bg-color: #ffffff;
-  --ew-bg-color-page: #f2f3f5;
-  --ew-bg-color-overlay: #ffffff;
-
-  /* 组件特定颜色 */
-  --ew-button-bg: #ffffff;
-  --ew-button-border-color: #dcdfe6;
-  --ew-input-bg: #ffffff;
-  --ew-input-border-color: #dcdfe6;
-  --ew-table-bg: #ffffff;
-  --ew-table-header-bg: #fafafa;
-  --ew-table-border-color: #ebeef5;
-  --ew-table-row-hover-bg: #f5f7fa;
-  --ew-table-stripe-bg: #fafafa;
-  --ew-table-stripe-hover-bg: #f0f2f5;
-  --ew-table-header-color: #606266;
-  --ew-modal-bg: #ffffff;
+  --ew-border-color: #e5e7eb;
+  --ew-border-color-light: #f3f4f6;
+  --ew-border-color-dark: #d1d5db;
 
   /* 阴影 */
-  --ew-box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-  --ew-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.12);
-  --ew-box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  --ew-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ew-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --ew-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --ew-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --ew-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
   /* 圆角 */
-  --ew-border-radius-base: 4px;
-  --ew-border-radius-small: 2px;
-  --ew-border-radius-round: 20px;
-  --ew-border-radius-circle: 100%;
+  --ew-border-radius-sm: 4px;
+  --ew-border-radius: 6px;
+  --ew-border-radius-md: 8px;
+  --ew-border-radius-lg: 12px;
+  --ew-border-radius-full: 9999px;
 
   /* 字体 */
-  --ew-font-size-extra-large: 20px;
-  --ew-font-size-large: 18px;
-  --ew-font-size-medium: 16px;
-  --ew-font-size-base: 14px;
-  --ew-font-size-small: 13px;
-  --ew-font-size-extra-small: 12px;
+  --ew-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --ew-font-size-xs: 12px;
+  --ew-font-size-sm: 14px;
+  --ew-font-size-base: 16px;
+  --ew-font-size-lg: 18px;
+  --ew-font-size-xl: 20px;
 
   /* 间距 */
-  --ew-spacing-base: 8px;
-  --ew-spacing-small: 4px;
-  --ew-spacing-large: 16px;
-  --ew-spacing-extra-large: 24px;
+  --ew-spacing-1: 4px;
+  --ew-spacing-2: 8px;
+  --ew-spacing-3: 12px;
+  --ew-spacing-4: 16px;
+  --ew-spacing-5: 20px;
+  --ew-spacing-6: 24px;
+  --ew-spacing-8: 32px;
+  --ew-spacing-10: 40px;
+  --ew-spacing-12: 48px;
 
   /* 过渡动画 */
-  --ew-transition-duration: 0.3s;
-  --ew-transition-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-  --ew-transition-all: all var(--ew-transition-duration) var(--ew-transition-function);
-  --ew-transition-fade: opacity var(--ew-transition-duration) var(--ew-transition-function);
-  --ew-transition-transform: transform var(--ew-transition-duration) var(--ew-transition-function);
+  --ew-transition-fast: 150ms ease-in-out;
+  --ew-transition: 200ms ease-in-out;
+  --ew-transition-slow: 300ms ease-in-out;
 
   /* Z-index */
-  --ew-index-normal: 1;
-  --ew-index-top: 1000;
-  --ew-index-popper: 2000;
-  --ew-index-spinner: 3000;
-  --ew-index-message: 4000;
-  --ew-index-notification: 5000;
-  --ew-index-modal: 6000;
-  --ew-index-popup: 7000;
-  --ew-index-tooltip: 8000;
+  --ew-z-index-dropdown: 1000;
+  --ew-z-index-sticky: 1020;
+  --ew-z-index-fixed: 1030;
+  --ew-z-index-modal-backdrop: 1040;
+  --ew-z-index-modal: 1050;
+  --ew-z-index-popover: 1060;
+  --ew-z-index-tooltip: 1070;
 }
 
-/* 表格组件样式 */
-.ew-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  font-size: 14px;
-  color: var(--ew-text-color-regular, #606266);
-  background: var(--ew-table-bg, #ffffff);
-}
-
-.ew-table--border {
-  border: 1px solid var(--ew-table-border-color, #ebeef5);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.ew-table--small {
-  font-size: 12px;
-}
-
-.ew-table--large {
-  font-size: 16px;
-}
-
-.ew-table--fit {
-  table-layout: fixed;
-}
-
-.ew-table th {
-  padding: 12px 8px;
-  text-align: left;
-  font-weight: 500;
-  color: var(--ew-table-header-color, #606266);
-  background: var(--ew-table-header-bg, #fafafa);
-  border-bottom: 1px solid var(--ew-table-border-color, #ebeef5);
-}
-
-.ew-table td {
-  padding: 12px 8px;
-  text-align: left;
-  border-bottom: 1px solid var(--ew-table-border-color, #ebeef5);
-}
-
-.ew-table tr:hover {
-  background: var(--ew-table-row-hover-bg, #f5f7fa);
-}
-
-.ew-table--border th,
-.ew-table--border td {
-  border-right: 1px solid var(--ew-table-border-color, #ebeef5);
-}
-
-.ew-table--border th:last-child,
-.ew-table--border td:last-child {
-  border-right: none;
-}
-
-/* 按钮组件样式 */
-.ew-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border: 1px solid var(--ew-border-color-base, #dcdfe6);
-  border-radius: 4px;
-  background: var(--ew-button-bg, #ffffff);
-  color: var(--ew-text-color-regular, #606266);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
-  outline: none;
-  text-decoration: none;
+/* 全局重置 */
+* {
   box-sizing: border-box;
-  min-height: 32px;
-  min-width: 80px;
 }
 
-.ew-button:hover {
-  border-color: var(--ew-primary-color, #409eff);
-  color: var(--ew-primary-color, #409eff);
-}
-
-.ew-button:active {
-  transform: translateY(1px);
-}
-
-.ew-button:focus {
-  box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
-}
-
-.ew-button--primary {
-  background: var(--ew-primary-color, #409eff);
-  border-color: var(--ew-primary-color, #409eff);
-  color: #ffffff;
-}
-
-.ew-button--primary:hover {
-  background: var(--ew-primary-hover, #66b1ff);
-  border-color: var(--ew-primary-hover, #66b1ff);
-  color: #ffffff;
-}
-
-.ew-button--success {
-  background: var(--ew-success-color, #67c23a);
-  border-color: var(--ew-success-color, #67c23a);
-  color: #ffffff;
-}
-
-.ew-button--success:hover {
-  background: var(--ew-success-hover, #85ce61);
-  border-color: var(--ew-success-hover, #85ce61);
-  color: #ffffff;
-}
-
-.ew-button--warning {
-  background: var(--ew-warning-color, #e6a23c);
-  border-color: var(--ew-warning-color, #e6a23c);
-  color: #ffffff;
-}
-
-.ew-button--warning:hover {
-  background: var(--ew-warning-hover, #ebb563);
-  border-color: var(--ew-warning-hover, #ebb563);
-  color: #ffffff;
-}
-
-.ew-button--danger {
-  background: var(--ew-danger-color, #f56c6c);
-  border-color: var(--ew-danger-color, #f56c6c);
-  color: #ffffff;
-}
-
-.ew-button--danger:hover {
-  background: var(--ew-danger-hover, #f78989);
-  border-color: var(--ew-danger-hover, #f78989);
-  color: #ffffff;
-}
-
-.ew-button--info {
-  background: var(--ew-info-color, #909399);
-  border-color: var(--ew-info-color, #909399);
-  color: #ffffff;
-}
-
-.ew-button--info:hover {
-  background: var(--ew-info-hover, #a6a9ad);
-  border-color: var(--ew-info-hover, #a6a9ad);
-  color: #ffffff;
-}
-
-.ew-button--plain {
-  background: transparent;
-}
-
-.ew-button--plain.ew-button--primary {
-  color: var(--ew-primary-color, #409eff);
-}
-
-.ew-button--plain.ew-button--success {
-  color: var(--ew-success-color, #67c23a);
-}
-
-.ew-button--plain.ew-button--warning {
-  color: var(--ew-warning-color, #e6a23c);
-}
-
-.ew-button--plain.ew-button--danger {
-  color: var(--ew-danger-color, #f56c6c);
-}
-
-.ew-button--plain.ew-button--info {
-  color: var(--ew-info-color, #909399);
-}
-
-.ew-button--round {
-  border-radius: 20px;
-}
-
-.ew-button--circle {
-  border-radius: 50%;
-  padding: 8px;
-  min-width: 32px;
-  min-height: 32px;
-  width: 32px;
-  height: 32px;
-}
-
-.ew-button--text {
-  background: transparent;
-  border: none;
+body {
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-base);
+  line-height: 1.5;
+  color: var(--ew-text-color-primary);
+  background-color: var(--ew-bg-color-page);
+  margin: 0;
   padding: 0;
-  color: var(--ew-primary-color, #409eff);
 }
 
-.ew-button--text:hover {
-  background: rgba(64, 158, 255, 0.1);
-  border: none;
+/* 焦点样式 */
+:focus-visible {
+  outline: 2px solid var(--ew-color-primary);
+  outline-offset: 2px;
 }
 
-.ew-button--link {
-  background: transparent;
-  border: none;
-  padding: 0;
-  color: var(--ew-primary-color, #409eff);
-  text-decoration: underline;
-}
-
-.ew-button--link:hover {
-  color: var(--ew-primary-hover, #66b1ff);
-  background: transparent;
-  border: none;
-}
-
-.ew-button--disabled,
-.ew-button--loading {
+/* 禁用状态 */
+[disabled] {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-.ew-button--disabled:hover,
-.ew-button--loading:hover {
-  border-color: var(--ew-border-color-base, #dcdfe6);
-  color: var(--ew-text-color-regular, #606266);
-  background: var(--ew-button-bg, #ffffff);
-}
-
-.ew-button--small {
-  padding: 6px 12px;
-  font-size: 12px;
-  min-height: 28px;
-}
-
-.ew-button--large {
-  padding: 12px 20px;
-  font-size: 16px;
-  min-height: 40px;
-}
-
-.ew-button__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ew-button__loading {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ew-loading-spinner {
-  width: 14px;
-  height: 14px;
-  animation: ew-spin 1s linear infinite;
-}
-
-@keyframes ew-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* 输入框组件样式 */
-.ew-input {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.ew-input__inner {
-  display: inline-block;
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--ew-border-color-base, #dcdfe6);
-  border-radius: 4px;
-  background: var(--ew-input-bg, #ffffff);
-  color: var(--ew-text-color-regular, #606266);
-  font-size: 14px;
-  line-height: 1.4;
-  transition: all 0.2s ease;
-  outline: none;
-  box-sizing: border-box;
-  min-height: 32px;
-}
-
-.ew-input__inner:focus {
-  border-color: var(--ew-primary-color, #409eff);
-  box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
-}
-
-.ew-input__inner:hover {
-  border-color: var(--ew-border-color-light, #c0c4cc);
-}
-
-.ew-input__inner::placeholder {
-  color: var(--ew-text-color-placeholder, #c0c4cc);
-}
-
-.ew-input--disabled .ew-input__inner {
-  background: var(--ew-fill-color-light, #f5f7fa);
-  border-color: var(--ew-border-color-light, #e4e7ed);
-  color: var(--ew-text-color-disabled, #c0c4cc);
-  cursor: not-allowed;
-}
-
-.ew-input--small .ew-input__inner {
-  padding: 6px 10px;
-  font-size: 12px;
-  min-height: 28px;
-}
-
-.ew-input--large .ew-input__inner {
-  padding: 12px 16px;
-  font-size: 16px;
-  min-height: 40px;
-}
-
-.ew-input__clear,
-.ew-input__password-toggle {
+/* 工具类 */
+.ew-sr-only {
   position: absolute;
-  top: 50%;
-  right: 8px;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-  color: var(--ew-text-color-secondary, #c0c4cc);
-  transition: color 0.2s ease;
-  user-select: none;
-}
-
-.ew-input__clear:hover,
-.ew-input__password-toggle:hover {
-  color: var(--ew-text-color-regular, #606266);
-}
-
-.ew-input--disabled .ew-input__clear,
-.ew-input--disabled .ew-input__password-toggle {
-  cursor: not-allowed;
-  color: var(--ew-text-color-disabled, #c0c4cc);
-}
-
-/* 弹窗组件样式 */
-.ew-modal__overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.ew-modal__overlay--visible {
-  opacity: 1;
-}
-
-.ew-modal {
-  background: var(--ew-modal-bg, #ffffff);
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  position: relative;
-  margin: 0 auto;
-  max-width: 90%;
-  max-height: 90%;
-  display: flex;
-  flex-direction: column;
-  transform: scale(0.8);
-  transition: transform 0.3s ease;
-}
-
-.ew-modal__overlay--visible .ew-modal {
-  transform: scale(1);
-}
-
-.ew-modal--center {
-  margin: auto;
-}
-
-.ew-modal__header {
-  padding: 20px 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.ew-modal__title {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--ew-text-color-primary, #303133);
-  line-height: 1.4;
-}
-
-.ew-modal__close {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: var(--ew-text-color-secondary, #909399);
-  cursor: pointer;
+  width: 1px;
+  height: 1px;
   padding: 0;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.ew-modal__close:hover {
-  background: var(--ew-fill-color-light, #f5f7fa);
-  color: var(--ew-text-color-primary, #303133);
-}
-
-.ew-modal__body {
-  padding: 20px;
-  flex: 1;
-  overflow-y: auto;
-  color: var(--ew-text-color-regular, #606266);
-  line-height: 1.6;
-}
-
-.ew-modal__footer {
-  padding: 0 20px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-}
-
-.ew-modal__btn {
-  padding: 8px 16px;
-  border: 1px solid var(--ew-border-color-base, #dcdfe6);
-  border-radius: 4px;
-  background: var(--ew-button-bg, #ffffff);
-  color: var(--ew-text-color-regular, #606266);
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  outline: none;
-}
-
-.ew-modal__btn:hover {
-  border-color: var(--ew-primary-color, #409eff);
-  color: var(--ew-primary-color, #409eff);
-}
-
-.ew-modal__btn--confirm {
-  background: var(--ew-primary-color, #409eff);
-  border-color: var(--ew-primary-color, #409eff);
-  color: #ffffff;
-}
-
-.ew-modal__btn--confirm:hover {
-  background: var(--ew-primary-hover, #66b1ff);
-  border-color: var(--ew-primary-hover, #66b1ff);
-  color: #ffffff;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 } 
