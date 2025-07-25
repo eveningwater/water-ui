@@ -141,7 +141,7 @@ export class EwTable extends BaseComponent {
       // 序号列
       else if (column.type === 'index') {
         const indexSpan = this.createElement('span', { class: 'ew-table__index' });
-        indexSpan.textContent = '#';
+        indexSpan.textContent = column.label || '#';
         th.appendChild(indexSpan);
       }
       // 展开列
