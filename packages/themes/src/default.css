@@ -156,6 +156,37 @@
   
   --ew-modal-border-radius: 12px;
   --ew-modal-backdrop-blur: 8px;
+  
+  /* 布局组件变量 */
+  --ew-row-gutter: 0px;
+  --ew-row-gutter-xs: 0px;
+  --ew-row-gutter-sm: 0px;
+  --ew-row-gutter-md: 0px;
+  --ew-row-gutter-lg: 0px;
+  --ew-row-gutter-xl: 0px;
+  
+  /* 容器组件变量 */
+  --ew-container-bg-color: #ffffff;
+  --ew-container-border-color: #e2e8f0;
+  
+  --ew-header-bg-color: #ffffff;
+  --ew-header-border-color: #e2e8f0;
+  --ew-header-height: 60px;
+  --ew-header-padding: 0 20px;
+  --ew-header-font-size: 14px;
+  
+  --ew-aside-bg-color: #ffffff;
+  --ew-aside-border-color: #e2e8f0;
+  --ew-aside-width: 200px;
+  
+  --ew-main-bg-color: #ffffff;
+  --ew-main-padding: 20px;
+  
+  --ew-footer-bg-color: #ffffff;
+  --ew-footer-border-color: #e2e8f0;
+  --ew-footer-height: 60px;
+  --ew-footer-padding: 0 20px;
+  --ew-footer-font-size: 14px;
 }
 
 /* 全局重置 */

@@ -458,4 +458,57 @@
   background: var(--ew-bg-color-secondary);
   padding: var(--ew-spacing-4);
   font-style: italic;
+}
+
+/* 像素化布局组件 */
+[data-theme="pixel"] .ew-row,
+.pixel .ew-row {
+  --ew-row-gutter: 0px;
+  border: 2px solid var(--ew-border-color);
+  background: var(--ew-bg-color);
+}
+
+[data-theme="pixel"] .ew-col,
+.pixel .ew-col {
+  border: 1px solid var(--ew-border-color);
+  background: var(--ew-bg-color-secondary);
+  box-shadow: inset 0 0 0 1px var(--ew-border-color);
+}
+
+/* 像素化容器组件 */
+[data-theme="pixel"] .ew-container,
+.pixel .ew-container {
+  border: 3px solid var(--ew-color-primary);
+  background: var(--ew-bg-color);
+  box-shadow: var(--ew-shadow-base);
+}
+
+[data-theme="pixel"] .ew-header,
+.pixel .ew-header {
+  border: 2px solid var(--ew-color-primary);
+  background: var(--ew-color-primary);
+  color: var(--ew-color-white);
+  box-shadow: inset 0 2px 0 var(--ew-color-primary-dark);
+}
+
+[data-theme="pixel"] .ew-aside,
+.pixel .ew-aside {
+  border: 2px solid var(--ew-border-color);
+  background: var(--ew-bg-color-secondary);
+  box-shadow: inset 2px 0 0 var(--ew-border-color);
+}
+
+[data-theme="pixel"] .ew-main,
+.pixel .ew-main {
+  border: 2px solid var(--ew-border-color);
+  background: var(--ew-bg-color);
+  box-shadow: inset 0 0 0 1px var(--ew-border-color);
+}
+
+[data-theme="pixel"] .ew-footer,
+.pixel .ew-footer {
+  border: 2px solid var(--ew-color-primary);
+  background: var(--ew-color-primary);
+  color: var(--ew-color-white);
+  box-shadow: inset 0 -2px 0 var(--ew-color-primary-dark);
 } 

@@ -24,7 +24,7 @@ export class EwRow extends BaseComponent {
   }
 
   protected render(): void {
-    const { gutter, type, justify, align, tag } = this.rowProps;
+    const { gutter, tag } = this.rowProps;
 
     // 设置 CSS 变量用于间距
     this.style.setProperty('--ew-row-gutter', `${gutter}px`);

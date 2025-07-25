@@ -358,6 +358,137 @@
             </div>
 
             <div class="section">
+                <h2>📐 布局组件</h2>
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <h3>基础栅格布局</h3>
+                        <ew-row gutter="16">
+                            <ew-col span="6">
+                                <div style="background: #e3f2fd; padding: 20px; text-align: center; border-radius: 8px;">
+                                    6/24
+                                </div>
+                            </ew-col>
+                            <ew-col span="6">
+                                <div style="background: #f3e5f5; padding: 20px; text-align: center; border-radius: 8px;">
+                                    6/24
+                                </div>
+                            </ew-col>
+                            <ew-col span="6">
+                                <div style="background: #e8f5e8; padding: 20px; text-align: center; border-radius: 8px;">
+                                    6/24
+                                </div>
+                            </ew-col>
+                            <ew-col span="6">
+                                <div style="background: #fff3e0; padding: 20px; text-align: center; border-radius: 8px;">
+                                    6/24
+                                </div>
+                            </ew-col>
+                        </ew-row>
+                    </div>
+                    <div class="demo-item">
+                        <h3>响应式栅格</h3>
+                        <ew-row gutter="16">
+                            <ew-col span="12" xs="24" sm="12" md="8" lg="6">
+                                <div style="background: #e3f2fd; padding: 20px; text-align: center; border-radius: 8px;">
+                                    响应式列
+                                </div>
+                            </ew-col>
+                            <ew-col span="12" xs="24" sm="12" md="8" lg="6">
+                                <div style="background: #f3e5f5; padding: 20px; text-align: center; border-radius: 8px;">
+                                    响应式列
+                                </div>
+                            </ew-col>
+                            <ew-col span="12" xs="24" sm="12" md="8" lg="6">
+                                <div style="background: #e8f5e8; padding: 20px; text-align: center; border-radius: 8px;">
+                                    响应式列
+                                </div>
+                            </ew-col>
+                            <ew-col span="12" xs="24" sm="12" md="8" lg="6">
+                                <div style="background: #fff3e0; padding: 20px; text-align: center; border-radius: 8px;">
+                                    响应式列
+                                </div>
+                            </ew-col>
+                        </ew-row>
+                    </div>
+                    <div class="demo-item">
+                        <h3>偏移和推拉</h3>
+                        <ew-row gutter="16">
+                            <ew-col span="6" offset="6">
+                                <div style="background: #e3f2fd; padding: 20px; text-align: center; border-radius: 8px;">
+                                    偏移6
+                                </div>
+                            </ew-col>
+                            <ew-col span="6" push="6">
+                                <div style="background: #f3e5f5; padding: 20px; text-align: center; border-radius: 8px;">
+                                    推6
+                                </div>
+                            </ew-col>
+                        </ew-row>
+                    </div>
+                    <div class="demo-item">
+                        <h3>Flex布局对齐</h3>
+                        <ew-row type="flex" justify="space-between" align="middle" style="height: 100px;">
+                            <ew-col span="6">
+                                <div style="background: #e3f2fd; padding: 20px; text-align: center; border-radius: 8px;">
+                                    左对齐
+                                </div>
+                            </ew-col>
+                            <ew-col span="6">
+                                <div style="background: #f3e5f5; padding: 20px; text-align: center; border-radius: 8px;">
+                                    居中对齐
+                                </div>
+                            </ew-col>
+                            <ew-col span="6">
+                                <div style="background: #e8f5e8; padding: 20px; text-align: center; border-radius: 8px;">
+                                    右对齐
+                                </div>
+                            </ew-col>
+                        </ew-row>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🏗️ 容器布局</h2>
+                <div class="demo-item">
+                    <h3>经典布局</h3>
+                    <ew-container style="height: 300px;">
+                        <ew-header style="background: #409eff; color: white;">
+                            头部区域
+                        </ew-header>
+                        <ew-container>
+                            <ew-aside width="200px" style="background: #f5f7fa;">
+                                侧边栏
+                            </ew-aside>
+                            <ew-main style="background: #ffffff;">
+                                主内容区
+                            </ew-main>
+                        </ew-container>
+                        <ew-footer style="background: #909399; color: white;">
+                            底部区域
+                        </ew-footer>
+                    </ew-container>
+                </div>
+                
+                <div class="demo-item">
+                    <h3>侧边栏布局</h3>
+                    <ew-container style="height: 200px;">
+                        <ew-aside width="200px" style="background: #f5f7fa;">
+                            侧边栏
+                        </ew-aside>
+                        <ew-container>
+                            <ew-header style="background: #409eff; color: white;">
+                                头部区域
+                            </ew-header>
+                            <ew-main style="background: #ffffff;">
+                                主内容区
+                            </ew-main>
+                        </ew-container>
+                    </ew-container>
+                </div>
+            </div>
+
+            <div class="section">
                 <h2>📊 表格组件</h2>
                 <div class="demo-item">
                     <h3>基础表格</h3>

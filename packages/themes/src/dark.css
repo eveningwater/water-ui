@@ -232,4 +232,48 @@
 .dark .ew-loading-spinner {
   border-color: #334155;
   border-top-color: #38bdf8;
+}
+
+/* 布局组件在暗色主题下的样式 */
+[data-theme="dark"] .ew-row,
+.dark .ew-row {
+  --ew-row-gutter: 0px;
+}
+
+[data-theme="dark"] .ew-col,
+.dark .ew-col {
+  background: transparent;
+}
+
+/* 容器组件在暗色主题下的样式 */
+[data-theme="dark"] .ew-container,
+.dark .ew-container {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .ew-header,
+.dark .ew-header {
+  background: #1e293b;
+  border-bottom-color: #334155;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .ew-aside,
+.dark .ew-aside {
+  background: #1e293b;
+  border-right-color: #334155;
+}
+
+[data-theme="dark"] .ew-main,
+.dark .ew-main {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .ew-footer,
+.dark .ew-footer {
+  background: #1e293b;
+  border-top-color: #334155;
+  color: #f8fafc;
 } 
