@@ -511,4 +511,66 @@
   background: var(--ew-color-primary);
   color: var(--ew-color-white);
   box-shadow: inset 0 -2px 0 var(--ew-color-primary-dark);
+}
+
+/* 像素化链接组件 */
+[data-theme="pixel"] .ew-link,
+.pixel .ew-link {
+  border: 1px solid var(--ew-color-primary);
+  background: transparent;
+  color: var(--ew-color-primary);
+  text-decoration: none;
+  padding: 4px 8px;
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-base);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: var(--ew-shadow-light);
+  transition: var(--ew-transition);
+}
+
+[data-theme="pixel"] .ew-link:hover,
+.pixel .ew-link:hover {
+  background: var(--ew-color-primary);
+  color: var(--ew-color-white);
+  box-shadow: var(--ew-shadow-base);
+}
+
+[data-theme="pixel"] .ew-link:active,
+.pixel .ew-link:active {
+  background: var(--ew-color-primary-dark);
+  color: var(--ew-color-white);
+  box-shadow: inset 0 2px 0 var(--ew-color-primary);
+}
+
+[data-theme="pixel"] .ew-link--disabled,
+.pixel .ew-link--disabled {
+  border-color: var(--ew-border-color);
+  background: var(--ew-bg-color-disabled);
+  color: var(--ew-text-color-disabled);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+[data-theme="pixel"] .ew-link--underline,
+.pixel .ew-link--underline {
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 2px;
+}
+
+[data-theme="pixel"] .ew-link__icon,
+.pixel .ew-link__icon {
+  border: 1px solid currentColor;
+  padding: 2px;
+  margin-right: 8px;
+  font-size: var(--ew-font-size-small);
+}
+
+[data-theme="pixel"] .ew-link__external,
+.pixel .ew-link__external {
+  border: 1px solid currentColor;
+  padding: 2px;
+  margin-left: 8px;
+  font-size: var(--ew-font-size-small);
 } 

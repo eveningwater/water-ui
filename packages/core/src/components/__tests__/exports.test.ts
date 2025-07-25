@@ -20,7 +20,8 @@ import {
   EwMain,
   EwFooter,
   EwRow,
-  EwCol
+  EwCol,
+  EwLink
 } from '../index';
 
 describe('组件导出测试', () => {
@@ -125,6 +126,13 @@ describe('组件导出测试', () => {
     });
   });
 
+  describe('链接组件导出', () => {
+    it('应该正确导出 EwLink', () => {
+      expect(EwLink).toBeDefined();
+      expect(typeof EwLink).toBe('function');
+    });
+  });
+
   describe('组件注册测试', () => {
     it('应该正确注册 EwContainer 组件', () => {
       expect(customElements.get('ew-container')).toBe(EwContainer);
@@ -152,6 +160,10 @@ describe('组件导出测试', () => {
 
     it('应该正确注册 EwCol 组件', () => {
       expect(customElements.get('ew-col')).toBe(EwCol);
+    });
+
+    it('应该正确注册 EwLink 组件', () => {
+      expect(customElements.get('ew-link')).toBe(EwLink);
     });
   });
 
@@ -182,6 +194,10 @@ describe('组件导出测试', () => {
 
     it('EwCol 应该继承自 BaseComponent', () => {
       expect(EwCol.prototype).toBeInstanceOf(HTMLElement);
+    });
+
+    it('EwLink 应该继承自 BaseComponent', () => {
+      expect(EwLink.prototype).toBeInstanceOf(HTMLElement);
     });
   });
 }); 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Water UI - 现代化组件库</title>
-    <!-- <link rel="stylesheet" href="../packages/themes/dist/style.css"> -->
+    <link rel="stylesheet" href="../packages/themes/dist/themes/theme-light.css">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -489,6 +489,73 @@
             </div>
 
             <div class="section">
+                <h2>🔗 链接组件</h2>
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <h3>基础链接</h3>
+                        <div class="input-group">
+                            <ew-link>默认链接</ew-link>
+                            <ew-link type="primary">主要链接</ew-link>
+                            <ew-link type="success">成功链接</ew-link>
+                            <ew-link type="warning">警告链接</ew-link>
+                            <ew-link type="danger">危险链接</ew-link>
+                            <ew-link type="info">信息链接</ew-link>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>下划线链接</h3>
+                        <div class="input-group">
+                            <ew-link underline>带下划线</ew-link>
+                            <ew-link type="success" underline>成功下划线</ew-link>
+                            <ew-link type="warning" underline>警告下划线</ew-link>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>禁用状态</h3>
+                        <div class="input-group">
+                            <ew-link disabled>禁用链接</ew-link>
+                            <ew-link type="success" disabled>禁用成功链接</ew-link>
+                            <ew-link type="danger" disabled>禁用危险链接</ew-link>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>外部链接</h3>
+                        <div class="input-group">
+                            <ew-link href="https://example.com" target="_blank">外部链接</ew-link>
+                            <ew-link href="https://github.com" target="_blank" type="success">GitHub</ew-link>
+                            <ew-link href="/internal-link">内部链接</ew-link>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>带图标链接</h3>
+                        <div class="input-group">
+                            <ew-link icon="home">首页</ew-link>
+                            <ew-link icon="mail" type="success">邮件</ew-link>
+                            <ew-link icon="settings" type="warning">设置</ew-link>
+                            <ew-link icon="link" type="danger">链接</ew-link>
+                            <ew-link icon="search" type="info">搜索</ew-link>
+                            <ew-link icon="calendar" type="primary">日历</ew-link>
+                            <ew-link icon="clock">时钟</ew-link>
+                            <ew-link icon="plus">添加</ew-link>
+                            <ew-link icon="clear">清除</ew-link>
+                            <ew-link icon="eye">查看</ew-link>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>链接操作</h3>
+                        <div class="button-group">
+                            <ew-button type="primary" onclick="focusLink()">聚焦链接</ew-button>
+                            <ew-button type="success" onclick="blurLink()">失焦链接</ew-button>
+                            <ew-button type="warning" onclick="toggleLinkDisabled()">切换禁用</ew-button>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <ew-link id="demoLink" onclick="handleLinkClick()">点击我测试事件</ew-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
                 <h2>📊 表格组件</h2>
                 <div class="demo-item">
                     <h3>基础表格</h3>
@@ -858,6 +925,37 @@
             inputNumbers.forEach((input) => {
                 input.setValue(null);
             });
+        };
+
+        // 链接组件操作
+        window.focusLink = function() {
+            const link = document.getElementById('demoLink');
+            if (link) {
+                link.focus();
+            }
+        };
+
+        window.blurLink = function() {
+            const link = document.getElementById('demoLink');
+            if (link) {
+                link.blur();
+            }
+        };
+
+        window.toggleLinkDisabled = function() {
+            const link = document.getElementById('demoLink');
+            if (link) {
+                if (link.hasAttribute('disabled')) {
+                    link.removeAttribute('disabled');
+                } else {
+                    link.setAttribute('disabled', '');
+                }
+            }
+        };
+
+        window.handleLinkClick = function() {
+            console.log('链接被点击了！');
+            alert('链接点击事件触发成功！');
         };
         
         // 主题切换

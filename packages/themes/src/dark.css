@@ -276,4 +276,25 @@
   background: #1e293b;
   border-top-color: #334155;
   color: #f8fafc;
+}
+
+/* 链接组件在暗色主题下的样式 */
+[data-theme="dark"] .ew-link,
+.dark .ew-link {
+  color: var(--ew-link-color-dark, var(--ew-color-primary));
+}
+
+[data-theme="dark"] .ew-link:hover,
+.dark .ew-link:hover {
+  color: var(--ew-link-hover-color-dark, var(--ew-color-primary-hover));
+}
+
+[data-theme="dark"] .ew-link:active,
+.dark .ew-link:active {
+  color: var(--ew-link-active-color-dark, var(--ew-color-primary-active));
+}
+
+[data-theme="dark"] .ew-link--disabled,
+.dark .ew-link--disabled {
+  color: var(--ew-text-color-disabled-dark, var(--ew-text-color-disabled));
 } 

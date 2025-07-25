@@ -187,6 +187,12 @@
   --ew-footer-height: 60px;
   --ew-footer-padding: 0 20px;
   --ew-footer-font-size: 14px;
+  
+  /* 链接组件变量 */
+  --ew-link-color: var(--ew-color-primary);
+  --ew-link-hover-color: var(--ew-color-primary-hover);
+  --ew-link-active-color: var(--ew-color-primary-active);
+  --ew-link-disabled-color: var(--ew-text-color-disabled);
 }
 
 /* 全局重置 */

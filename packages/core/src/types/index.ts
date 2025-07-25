@@ -273,4 +273,14 @@ export interface ColProps extends BaseComponentProps {
   lg?: number | object;
   xl?: number | object;
   tag?: string;
+}
+
+// Link 组件属性
+export interface LinkProps extends BaseComponentProps {
+  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info';
+  underline?: boolean;
+  disabled?: boolean;
+  href?: string;
+  icon?: string;
+  target?: string;
 } 

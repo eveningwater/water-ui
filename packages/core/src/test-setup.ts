@@ -20,6 +20,7 @@ import './components/ew-container/ew-main';
 import './components/ew-container/ew-footer';
 import './components/ew-row';
 import './components/ew-col';
+import './components/ew-link';
 
 // 模拟浏览器环境
 beforeAll(() => {
