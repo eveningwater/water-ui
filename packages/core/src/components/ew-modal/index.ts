@@ -43,12 +43,18 @@ export class EwModal extends BaseComponent {
       return;
     }
 
+    // 清空并重新渲染
+    this.shadow.innerHTML = '';
+    
+    // 注入样式
+    this.injectStyles(modalStyles);
+
     // 遮罩层
-    const overlay = this.createElement('div', { class: 'ew-modal__overlay ew-modal__overlay--visible' });
+    const overlay = this.createElement('div', { class: 'ew-modal ew-modal--visible' });
     overlay.addEventListener('click', this.handleOverlayClick.bind(this));
 
     // 弹窗内容
-    const modal = this.createElement('div', { class: this.getModalClasses() });
+    const modal = this.createElement('div', { class: 'ew-modal__content' });
     modal.style.cssText = this.getModalStyles();
     
     // 弹窗头部
@@ -95,23 +101,12 @@ export class EwModal extends BaseComponent {
     }
 
     overlay.appendChild(modal);
-
-    // 清空并重新渲染
-    this.shadow.innerHTML = '';
-    
-    // 注入样式
-    this.injectStyles(modalStyles);
     
     // 添加遮罩层
     this.shadow.appendChild(overlay);
 
     // 添加键盘事件监听
     document.addEventListener('keydown', this.handleKeydown.bind(this));
-  }
-
-  private getModalClasses(): string {
-    const classes = ['ew-modal'];
-    return classes.join(' ');
   }
 
   private getModalStyles(): string {

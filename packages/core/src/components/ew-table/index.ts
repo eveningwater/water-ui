@@ -57,6 +57,12 @@ export class EwTable extends BaseComponent {
     // 获取列配置
     this.updateColumns();
     
+    // 如果没有列配置，延迟渲染
+    if (this.columns.length === 0) {
+      setTimeout(() => this.render(), 0);
+      return;
+    }
+    
     // 创建表格容器
     const tableContainer = this.createElement('div', { class: 'ew-table__container' });
     
@@ -121,7 +127,7 @@ export class EwTable extends BaseComponent {
       // 选择列
       if (column.type === 'selection') {
         const checkbox = this.createElement('ew-checkbox', {
-          class: 'ew-table__checkbox',
+          class: 'ew-table__checkbox ew-table__checkbox--header',
           ...(this.isAllSelected() ? { 'model-value': 'true' } : {}),
           ...(this.isIndeterminate() ? { indeterminate: '' } : {})
         });
@@ -130,7 +136,9 @@ export class EwTable extends BaseComponent {
       }
       // 序号列
       else if (column.type === 'index') {
-        th.textContent = '#';
+        const indexSpan = this.createElement('span', { class: 'ew-table__index' });
+        indexSpan.textContent = '#';
+        th.appendChild(indexSpan);
       }
       // 展开列
       else if (column.type === 'expand') {
@@ -187,15 +195,17 @@ export class EwTable extends BaseComponent {
           // 选择列
           if (column.type === 'selection') {
             const checkbox = this.createElement('ew-checkbox', {
-              class: 'ew-table__checkbox',
+              class: 'ew-table__checkbox ew-table__checkbox--row',
               ...(this.isRowSelected(row) ? { 'model-value': 'true' } : {})
             });
-            checkbox.addEventListener('change', () => this.handleSelectRow(row));
+            checkbox.addEventListener('change', (event) => this.handleSelectRow(row, event));
             td.appendChild(checkbox);
           }
           // 序号列
           else if (column.type === 'index') {
-            td.textContent = (rowIndex + 1).toString();
+            const indexSpan = this.createElement('span', { class: 'ew-table__index' });
+            indexSpan.textContent = (rowIndex + 1).toString();
+            td.appendChild(indexSpan);
           }
           // 展开列
           else if (column.type === 'expand') {
@@ -334,6 +344,14 @@ export class EwTable extends BaseComponent {
   private getCellStyle(row: any, column: TableColumn, rowIndex: number, columnIndex: number): string {
     const styles: string[] = [];
     
+    // 设置列宽度，确保与表头对齐
+    if (column.width) {
+      styles.push(`width: ${column.width}px`);
+    }
+    if (column.minWidth) {
+      styles.push(`min-width: ${column.minWidth}px`);
+    }
+    
     if (this.tableProps.cellStyle) {
       if (typeof this.tableProps.cellStyle === 'function') {
         const style = this.tableProps.cellStyle(row, column, rowIndex, columnIndex);
@@ -412,8 +430,10 @@ export class EwTable extends BaseComponent {
   }
 
   private handleSelectAll(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    if (target.checked) {
+    // 从事件详情中获取选中状态
+    const isChecked = (event as CustomEvent).detail;
+    
+    if (isChecked) {
       this.selectedRows = [...this.tableProps.data];
     } else {
       this.selectedRows = [];
@@ -423,15 +443,18 @@ export class EwTable extends BaseComponent {
     this.dispatchCustomEvent('selection-change', this.selectedRows);
   }
 
-  private handleSelectRow(row: any): void {
+  private handleSelectRow(row: any, event?: Event): void {
+    // 从事件详情中获取选中状态
+    const shouldSelect = (event as CustomEvent).detail;
+    
     const index = this.selectedRows.findIndex(selectedRow => 
       this.getRowKey(selectedRow) === this.getRowKey(row)
     );
     
-    if (index > -1) {
-      this.selectedRows.splice(index, 1);
-    } else {
+    if (shouldSelect && index === -1) {
       this.selectedRows.push(row);
+    } else if (!shouldSelect && index > -1) {
+      this.selectedRows.splice(index, 1);
     }
     
     this.render();

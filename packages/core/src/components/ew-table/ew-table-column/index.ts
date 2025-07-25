@@ -12,8 +12,8 @@ export class EwTableColumn extends BaseComponent {
       columnKey: this.getAttribute('column-key') || undefined,
       label: this.getAttribute('label') || '',
       prop: this.getAttribute('prop') || '',
-      width: this.getAttribute('width') || undefined,
-      minWidth: this.getAttribute('min-width') || undefined,
+      width: this.getAttribute('width') ? parseInt(this.getAttribute('width')!) : undefined,
+      minWidth: this.getAttribute('min-width') ? parseInt(this.getAttribute('min-width')!) : undefined,
       fixed: this.getAttribute('fixed') as TableColumn['fixed'] || undefined,
       sortable: this.hasAttribute('sortable'),
       sortMethod: undefined, // 需要从父组件传入

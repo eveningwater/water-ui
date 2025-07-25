@@ -1,7 +1,8 @@
 export const tableStyles = `
   .ew-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     font-family: var(--ew-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif);
     font-size: var(--ew-font-size-base, 14px);
     line-height: var(--ew-line-height-normal, 1.5);
@@ -196,14 +197,48 @@ export const tableStyles = `
   /* 复选框样式 */
   .ew-table__checkbox {
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 
   .ew-table__checkbox .ew-checkbox__inner {
     margin-right: 0;
+    margin-left: 0;
   }
 
   .ew-table__checkbox .ew-checkbox__label {
     display: none;
+  }
+
+  /* 表头复选框样式 */
+  .ew-table__checkbox--header {
+    justify-content: center;
+  }
+
+  /* 行复选框样式 */
+  .ew-table__checkbox--row {
+    justify-content: center;
+  }
+
+  /* 复选框列居中 */
+  .ew-table th:has(.ew-table__checkbox),
+  .ew-table td:has(.ew-table__checkbox) {
+    text-align: center;
+  }
+
+  /* 序号列居中 */
+  .ew-table th:has(.ew-table__index),
+  .ew-table td:has(.ew-table__index) {
+    text-align: center;
+  }
+
+  /* 其他列保持左对齐 */
+  .ew-table th:not(:has(.ew-table__checkbox)):not(:has(.ew-table__index)),
+  .ew-table td:not(:has(.ew-table__checkbox)):not(:has(.ew-table__index)) {
+    text-align: left;
   }
 
   /* 展开图标 */
