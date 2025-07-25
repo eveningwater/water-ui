@@ -9,4 +9,5 @@ export { EwCheckboxGroup } from './ew-checkbox/ew-checkbox-group';
 export { EwCheckboxButton } from './ew-checkbox-button';
 export { EwRadio } from './ew-radio';
 export { EwRadioButton } from './ew-radio-button';
-export { EwRadioGroup } from './ew-radio-group'; 
+export { EwRadioGroup } from './ew-radio-group';
+export { EwInputNumber } from './ew-input-number'; 

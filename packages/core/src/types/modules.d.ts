@@ -4,6 +4,8 @@ declare module '@water-ui/icons' {
   export function EyeIcon(props: { size?: string }): string;
   export function EyeOffIcon(props: { size?: string }): string;
   export function CloseIcon(props: { size?: string }): string;
+  export function PlusIcon(props: { size?: string }): string;
+  export function MinusIcon(props: { size?: string }): string;
 }
 
 declare module '@water-ui/utils' {

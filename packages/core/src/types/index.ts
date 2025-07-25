@@ -201,4 +201,28 @@ export interface RadioGroupProps extends BaseComponentProps {
   fill?: string;
   name?: string;
   border?: boolean;
+}
+
+// Input Number 组件属性
+export interface InputNumberProps extends BaseComponentProps {
+  modelValue?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  stepStrictly?: boolean;
+  precision?: number;
+  size?: 'small' | 'medium' | 'large';
+  disabled?: boolean;
+  controls?: boolean;
+  controlsPosition?: 'right' | 'both';
+  name?: string;
+  label?: string;
+  placeholder?: string;
+  readonly?: boolean;
+  clearable?: boolean;
+  autofocus?: boolean;
+  form?: string;
+  required?: boolean;
+  validateEvent?: boolean;
+  debounce?: number;
 } 
