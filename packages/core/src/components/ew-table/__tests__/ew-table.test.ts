@@ -6,6 +6,13 @@ describe('EwTable', () => {
 
   beforeEach(() => {
     table = document.createElement('ew-table') as EwTable;
+    // 添加基本的列配置，这样组件才能正确渲染
+    const columns = [
+      { prop: 'name', label: '姓名' },
+      { prop: 'age', label: '年龄' }
+    ];
+    table.setAttribute('columns', JSON.stringify(columns));
+    table.setAttribute('data', JSON.stringify([]));
     document.body.appendChild(table);
   });
 

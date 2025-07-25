@@ -175,6 +175,7 @@ export interface CheckboxGroupProps extends BaseComponentProps {
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   name?: string;
+  border?: boolean;
 }
 
 // Radio 组件属性
@@ -199,4 +200,5 @@ export interface RadioGroupProps extends BaseComponentProps {
   textColor?: string;
   fill?: string;
   name?: string;
+  border?: boolean;
 } 

@@ -16,7 +16,8 @@ export class EwRadioGroup extends BaseComponent {
       disabled: this.hasAttribute('disabled'),
       textColor: this.getAttribute('text-color') || '#ffffff',
       fill: this.getAttribute('fill') || '#409eff',
-      name: this.getAttribute('name') || ''
+      name: this.getAttribute('name') || '',
+      border: this.hasAttribute('border')
     };
   }
 
@@ -55,6 +56,9 @@ export class EwRadioGroup extends BaseComponent {
     }
     if (this.hasAttribute('button')) {
       classes.push('ew-radio-group--button');
+    }
+    if (this.groupProps.border) {
+      classes.push('ew-radio-group--border');
     }
     
     return classes.join(' ');
@@ -147,7 +151,8 @@ export class EwRadioGroup extends BaseComponent {
       'fill',
       'name',
       'vertical',
-      'button'
+      'button',
+      'border'
     ];
   }
 

@@ -97,6 +97,10 @@ export class EwTable extends BaseComponent {
     
     tableContainer.appendChild(table);
     
+    // 添加插槽元素
+    const slot = this.createElement('slot');
+    tableContainer.appendChild(slot);
+    
     // 添加表格容器
     this.shadow.appendChild(tableContainer);
   }

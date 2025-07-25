@@ -22,8 +22,7 @@ describe('EwRadioButton', () => {
     expect(radioButton.shadowRoot).toBeTruthy();
     const radioElement = radioButton.shadowRoot?.querySelector('label');
     expect(radioElement).toBeTruthy();
-    expect(radioElement?.classList.contains('ew-radio')).toBe(true);
-    expect(radioElement?.classList.contains('ew-radio--button')).toBe(true);
+    expect(radioElement?.classList.contains('ew-radio-button')).toBe(true);
   });
 
   it('应该应用正确的标签', async () => {
@@ -32,7 +31,7 @@ describe('EwRadioButton', () => {
     // 等待属性变化处理
     await new Promise(resolve => setTimeout(resolve, 10));
     
-    const labelElement = radioButton.shadowRoot?.querySelector('.ew-radio__label');
+    const labelElement = radioButton.shadowRoot?.querySelector('.ew-radio-button__inner');
     expect(labelElement?.textContent).toBe('测试按钮');
   });
 
@@ -51,7 +50,7 @@ describe('EwRadioButton', () => {
     await new Promise(resolve => setTimeout(resolve, 10));
     
     const radioElement = radioButton.shadowRoot?.querySelector('label');
-    expect(radioElement?.classList.contains('ew-radio--disabled')).toBe(true);
+    expect(radioElement?.classList.contains('ew-radio-button--disabled')).toBe(true);
     
     const inputElement = radioButton.shadowRoot?.querySelector('input') as HTMLInputElement;
     expect(inputElement?.disabled).toBe(true);
@@ -94,7 +93,7 @@ describe('EwRadioButton', () => {
     await new Promise(resolve => setTimeout(resolve, 10));
     
     const radioElement = radioButton.shadowRoot?.querySelector('label');
-    expect(radioElement?.classList.contains('ew-radio--large')).toBe(true);
+    expect(radioElement?.classList.contains('ew-radio-button--large')).toBe(true);
   });
 
   it('应该正确设置和获取值', async () => {

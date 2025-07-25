@@ -22,8 +22,7 @@ describe('EwCheckboxButton', () => {
     expect(checkboxButton.shadowRoot).toBeTruthy();
     const checkboxElement = checkboxButton.shadowRoot?.querySelector('label');
     expect(checkboxElement).toBeTruthy();
-    expect(checkboxElement?.classList.contains('ew-checkbox')).toBe(true);
-    expect(checkboxElement?.classList.contains('ew-checkbox--button')).toBe(true);
+    expect(checkboxElement?.classList.contains('ew-checkbox-button')).toBe(true);
   });
 
   it('应该应用正确的标签', async () => {
@@ -32,7 +31,7 @@ describe('EwCheckboxButton', () => {
     // 等待属性变化处理
     await new Promise(resolve => setTimeout(resolve, 10));
     
-    const labelElement = checkboxButton.shadowRoot?.querySelector('.ew-checkbox__label');
+    const labelElement = checkboxButton.shadowRoot?.querySelector('.ew-checkbox-button__inner');
     expect(labelElement?.textContent).toBe('测试按钮');
   });
 
@@ -51,7 +50,7 @@ describe('EwCheckboxButton', () => {
     await new Promise(resolve => setTimeout(resolve, 10));
     
     const checkboxElement = checkboxButton.shadowRoot?.querySelector('label');
-    expect(checkboxElement?.classList.contains('ew-checkbox--disabled')).toBe(true);
+    expect(checkboxElement?.classList.contains('ew-checkbox-button--disabled')).toBe(true);
     
     const inputElement = checkboxButton.shadowRoot?.querySelector('input') as HTMLInputElement;
     expect(inputElement?.disabled).toBe(true);
@@ -94,7 +93,7 @@ describe('EwCheckboxButton', () => {
     await new Promise(resolve => setTimeout(resolve, 10));
     
     const checkboxElement = checkboxButton.shadowRoot?.querySelector('label');
-    expect(checkboxElement?.classList.contains('ew-checkbox--large')).toBe(true);
+    expect(checkboxElement?.classList.contains('ew-checkbox-button--large')).toBe(true);
   });
 
   it('应该正确设置和获取值', async () => {

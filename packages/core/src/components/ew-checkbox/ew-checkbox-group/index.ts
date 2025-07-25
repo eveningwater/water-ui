@@ -19,7 +19,8 @@ export class EwCheckboxGroup extends BaseComponent {
       fill: this.getAttribute('fill') || '#409eff',
       size: (this.getAttribute('size') as CheckboxGroupProps['size']) || 'medium',
       disabled: this.hasAttribute('disabled'),
-      name: this.getAttribute('name') || ''
+      name: this.getAttribute('name') || '',
+      border: this.hasAttribute('border')
     };
   }
 
@@ -58,6 +59,9 @@ export class EwCheckboxGroup extends BaseComponent {
     }
     if (this.hasAttribute('button')) {
       classes.push('ew-checkbox-group--button');
+    }
+    if (this.groupProps.border) {
+      classes.push('ew-checkbox-group--border');
     }
     
     return classes.join(' ');
@@ -177,7 +181,8 @@ export class EwCheckboxGroup extends BaseComponent {
       'disabled',
       'name',
       'vertical',
-      'button'
+      'button',
+      'border'
     ];
   }
 

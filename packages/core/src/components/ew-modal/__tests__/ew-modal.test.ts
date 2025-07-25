@@ -29,9 +29,9 @@ describe('EwModal', () => {
     
     await new Promise(resolve => setTimeout(resolve, 10));
     
-    const overlay = modal.shadowRoot?.querySelector('.ew-modal__overlay');
+    const overlay = modal.shadowRoot?.querySelector('.ew-modal');
     expect(overlay).toBeTruthy();
-    expect(overlay?.classList.contains('ew-modal__overlay--visible')).toBe(true);
+    expect(overlay?.classList.contains('ew-modal--visible')).toBe(true);
   });
 
   it('应该显示标题', async () => {
@@ -73,7 +73,7 @@ describe('EwModal', () => {
     modal.setAttribute('model-value', 'true');
     await new Promise(resolve => setTimeout(resolve, 10));
     
-    expect(modal.shadowRoot?.querySelector('.ew-modal__overlay')).toBeTruthy();
+    expect(modal.shadowRoot?.querySelector('.ew-modal')).toBeTruthy();
     
     // 关闭弹框
     modal.setAttribute('model-value', 'false');
@@ -115,7 +115,7 @@ describe('EwModal', () => {
     modal.showModal();
     await new Promise(resolve => setTimeout(resolve, 10));
     
-    expect(modal.shadowRoot?.querySelector('.ew-modal__overlay')).toBeTruthy();
+    expect(modal.shadowRoot?.querySelector('.ew-modal')).toBeTruthy();
   });
 
   it('应该响应hideModal方法', async () => {
@@ -123,7 +123,7 @@ describe('EwModal', () => {
     modal.setAttribute('model-value', 'true');
     await new Promise(resolve => setTimeout(resolve, 10));
     
-    expect(modal.shadowRoot?.querySelector('.ew-modal__overlay')).toBeTruthy();
+    expect(modal.shadowRoot?.querySelector('.ew-modal')).toBeTruthy();
     
     // 调用hideModal方法
     modal.hideModal();
