@@ -6,12 +6,18 @@ import './components/ew-button';
 import './components/ew-checkbox';
 import './components/ew-checkbox-button';
 import './components/ew-input';
+import './components/ew-input-number';
 import './components/ew-modal';
 import './components/ew-radio';
 import './components/ew-radio-button';
 import './components/ew-radio-group';
 import './components/ew-table';
 import './components/ew-checkbox/ew-checkbox-group';
+import './components/ew-container';
+import './components/ew-container/ew-header';
+import './components/ew-container/ew-aside';
+import './components/ew-container/ew-main';
+import './components/ew-container/ew-footer';
 
 // 模拟浏览器环境
 beforeAll(() => {

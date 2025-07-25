@@ -6,40 +6,7 @@ export interface IconProps {
 }
 
 // 导出所有图标
-export {
-  LoadingIcon,
-  CloseIcon,
-  EyeIcon,
-  EyeOffIcon,
-  ClearIcon,
-  ArrowIcon,
-  SearchIcon,
-  CalendarIcon,
-  ClockIcon,
-  Icons
-} from './icons';
+export * from './icons';
 
 // 默认导出
-import {
-  LoadingIcon,
-  CloseIcon,
-  EyeIcon,
-  EyeOffIcon,
-  ClearIcon,
-  ArrowIcon,
-  SearchIcon,
-  CalendarIcon,
-  ClockIcon
-} from './icons';
-
-export default {
-  LoadingIcon,
-  CloseIcon,
-  EyeIcon,
-  EyeOffIcon,
-  ClearIcon,
-  ArrowIcon,
-  SearchIcon,
-  CalendarIcon,
-  ClockIcon
-}; 
+export { Icons } from './icons'; 

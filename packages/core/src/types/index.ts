@@ -225,4 +225,29 @@ export interface InputNumberProps extends BaseComponentProps {
   required?: boolean;
   validateEvent?: boolean;
   debounce?: number;
+}
+
+// 容器组件属性
+export interface ContainerProps extends BaseComponentProps {
+  direction?: 'horizontal' | 'vertical';
+}
+
+// 头部组件属性
+export interface HeaderProps extends BaseComponentProps {
+  height?: string;
+}
+
+// 侧边栏组件属性
+export interface AsideProps extends BaseComponentProps {
+  width?: string;
+}
+
+// 主内容区组件属性
+export interface MainProps extends BaseComponentProps {
+  // 主内容区通常不需要特殊属性
+}
+
+// 底部组件属性
+export interface FooterProps extends BaseComponentProps {
+  height?: string;
 } 

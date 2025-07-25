@@ -116,6 +116,27 @@ export const ClockIcon = (props: IconProps = {}): string => {
   `;
 };
 
+// 增加图标（加号）
+export const PlusIcon = (props: IconProps = {}): string => {
+  const { size = '16px', color = 'currentColor', class: className = '' } = props;
+  return `
+    <svg class="${className}" style="width: ${size}; height: ${size}; color: ${color};" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  `;
+};
+
+// 减少图标（减号）
+export const MinusIcon = (props: IconProps = {}): string => {
+  const { size = '16px', color = 'currentColor', class: className = '' } = props;
+  return `
+    <svg class="${className}" style="width: ${size}; height: ${size}; color: ${color};" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  `;
+};
+
 // 导出所有图标
 export const Icons = {
   Loading: LoadingIcon,
@@ -126,5 +147,7 @@ export const Icons = {
   Arrow: ArrowIcon,
   Search: SearchIcon,
   Calendar: CalendarIcon,
-  Clock: ClockIcon
+  Clock: ClockIcon,
+  Plus: PlusIcon,
+  Minus: MinusIcon
 }; 
