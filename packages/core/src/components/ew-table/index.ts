@@ -63,11 +63,21 @@ export class EwTable extends BaseComponent {
       return;
     }
     
+    // 清空并重新渲染
+    this.shadow.innerHTML = '';
+    
+    // 注入样式
+    this.injectStyles(tableStyles);
+    
     // 创建表格容器
     const tableContainer = this.createElement('div', { class: 'ew-table__container' });
     
     // 创建表格元素
-    const table = this.createElement('table', { class: this.getTableClasses() });
+    const table = this.createElement('table', { 
+      class: this.getTableClasses(),
+      cellspacing: '0',
+      cellpadding: '0'
+    });
     
     // 渲染表头
     if (this.tableProps.showHeader) {
@@ -86,12 +96,6 @@ export class EwTable extends BaseComponent {
     }
     
     tableContainer.appendChild(table);
-    
-    // 清空并重新渲染
-    this.shadow.innerHTML = '';
-    
-    // 注入样式
-    this.injectStyles(tableStyles);
     
     // 添加表格容器
     this.shadow.appendChild(tableContainer);
@@ -287,7 +291,15 @@ export class EwTable extends BaseComponent {
     
     if (column.width) {
       styles.push(`width: ${column.width}px`);
+    } else if (column.type === 'selection') {
+      styles.push('width: 50px');
+    } else if (column.type === 'index') {
+      styles.push('width: 60px');
+    } else {
+      // 为普通列设置默认宽度
+      styles.push('width: 120px');
     }
+    
     if (column.minWidth) {
       styles.push(`min-width: ${column.minWidth}px`);
     }
@@ -347,7 +359,15 @@ export class EwTable extends BaseComponent {
     // 设置列宽度，确保与表头对齐
     if (column.width) {
       styles.push(`width: ${column.width}px`);
+    } else if (column.type === 'selection') {
+      styles.push('width: 50px');
+    } else if (column.type === 'index') {
+      styles.push('width: 60px');
+    } else {
+      // 为普通列设置默认宽度
+      styles.push('width: 120px');
     }
+    
     if (column.minWidth) {
       styles.push(`min-width: ${column.minWidth}px`);
     }
@@ -439,7 +459,9 @@ export class EwTable extends BaseComponent {
       this.selectedRows = [];
     }
     
-    this.render();
+    // 更新所有行复选框状态
+    this.updateRowCheckboxes();
+    
     this.dispatchCustomEvent('selection-change', this.selectedRows);
   }
 
@@ -457,7 +479,9 @@ export class EwTable extends BaseComponent {
       this.selectedRows.splice(index, 1);
     }
     
-    this.render();
+    // 更新表头复选框状态
+    this.updateHeaderCheckbox();
+    
     this.dispatchCustomEvent('selection-change', this.selectedRows);
   }
 
@@ -487,6 +511,36 @@ export class EwTable extends BaseComponent {
     return this.selectedRows.some(selectedRow => 
       this.getRowKey(selectedRow) === this.getRowKey(row)
     );
+  }
+
+  private updateHeaderCheckbox(): void {
+    const headerCheckbox = this.shadow.querySelector('.ew-table__checkbox--header') as any;
+    if (headerCheckbox) {
+      if (this.isAllSelected()) {
+        headerCheckbox.setAttribute('model-value', 'true');
+        headerCheckbox.removeAttribute('indeterminate');
+      } else if (this.isIndeterminate()) {
+        headerCheckbox.removeAttribute('model-value');
+        headerCheckbox.setAttribute('indeterminate', '');
+      } else {
+        headerCheckbox.removeAttribute('model-value');
+        headerCheckbox.removeAttribute('indeterminate');
+      }
+    }
+  }
+
+  private updateRowCheckboxes(): void {
+    const rowCheckboxes = this.shadow.querySelectorAll('.ew-table__checkbox--row') as NodeListOf<any>;
+    rowCheckboxes.forEach((checkbox, index) => {
+      const row = this.tableProps.data[index];
+      if (row) {
+        if (this.isRowSelected(row)) {
+          checkbox.setAttribute('model-value', 'true');
+        } else {
+          checkbox.removeAttribute('model-value');
+        }
+      }
+    });
   }
 
   private isRowExpanded(row: any): boolean {

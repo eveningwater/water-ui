@@ -1,8 +1,8 @@
 export const tableStyles = `
   .ew-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
     font-family: var(--ew-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif);
     font-size: var(--ew-font-size-base, 14px);
     line-height: var(--ew-line-height-normal, 1.5);
@@ -10,36 +10,12 @@ export const tableStyles = `
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     border-radius: var(--ew-table-border-radius, 8px);
     box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1), 0 2px 4px rgba(14, 165, 233, 0.05);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .ew-table::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.02) 0%, rgba(56, 189, 248, 0.02) 100%);
-    pointer-events: none;
-    z-index: -1;
+    box-sizing: border-box;
   }
 
   .ew-table thead {
     background: linear-gradient(135deg, var(--ew-table-header-bg, #f8fafc) 0%, #f1f5f9 100%);
-    position: relative;
-  }
-
-  .ew-table thead::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--ew-color-primary, #0ea5e9) 0%, var(--ew-color-primary-light, #38bdf8) 100%);
-    opacity: 0.3;
+    border-bottom: 2px solid rgba(14, 165, 233, 0.3);
   }
 
   .ew-table th {
@@ -50,8 +26,10 @@ export const tableStyles = `
     border-bottom: 1px solid var(--ew-border-color-light, #f1f5f9);
     text-align: left;
     white-space: nowrap;
-    position: relative;
-    transition: all var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
   }
 
   .ew-table th:hover {
@@ -67,31 +45,11 @@ export const tableStyles = `
   }
 
   .ew-table tbody tr {
-    transition: all var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
-    position: relative;
-  }
-
-  .ew-table tbody tr::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.02) 0%, rgba(56, 189, 248, 0.02) 100%);
-    opacity: 0;
-    transition: opacity var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
-    pointer-events: none;
-  }
-
-  .ew-table tbody tr:hover::before {
-    opacity: 1;
+    transition: background-color var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
   }
 
   .ew-table tbody tr:hover {
     background: linear-gradient(135deg, var(--ew-table-row-hover-bg, #f1f5f9) 0%, #e2e8f0 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.1);
   }
 
   .ew-table tbody tr:last-child td:first-child {
@@ -107,6 +65,9 @@ export const tableStyles = `
     border-bottom: 1px solid var(--ew-border-color-light, #f1f5f9);
     vertical-align: middle;
     transition: all var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .ew-table tbody tr:last-child td {
@@ -139,6 +100,7 @@ export const tableStyles = `
     overflow-x: auto;
     border-radius: var(--ew-table-border-radius, 8px);
     box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1);
+    width: 100%;
   }
 
   /* 表格头部 */
@@ -196,21 +158,26 @@ export const tableStyles = `
 
   /* 复选框样式 */
   .ew-table__checkbox {
-    margin: 0;
+    margin: 0 !important;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
+    transform: none !important;
   }
 
   .ew-table__checkbox .ew-checkbox__inner {
-    margin-right: 0;
-    margin-left: 0;
+    margin: 0 !important;
+    transform: none !important;
   }
 
   .ew-table__checkbox .ew-checkbox__label {
     display: none;
+  }
+
+  .ew-table__checkbox:hover {
+    transform: none !important;
   }
 
   /* 表头复选框样式 */
