@@ -205,10 +205,24 @@ export class EwCheckbox extends BaseComponent {
     ];
   }
 
-  attributeChangedCallback(_name: string, oldValue: string | null, newValue: string | null): void {
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
     if (oldValue !== newValue) {
-      this.initProps();
-      this.render();
+      // 只更新必要的状态，不重新渲染
+      if (name === 'model-value') {
+        this.isChecked = this.getAttribute('model-value') === 'true';
+        if (this.inputElement) {
+          this.inputElement.checked = this.isChecked;
+        }
+      } else if (name === 'indeterminate') {
+        this.isIndeterminate = this.hasAttribute('indeterminate');
+        if (this.inputElement) {
+          this.inputElement.indeterminate = this.isIndeterminate;
+        }
+      } else {
+        // 其他属性变化时才重新渲染
+        this.initProps();
+        this.render();
+      }
     }
   }
 }
