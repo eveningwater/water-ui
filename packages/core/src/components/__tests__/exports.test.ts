@@ -18,7 +18,9 @@ import {
   EwHeader,
   EwAside,
   EwMain,
-  EwFooter
+  EwFooter,
+  EwRow,
+  EwCol
 } from '../index';
 
 describe('组件导出测试', () => {
@@ -111,6 +113,18 @@ describe('组件导出测试', () => {
     });
   });
 
+  describe('布局组件导出', () => {
+    it('应该正确导出 EwRow', () => {
+      expect(EwRow).toBeDefined();
+      expect(typeof EwRow).toBe('function');
+    });
+
+    it('应该正确导出 EwCol', () => {
+      expect(EwCol).toBeDefined();
+      expect(typeof EwCol).toBe('function');
+    });
+  });
+
   describe('组件注册测试', () => {
     it('应该正确注册 EwContainer 组件', () => {
       expect(customElements.get('ew-container')).toBe(EwContainer);
@@ -130,6 +144,14 @@ describe('组件导出测试', () => {
 
     it('应该正确注册 EwFooter 组件', () => {
       expect(customElements.get('ew-footer')).toBe(EwFooter);
+    });
+
+    it('应该正确注册 EwRow 组件', () => {
+      expect(customElements.get('ew-row')).toBe(EwRow);
+    });
+
+    it('应该正确注册 EwCol 组件', () => {
+      expect(customElements.get('ew-col')).toBe(EwCol);
     });
   });
 
@@ -152,6 +174,14 @@ describe('组件导出测试', () => {
 
     it('EwFooter 应该继承自 BaseComponent', () => {
       expect(EwFooter.prototype).toBeInstanceOf(HTMLElement);
+    });
+
+    it('EwRow 应该继承自 BaseComponent', () => {
+      expect(EwRow.prototype).toBeInstanceOf(HTMLElement);
+    });
+
+    it('EwCol 应该继承自 BaseComponent', () => {
+      expect(EwCol.prototype).toBeInstanceOf(HTMLElement);
     });
   });
 }); 

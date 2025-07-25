@@ -18,6 +18,8 @@ import './components/ew-container/ew-header';
 import './components/ew-container/ew-aside';
 import './components/ew-container/ew-main';
 import './components/ew-container/ew-footer';
+import './components/ew-row';
+import './components/ew-col';
 
 // 模拟浏览器环境
 beforeAll(() => {

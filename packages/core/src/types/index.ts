@@ -250,4 +250,27 @@ export interface MainProps extends BaseComponentProps {
 // 底部组件属性
 export interface FooterProps extends BaseComponentProps {
   height?: string;
+}
+
+// Row 组件属性
+export interface RowProps extends BaseComponentProps {
+  gutter?: number | string;
+  type?: 'flex';
+  justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between';
+  align?: 'top' | 'middle' | 'bottom';
+  tag?: string;
+}
+
+// Col 组件属性
+export interface ColProps extends BaseComponentProps {
+  span?: number;
+  offset?: number;
+  push?: number;
+  pull?: number;
+  xs?: number | object;
+  sm?: number | object;
+  md?: number | object;
+  lg?: number | object;
+  xl?: number | object;
+  tag?: string;
 } 
