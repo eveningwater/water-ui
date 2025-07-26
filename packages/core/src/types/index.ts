@@ -275,12 +275,17 @@ export interface ColProps extends BaseComponentProps {
   tag?: string;
 }
 
+// Icon 组件属性
+export interface IconProps extends Omit<BaseComponentProps, 'size'> {
+  size?: 'small' | 'large' | string | number;
+  color?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | string;
+}
+
 // Link 组件属性
 export interface LinkProps extends BaseComponentProps {
   type?: 'primary' | 'success' | 'warning' | 'danger' | 'info';
   underline?: boolean;
   disabled?: boolean;
   href?: string;
-  icon?: string;
   target?: string;
 } 

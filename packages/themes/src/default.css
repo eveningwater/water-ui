@@ -193,6 +193,10 @@
   --ew-link-hover-color: var(--ew-color-primary-hover);
   --ew-link-active-color: var(--ew-color-primary-active);
   --ew-link-disabled-color: var(--ew-text-color-disabled);
+
+  /* 图标组件变量 */
+  --ew-icon-size-small: 12px;
+  --ew-icon-size-large: 20px;
 }
 
 /* 全局重置 */

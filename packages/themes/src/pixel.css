@@ -573,4 +573,29 @@
   padding: 2px;
   margin-left: 8px;
   font-size: var(--ew-font-size-small);
+}
+
+/* 像素化图标组件 */
+[data-theme="pixel"] .ew-icon,
+.pixel .ew-icon {
+  border: 1px solid currentColor;
+  padding: 2px;
+  font-family: var(--ew-font-family);
+  font-size: var(--ew-font-size-base);
+  box-shadow: var(--ew-shadow-light);
+  transition: var(--ew-transition);
+}
+
+[data-theme="pixel"] .ew-icon:hover,
+.pixel .ew-icon:hover {
+  border-color: var(--ew-color-primary);
+  background: var(--ew-color-primary);
+  color: var(--ew-color-white);
+  box-shadow: var(--ew-shadow-base);
+}
+
+[data-theme="pixel"] .ew-icon__svg,
+.pixel .ew-icon__svg {
+  border: 1px solid currentColor;
+  padding: 1px;
 } 

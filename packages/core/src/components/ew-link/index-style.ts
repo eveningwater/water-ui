@@ -121,19 +121,19 @@ export const linkStyles = `
     outline: none;
   }
 
-  /* 图标样式 */
-  .ew-link__icon {
-    margin-right: var(--ew-spacing-1);
-    font-size: var(--ew-font-size-base);
-  }
-
-  .ew-link__icon + .ew-link__inner {
-    margin-left: var(--ew-spacing-1);
-  }
-
-  /* 内容区域 */
-  .ew-link__inner {
+  /* 插槽内容样式 */
+  ::slotted(*) {
     display: inline-block;
+    vertical-align: middle;
+  }
+
+  ::slotted(ew-icon) {
+    margin-right: var(--ew-spacing-1);
+  }
+
+  ::slotted(ew-icon:last-child) {
+    margin-right: 0;
+    margin-left: var(--ew-spacing-1);
   }
 
   /* 外部链接图标 */

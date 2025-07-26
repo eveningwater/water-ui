@@ -18,4 +18,5 @@ export { EwMain } from './ew-container/ew-main';
 export { EwFooter } from './ew-container/ew-footer';
 export { EwRow } from './ew-row';
 export { EwCol } from './ew-col';
-export { EwLink } from './ew-link'; 
+export { EwLink } from './ew-link';
+export { EwIcon } from './ew-icon'; 

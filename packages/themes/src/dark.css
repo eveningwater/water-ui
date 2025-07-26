@@ -297,4 +297,10 @@
 [data-theme="dark"] .ew-link--disabled,
 .dark .ew-link--disabled {
   color: var(--ew-text-color-disabled-dark, var(--ew-text-color-disabled));
+}
+
+/* 图标组件在暗色主题下的样式 */
+[data-theme="dark"] .ew-icon,
+.dark .ew-icon {
+  color: var(--ew-text-color-dark, var(--ew-text-color));
 } 

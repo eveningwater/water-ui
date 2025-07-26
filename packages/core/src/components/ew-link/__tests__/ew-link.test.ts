@@ -153,26 +153,7 @@ describe('EwLink', () => {
     });
   });
 
-  describe('图标功能', () => {
-    it('应该显示图标', async () => {
-      link.setAttribute('icon', 'icon-home');
-      await new Promise(resolve => setTimeout(resolve, 10));
 
-      const iconElement = link.shadowRoot.querySelector('.ew-link__icon');
-      expect(iconElement).toBeTruthy();
-      expect(iconElement.classList.contains('icon-home')).toBe(true);
-    });
-
-    it('应该移除图标', async () => {
-      link.setAttribute('icon', 'icon-home');
-      await new Promise(resolve => setTimeout(resolve, 10));
-      link.removeAttribute('icon');
-      await new Promise(resolve => setTimeout(resolve, 10));
-
-      const iconElement = link.shadowRoot.querySelector('.ew-link__icon');
-      expect(iconElement).toBeFalsy();
-    });
-  });
 
   describe('外部链接图标', () => {
     it('应该为_blank目标显示外部链接图标', async () => {
@@ -331,15 +312,11 @@ describe('EwLink', () => {
     it('应该支持多个属性组合', async () => {
       link.setAttribute('type', 'success');
       link.setAttribute('underline', '');
-      link.setAttribute('icon', 'icon-star');
       await new Promise(resolve => setTimeout(resolve, 10));
 
       const linkElement = link.shadowRoot.querySelector('.ew-link');
       expect(linkElement.classList.contains('ew-link--success')).toBe(true);
       expect(linkElement.classList.contains('ew-link--underline')).toBe(true);
-
-      const iconElement = link.shadowRoot.querySelector('.ew-link__icon');
-      expect(iconElement.classList.contains('icon-star')).toBe(true);
     });
   });
 

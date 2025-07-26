@@ -12,13 +12,12 @@ export class EwLink extends BaseComponent {
       underline: this.hasAttribute('underline'),
       disabled: this.hasAttribute('disabled'),
       href: this.getAttribute('href') || undefined,
-      icon: this.getAttribute('icon') || undefined,
       target: this.getAttribute('target') || '_self'
     };
   }
 
   protected render(): void {
-    const { href, icon, target } = this.linkProps;
+    const { href, target } = this.linkProps;
 
     // 确定标签类型
     const tag = href ? 'a' : 'span';
@@ -31,25 +30,9 @@ export class EwLink extends BaseComponent {
       ...(target === '_blank' && { rel: 'noopener noreferrer' })
     });
 
-    // 添加图标
-    if (icon && this.isValidIcon(icon)) {
-      const iconElement = this.createElement('i', {
-        class: `ew-link__icon ${icon}`
-      });
-      iconElement.innerHTML = icon;
-      link.appendChild(iconElement);
-    }
-
-    // 添加内容区域
-    const inner = this.createElement('span', {
-      class: 'ew-link__inner'
-    });
-
-    // 添加插槽内容
+    // 添加插槽内容（包括图标）
     const slot = this.createElement('slot');
-    inner.appendChild(slot);
-
-    link.appendChild(inner);
+    link.appendChild(slot);
 
     // 如果是外部链接，添加外部链接图标
     if (href && (target === '_blank' || href.startsWith('http'))) {
@@ -92,10 +75,7 @@ export class EwLink extends BaseComponent {
     return classes.join(' ');
   }
 
-  private isValidIcon(icon: string): boolean {
-    // 灵活的图标验证 - 只要不是空字符串且符合基本命名规范就认为是有效图标
-    return Boolean(icon && icon.trim().length > 0);
-  }
+
 
   private addEventListeners(link: HTMLElement): void {
     // 点击事件
@@ -154,7 +134,7 @@ export class EwLink extends BaseComponent {
   }
 
   static get observedAttributes(): string[] {
-    return ['type', 'underline', 'disabled', 'href', 'icon', 'target'];
+    return ['type', 'underline', 'disabled', 'href', 'target'];
   }
 }
 
