@@ -86,18 +86,21 @@ export class EwLink extends BaseComponent {
         return;
       }
 
+      event.stopPropagation();
       this.dispatchCustomEvent('click', event);
     });
 
     // 鼠标事件
     link.addEventListener('mouseenter', (event) => {
       if (!this.linkProps.disabled) {
+        event.stopPropagation();
         this.dispatchCustomEvent('mouseenter', event);
       }
     });
 
     link.addEventListener('mouseleave', (event) => {
       if (!this.linkProps.disabled) {
+        event.stopPropagation();
         this.dispatchCustomEvent('mouseleave', event);
       }
     });
@@ -106,11 +109,13 @@ export class EwLink extends BaseComponent {
     link.addEventListener('keydown', (event) => {
       if (this.linkProps.disabled) {
         event.preventDefault();
+        event.stopPropagation();
         return;
       }
 
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
+        event.stopPropagation();
         this.dispatchCustomEvent('click', event);
       }
     });

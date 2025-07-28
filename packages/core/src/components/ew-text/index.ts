@@ -24,7 +24,7 @@ export class EwText extends BaseComponent {
   }
 
   protected render(): void {
-    const { tag } = this.textProps;
+    const { tag, clickable } = this.textProps;
 
     // 清空并重新渲染
     this.shadow.innerHTML = '';
@@ -41,8 +41,57 @@ export class EwText extends BaseComponent {
     const slot = this.createElement('slot');
     text.appendChild(slot);
 
+    // 如果可点击，添加事件监听器
+    if (clickable) {
+      this.addEventListeners(text);
+    }
+
     // 添加文本元素
     this.shadow.appendChild(text);
+  }
+
+  private addEventListeners(text: HTMLElement): void {
+    // 点击事件
+    text.addEventListener('click', (event) => {
+      if (this.textProps.disabled) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+
+      event.stopPropagation();
+      this.dispatchCustomEvent('click', event);
+    });
+
+    // 鼠标事件
+    text.addEventListener('mouseenter', (event) => {
+      if (!this.textProps.disabled) {
+        event.stopPropagation();
+        this.dispatchCustomEvent('mouseenter', event);
+      }
+    });
+
+    text.addEventListener('mouseleave', (event) => {
+      if (!this.textProps.disabled) {
+        event.stopPropagation();
+        this.dispatchCustomEvent('mouseleave', event);
+      }
+    });
+
+    // 键盘事件
+    text.addEventListener('keydown', (event) => {
+      if (this.textProps.disabled) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        event.stopPropagation();
+        this.dispatchCustomEvent('click', event);
+      }
+    });
   }
 
   private getTextClasses(): string {

@@ -93,7 +93,7 @@ export class EwInputNumber extends BaseComponent {
         style: this.currentValue !== null ? 'display: flex' : 'display: none'
       });
       this.clearButton.innerHTML = ClearIcon({ size: '16px' });
-      this.clearButton.addEventListener('click', this.handleClear.bind(this));
+      this.clearButton.addEventListener('click', (e) => this.handleClear(e));
       inputWrapper.appendChild(this.clearButton);
     }
 
@@ -104,13 +104,13 @@ export class EwInputNumber extends BaseComponent {
       // 减少按钮
       this.decreaseButton = this.createElement('span', { class: 'ew-input-number__decrease' });
       this.decreaseButton.innerHTML = MinusIcon({ size: '14px' });
-      this.decreaseButton.addEventListener('click', this.handleDecrease.bind(this));
+      this.decreaseButton.addEventListener('click', (e) => this.handleDecrease(e));
       controlsContainer.appendChild(this.decreaseButton);
 
       // 增加按钮
       this.increaseButton = this.createElement('span', { class: 'ew-input-number__increase' });
       this.increaseButton.innerHTML = PlusIcon({ size: '14px' });
-      this.increaseButton.addEventListener('click', this.handleIncrease.bind(this));
+      this.increaseButton.addEventListener('click', (e) => this.handleIncrease(e));
       controlsContainer.appendChild(this.increaseButton);
 
       if (controlsPosition === 'both') {
@@ -122,8 +122,8 @@ export class EwInputNumber extends BaseComponent {
         // 重新绑定事件
         const rightDecrease = rightControls.querySelector('.ew-input-number__decrease') as HTMLElement;
         const rightIncrease = rightControls.querySelector('.ew-input-number__increase') as HTMLElement;
-        rightDecrease.addEventListener('click', this.handleDecrease.bind(this));
-        rightIncrease.addEventListener('click', this.handleIncrease.bind(this));
+        rightDecrease.addEventListener('click', (e) => this.handleDecrease(e));
+        rightIncrease.addEventListener('click', (e) => this.handleIncrease(e));
       } else {
         // 默认右侧控制按钮
         inputWrapper.appendChild(controlsContainer);
@@ -260,7 +260,11 @@ export class EwInputNumber extends BaseComponent {
     this.dispatchCustomEvent('keydown', event);
   }
 
-  private handleIncrease(): void {
+  private handleIncrease(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    
     if (this.inputNumberProps.disabled || this.inputNumberProps.readonly) return;
     
     const { step = 1 } = this.inputNumberProps;
@@ -279,7 +283,11 @@ export class EwInputNumber extends BaseComponent {
     }
   }
 
-  private handleDecrease(): void {
+  private handleDecrease(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    
     if (this.inputNumberProps.disabled || this.inputNumberProps.readonly) return;
     
     const { step = 1 } = this.inputNumberProps;
@@ -298,7 +306,11 @@ export class EwInputNumber extends BaseComponent {
     }
   }
 
-  private handleClear(): void {
+  private handleClear(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    
     if (this.inputElement) {
       this.inputElement.value = '';
       this.currentValue = null;

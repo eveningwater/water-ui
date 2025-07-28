@@ -63,6 +63,7 @@ export class EwCheckbox extends BaseComponent {
     input.addEventListener('change', this.handleChange.bind(this));
     input.addEventListener('focus', this.handleFocus.bind(this));
     input.addEventListener('blur', this.handleBlur.bind(this));
+    input.addEventListener('click', this.handleClick.bind(this));
     
     // 为禁用状态添加额外的事件阻止
     if (this.checkboxProps.disabled) {
@@ -140,6 +141,18 @@ export class EwCheckbox extends BaseComponent {
 
   private handleBlur(event: Event): void {
     this.dispatchCustomEvent('blur', event);
+  }
+
+  private handleClick(event: Event): void {
+    // 阻止事件冒泡
+    event.stopPropagation();
+    
+    if (this.checkboxProps.disabled) {
+      event.preventDefault();
+      return;
+    }
+    
+    this.dispatchCustomEvent('click', event);
   }
 
   private notifyParent(): void {
