@@ -123,12 +123,14 @@ export const linkStyles = `
 
   /* 插槽内容样式 */
   ::slotted(*) {
-    display: inline-block;
-    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: baseline;
   }
 
   ::slotted(ew-icon) {
     margin-right: var(--ew-spacing-1);
+    flex-shrink: 0;
   }
 
   ::slotted(ew-icon:last-child) {

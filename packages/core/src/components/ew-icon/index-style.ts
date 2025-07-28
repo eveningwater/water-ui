@@ -65,7 +65,7 @@ export const iconStyles = `
     fill: currentColor;
     stroke: currentColor;
     stroke-width: 0;
-    vertical-align: middle;
+    vertical-align: baseline;
   }
 
   ::slotted(svg) {
@@ -74,7 +74,7 @@ export const iconStyles = `
     fill: currentColor;
     stroke: currentColor;
     stroke-width: 0;
-    vertical-align: middle;
+    vertical-align: baseline;
   }
 
   /* 暗色主题支持 */
