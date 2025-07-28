@@ -964,6 +964,122 @@ export const colStyles = `
 
   /* 其他响应式断点样式类似，这里省略 sm, md, lg, xl 的样式 */
   /* 实际使用时需要添加完整的响应式样式 */
+  
+  /* sm 断点样式 (768px - 991px) */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .ew-col-sm-0 { display: none; }
+    .ew-col-sm-1 { flex: 0 0 8.333333333333332%; max-width: 8.333333333333332%; }
+    .ew-col-sm-2 { flex: 0 0 16.666666666666664%; max-width: 16.666666666666664%; }
+    .ew-col-sm-3 { flex: 0 0 25%; max-width: 25%; }
+    .ew-col-sm-4 { flex: 0 0 33.33333333333333%; max-width: 33.33333333333333%; }
+    .ew-col-sm-5 { flex: 0 0 41.66666666666667%; max-width: 41.66666666666667%; }
+    .ew-col-sm-6 { flex: 0 0 50%; max-width: 50%; }
+    .ew-col-sm-7 { flex: 0 0 58.333333333333336%; max-width: 58.333333333333336%; }
+    .ew-col-sm-8 { flex: 0 0 66.66666666666666%; max-width: 66.66666666666666%; }
+    .ew-col-sm-9 { flex: 0 0 75%; max-width: 75%; }
+    .ew-col-sm-10 { flex: 0 0 83.33333333333334%; max-width: 83.33333333333334%; }
+    .ew-col-sm-11 { flex: 0 0 91.66666666666666%; max-width: 91.66666666666666%; }
+    .ew-col-sm-12 { flex: 0 0 100%; max-width: 100%; }
+    .ew-col-sm-13 { flex: 0 0 108.33333333333333%; max-width: 108.33333333333333%; }
+    .ew-col-sm-14 { flex: 0 0 116.66666666666666%; max-width: 116.66666666666666%; }
+    .ew-col-sm-15 { flex: 0 0 125%; max-width: 125%; }
+    .ew-col-sm-16 { flex: 0 0 133.33333333333331%; max-width: 133.33333333333331%; }
+    .ew-col-sm-17 { flex: 0 0 141.66666666666666%; max-width: 141.66666666666666%; }
+    .ew-col-sm-18 { flex: 0 0 150%; max-width: 150%; }
+    .ew-col-sm-19 { flex: 0 0 158.33333333333331%; max-width: 158.33333333333331%; }
+    .ew-col-sm-20 { flex: 0 0 166.66666666666666%; max-width: 166.66666666666666%; }
+    .ew-col-sm-21 { flex: 0 0 175%; max-width: 175%; }
+    .ew-col-sm-22 { flex: 0 0 183.33333333333331%; max-width: 183.33333333333331%; }
+    .ew-col-sm-23 { flex: 0 0 191.66666666666666%; max-width: 191.66666666666666%; }
+    .ew-col-sm-24 { flex: 0 0 200%; max-width: 200%; }
+  }
+
+  /* md 断点样式 (992px - 1199px) */
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .ew-col-md-0 { display: none; }
+    .ew-col-md-1 { flex: 0 0 8.333333333333332%; max-width: 8.333333333333332%; }
+    .ew-col-md-2 { flex: 0 0 16.666666666666664%; max-width: 16.666666666666664%; }
+    .ew-col-md-3 { flex: 0 0 25%; max-width: 25%; }
+    .ew-col-md-4 { flex: 0 0 33.33333333333333%; max-width: 33.33333333333333%; }
+    .ew-col-md-5 { flex: 0 0 41.66666666666667%; max-width: 41.66666666666667%; }
+    .ew-col-md-6 { flex: 0 0 50%; max-width: 50%; }
+    .ew-col-md-7 { flex: 0 0 58.333333333333336%; max-width: 58.333333333333336%; }
+    .ew-col-md-8 { flex: 0 0 66.66666666666666%; max-width: 66.66666666666666%; }
+    .ew-col-md-9 { flex: 0 0 75%; max-width: 75%; }
+    .ew-col-md-10 { flex: 0 0 83.33333333333334%; max-width: 83.33333333333334%; }
+    .ew-col-md-11 { flex: 0 0 91.66666666666666%; max-width: 91.66666666666666%; }
+    .ew-col-md-12 { flex: 0 0 100%; max-width: 100%; }
+    .ew-col-md-13 { flex: 0 0 108.33333333333333%; max-width: 108.33333333333333%; }
+    .ew-col-md-14 { flex: 0 0 116.66666666666666%; max-width: 116.66666666666666%; }
+    .ew-col-md-15 { flex: 0 0 125%; max-width: 125%; }
+    .ew-col-md-16 { flex: 0 0 133.33333333333331%; max-width: 133.33333333333331%; }
+    .ew-col-md-17 { flex: 0 0 141.66666666666666%; max-width: 141.66666666666666%; }
+    .ew-col-md-18 { flex: 0 0 150%; max-width: 150%; }
+    .ew-col-md-19 { flex: 0 0 158.33333333333331%; max-width: 158.33333333333331%; }
+    .ew-col-md-20 { flex: 0 0 166.66666666666666%; max-width: 166.66666666666666%; }
+    .ew-col-md-21 { flex: 0 0 175%; max-width: 175%; }
+    .ew-col-md-22 { flex: 0 0 183.33333333333331%; max-width: 183.33333333333331%; }
+    .ew-col-md-23 { flex: 0 0 191.66666666666666%; max-width: 191.66666666666666%; }
+    .ew-col-md-24 { flex: 0 0 200%; max-width: 200%; }
+  }
+
+  /* lg 断点样式 (1200px - 1919px) */
+  @media (min-width: 1200px) and (max-width: 1919px) {
+    .ew-col-lg-0 { display: none; }
+    .ew-col-lg-1 { flex: 0 0 8.333333333333332%; max-width: 8.333333333333332%; }
+    .ew-col-lg-2 { flex: 0 0 16.666666666666664%; max-width: 16.666666666666664%; }
+    .ew-col-lg-3 { flex: 0 0 25%; max-width: 25%; }
+    .ew-col-lg-4 { flex: 0 0 33.33333333333333%; max-width: 33.33333333333333%; }
+    .ew-col-lg-5 { flex: 0 0 41.66666666666667%; max-width: 41.66666666666667%; }
+    .ew-col-lg-6 { flex: 0 0 50%; max-width: 50%; }
+    .ew-col-lg-7 { flex: 0 0 58.333333333333336%; max-width: 58.333333333333336%; }
+    .ew-col-lg-8 { flex: 0 0 66.66666666666666%; max-width: 66.66666666666666%; }
+    .ew-col-lg-9 { flex: 0 0 75%; max-width: 75%; }
+    .ew-col-lg-10 { flex: 0 0 83.33333333333334%; max-width: 83.33333333333334%; }
+    .ew-col-lg-11 { flex: 0 0 91.66666666666666%; max-width: 91.66666666666666%; }
+    .ew-col-lg-12 { flex: 0 0 100%; max-width: 100%; }
+    .ew-col-lg-13 { flex: 0 0 108.33333333333333%; max-width: 108.33333333333333%; }
+    .ew-col-lg-14 { flex: 0 0 116.66666666666666%; max-width: 116.66666666666666%; }
+    .ew-col-lg-15 { flex: 0 0 125%; max-width: 125%; }
+    .ew-col-lg-16 { flex: 0 0 133.33333333333331%; max-width: 133.33333333333331%; }
+    .ew-col-lg-17 { flex: 0 0 141.66666666666666%; max-width: 141.66666666666666%; }
+    .ew-col-lg-18 { flex: 0 0 150%; max-width: 150%; }
+    .ew-col-lg-19 { flex: 0 0 158.33333333333331%; max-width: 158.33333333333331%; }
+    .ew-col-lg-20 { flex: 0 0 166.66666666666666%; max-width: 166.66666666666666%; }
+    .ew-col-lg-21 { flex: 0 0 175%; max-width: 175%; }
+    .ew-col-lg-22 { flex: 0 0 183.33333333333331%; max-width: 183.33333333333331%; }
+    .ew-col-lg-23 { flex: 0 0 191.66666666666666%; max-width: 191.66666666666666%; }
+    .ew-col-lg-24 { flex: 0 0 200%; max-width: 200%; }
+  }
+
+  /* xl 断点样式 (1920px+) */
+  @media (min-width: 1920px) {
+    .ew-col-xl-0 { display: none; }
+    .ew-col-xl-1 { flex: 0 0 8.333333333333332%; max-width: 8.333333333333332%; }
+    .ew-col-xl-2 { flex: 0 0 16.666666666666664%; max-width: 16.666666666666664%; }
+    .ew-col-xl-3 { flex: 0 0 25%; max-width: 25%; }
+    .ew-col-xl-4 { flex: 0 0 33.33333333333333%; max-width: 33.33333333333333%; }
+    .ew-col-xl-5 { flex: 0 0 41.66666666666667%; max-width: 41.66666666666667%; }
+    .ew-col-xl-6 { flex: 0 0 50%; max-width: 50%; }
+    .ew-col-xl-7 { flex: 0 0 58.333333333333336%; max-width: 58.333333333333336%; }
+    .ew-col-xl-8 { flex: 0 0 66.66666666666666%; max-width: 66.66666666666666%; }
+    .ew-col-xl-9 { flex: 0 0 75%; max-width: 75%; }
+    .ew-col-xl-10 { flex: 0 0 83.33333333333334%; max-width: 83.33333333333334%; }
+    .ew-col-xl-11 { flex: 0 0 91.66666666666666%; max-width: 91.66666666666666%; }
+    .ew-col-xl-12 { flex: 0 0 100%; max-width: 100%; }
+    .ew-col-xl-13 { flex: 0 0 108.33333333333333%; max-width: 108.33333333333333%; }
+    .ew-col-xl-14 { flex: 0 0 116.66666666666666%; max-width: 116.66666666666666%; }
+    .ew-col-xl-15 { flex: 0 0 125%; max-width: 125%; }
+    .ew-col-xl-16 { flex: 0 0 133.33333333333331%; max-width: 133.33333333333331%; }
+    .ew-col-xl-17 { flex: 0 0 141.66666666666666%; max-width: 141.66666666666666%; }
+    .ew-col-xl-18 { flex: 0 0 150%; max-width: 150%; }
+    .ew-col-xl-19 { flex: 0 0 158.33333333333331%; max-width: 158.33333333333331%; }
+    .ew-col-xl-20 { flex: 0 0 166.66666666666666%; max-width: 166.66666666666666%; }
+    .ew-col-xl-21 { flex: 0 0 175%; max-width: 175%; }
+    .ew-col-xl-22 { flex: 0 0 183.33333333333331%; max-width: 183.33333333333331%; }
+    .ew-col-xl-23 { flex: 0 0 191.66666666666666%; max-width: 191.66666666666666%; }
+    .ew-col-xl-24 { flex: 0 0 200%; max-width: 200%; }
+  }
 
   /* 响应式间距 */
   @media (max-width: 767px) {

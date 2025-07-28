@@ -10,9 +10,9 @@ export const LoadingIcon = (props: IconProps = {}): string => {
   const { size = '14px', color = 'currentColor', class: className = '' } = props;
   return `
     <svg class="ew-loading-spinner ${className}" style="width: ${size}; height: ${size}; color: ${color};" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="31.416">
-        <animate attributeName="stroke-dasharray" dur="2s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/>
-        <animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416" repeatCount="indefinite"/>
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="31.416" stroke-linecap="round">
+        <animate attributeName="stroke-dasharray" dur="1.5s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/>
+        <animate attributeName="stroke-dashoffset" dur="1.5s" values="0;-15.708;-31.416" repeatCount="indefinite"/>
       </circle>
     </svg>
   `;
@@ -55,7 +55,7 @@ export const EyeOffIcon = (props: IconProps = {}): string => {
 export const ClearIcon = (props: IconProps = {}): string => {
   const { size = '16px', color = 'currentColor', class: className = '' } = props;
   return `
-    <svg class="${className}" style="width: ${size}; height: ${size}; color: ${color};" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <svg class="${className}" style="width: ${size}; height: ${size}; color: ${color};" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="15" y1="9" x2="9" y2="15"></line>
       <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -85,7 +85,7 @@ export const ArrowIcon = (props: IconProps & { direction?: 'up' | 'down' | 'left
 export const SearchIcon = (props: IconProps = {}): string => {
   const { size = '16px', color = 'currentColor', class: className = '' } = props;
   return `
-    <svg class="${className}" style="width: ${size}; height: ${size}; color: ${color};" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <svg class="${className}" style="width: ${size}; height: ${size}; color: ${color};" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
       <circle cx="11" cy="11" r="8"></circle>
       <path d="m21 21-4.35-4.35"></path>
     </svg>
@@ -109,7 +109,7 @@ export const CalendarIcon = (props: IconProps = {}): string => {
 export const ClockIcon = (props: IconProps = {}): string => {
   const { size = '16px', color = 'currentColor', class: className = '' } = props;
   return `
-    <svg class="${className}" style="width: ${size}; height: ${size}; color: ${color};" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <svg class="${className}" style="width: ${size}; height: ${size}; color: ${color};" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
       <circle cx="12" cy="12" r="10"></circle>
       <polyline points="12,6 12,12 16,14"></polyline>
     </svg>
