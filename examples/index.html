@@ -739,6 +739,85 @@
             </div>
 
             <div class="section">
+                <h2>📝 文本组件</h2>
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <h3>基础文本</h3>
+                        <div class="input-group">
+                            <ew-text>默认文本</ew-text>
+                            <ew-text type="primary">主要文本</ew-text>
+                            <ew-text type="success">成功文本</ew-text>
+                            <ew-text type="warning">警告文本</ew-text>
+                            <ew-text type="danger">危险文本</ew-text>
+                            <ew-text type="info">信息文本</ew-text>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>文本大小</h3>
+                        <div class="input-group">
+                            <ew-text size="large">大文本</ew-text>
+                            <ew-text>默认文本</ew-text>
+                            <ew-text size="small">小文本</ew-text>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>文本样式</h3>
+                        <div class="input-group">
+                            <ew-text weight="bold">粗体文本</ew-text>
+                            <ew-text weight="normal">正常文本</ew-text>
+                            <ew-text weight="light">细体文本</ew-text>
+                            <ew-text style="italic">斜体文本</ew-text>
+                            <ew-text style="underline">下划线文本</ew-text>
+                            <ew-text style="line-through">删除线文本</ew-text>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>文本对齐</h3>
+                        <div class="input-group">
+                            <ew-text align="left" style="display: block; width: 100%;">左对齐文本</ew-text>
+                            <ew-text align="center" style="display: block; width: 100%;">居中对齐文本</ew-text>
+                            <ew-text align="right" style="display: block; width: 100%;">右对齐文本</ew-text>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>文本截断</h3>
+                        <div class="input-group">
+                            <ew-text truncated style="display: block; width: 200px;">这是一段很长的文本内容，会被截断显示省略号</ew-text>
+                            <ew-text line-clamp="2" style="display: block; width: 200px;">这是一段很长的文本内容，会被限制为两行显示，超出部分显示省略号</ew-text>
+                            <ew-text line-clamp="3" style="display: block; width: 200px;">这是一段很长的文本内容，会被限制为三行显示，超出部分显示省略号，支持多行文本的截断处理</ew-text>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>文本状态</h3>
+                        <div class="input-group">
+                            <ew-text disabled>禁用文本</ew-text>
+                            <ew-text clickable onclick="handleTextClick()">可点击文本</ew-text>
+                            <ew-text responsive>响应式文本</ew-text>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>组合使用</h3>
+                        <div class="input-group">
+                            <ew-text type="success" size="large" weight="bold">成功大粗体文本</ew-text>
+                            <ew-text type="warning" style="italic" clickable>警告斜体可点击文本</ew-text>
+                            <ew-text type="danger" align="center" style="display: block; width: 100%;">危险居中对齐文本</ew-text>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>文本操作</h3>
+                        <div class="button-group">
+                            <ew-button type="primary" onclick="changeTextType()">切换类型</ew-button>
+                            <ew-button type="success" onclick="changeTextSize()">切换大小</ew-button>
+                            <ew-button type="warning" onclick="toggleTextStyle()">切换样式</ew-button>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <ew-text id="demoText" type="primary" size="large">演示文本</ew-text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
                 <h2>🔘 单选框组件</h2>
                 <div class="demo-grid">
                     <div class="demo-item">
@@ -1085,6 +1164,45 @@
         window.handleLinkClick = function() {
             console.log('链接被点击了！');
             alert('链接点击事件触发成功！');
+        };
+
+        // 文本组件操作
+        window.handleTextClick = function() {
+            console.log('文本被点击了！');
+            alert('文本点击事件触发成功！');
+        };
+
+        window.changeTextType = function() {
+            const demoText = document.getElementById('demoText');
+            if (demoText) {
+                const types = ['primary', 'success', 'warning', 'danger', 'info'];
+                const currentType = demoText.getAttribute('type') || 'primary';
+                const currentIndex = types.indexOf(currentType);
+                const nextIndex = (currentIndex + 1) % types.length;
+                demoText.setAttribute('type', types[nextIndex]);
+            }
+        };
+
+        window.changeTextSize = function() {
+            const demoText = document.getElementById('demoText');
+            if (demoText) {
+                const sizes = ['large', 'default', 'small'];
+                const currentSize = demoText.getAttribute('size') || 'default';
+                const currentIndex = sizes.indexOf(currentSize);
+                const nextIndex = (currentIndex + 1) % sizes.length;
+                demoText.setAttribute('size', sizes[nextIndex]);
+            }
+        };
+
+        window.toggleTextStyle = function() {
+            const demoText = document.getElementById('demoText');
+            if (demoText) {
+                const styles = ['italic', 'underline', 'line-through'];
+                const currentStyle = demoText.getAttribute('style') || '';
+                const currentIndex = styles.findIndex(style => currentStyle.includes(style));
+                const nextIndex = (currentIndex + 1) % styles.length;
+                demoText.setAttribute('style', styles[nextIndex]);
+            }
         };
         
         // 主题切换

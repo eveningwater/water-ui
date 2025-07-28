@@ -22,6 +22,7 @@ import './components/ew-row';
 import './components/ew-col';
 import './components/ew-link';
 import './components/ew-icon';
+import './components/ew-text';
 
 // 模拟浏览器环境
 beforeAll(() => {

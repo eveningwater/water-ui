@@ -288,4 +288,18 @@ export interface LinkProps extends BaseComponentProps {
   disabled?: boolean;
   href?: string;
   target?: string;
+}
+
+export interface TextProps extends Omit<BaseComponentProps, 'size'> {
+  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info';
+  size?: 'large' | 'default' | 'small';
+  truncated?: boolean;
+  lineClamp?: 1 | 2 | 3;
+  align?: 'left' | 'center' | 'right';
+  weight?: 'bold' | 'normal' | 'light';
+  style?: 'italic' | 'underline' | 'line-through';
+  disabled?: boolean;
+  clickable?: boolean;
+  responsive?: boolean;
+  tag?: string;
 } 
