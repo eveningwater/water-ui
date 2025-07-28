@@ -54,11 +54,20 @@ export class EwCol extends BaseComponent {
         gutter = parseInt(gutterValue) || 0;
       }
     }
+    
+    // 设置 CSS 变量到组件本身
+    this.style.setProperty('--ew-row-gutter', `${gutter}px`);
+    // 设置响应式 gutter 变量，默认使用基础 gutter 值
+    this.style.setProperty('--ew-row-gutter-xs', `${gutter}px`);
+    this.style.setProperty('--ew-row-gutter-sm', `${gutter}px`);
+    this.style.setProperty('--ew-row-gutter-md', `${gutter}px`);
+    this.style.setProperty('--ew-row-gutter-lg', `${gutter}px`);
+    this.style.setProperty('--ew-row-gutter-xl', `${gutter}px`);
 
     // 创建列元素
     const col = this.createElement(tag || 'div', {
       class: 'ew-col',
-      style: `--ew-row-gutter: ${gutter}px;`
+      style: `--ew-row-gutter: ${gutter}px; --ew-row-gutter-xs: ${gutter}px; --ew-row-gutter-sm: ${gutter}px; --ew-row-gutter-md: ${gutter}px; --ew-row-gutter-lg: ${gutter}px; --ew-row-gutter-xl: ${gutter}px;`
     });
 
     // 添加插槽内容

@@ -29,6 +29,15 @@ export const rowStyles = `
     display: none;
   }
 
+  .ew-row.ew-row--flex {
+    display: flex;
+  }
+
+  .ew-row.ew-row--flex:before,
+  .ew-row.ew-row--flex:after {
+    display: none;
+  }
+
   /* 水平对齐样式 */
   :host(.ew-row--justify-start) {
     justify-content: flex-start;
@@ -50,6 +59,26 @@ export const rowStyles = `
     justify-content: space-between;
   }
 
+  .ew-row.ew-row--justify-start {
+    justify-content: flex-start;
+  }
+
+  .ew-row.ew-row--justify-end {
+    justify-content: flex-end;
+  }
+
+  .ew-row.ew-row--justify-center {
+    justify-content: center;
+  }
+
+  .ew-row.ew-row--justify-space-around {
+    justify-content: space-around;
+  }
+
+  .ew-row.ew-row--justify-space-between {
+    justify-content: space-between;
+  }
+
   /* 垂直对齐样式 */
   :host(.ew-row--align-top) {
     align-items: flex-start;
@@ -60,6 +89,18 @@ export const rowStyles = `
   }
 
   :host(.ew-row--align-bottom) {
+    align-items: flex-end;
+  }
+
+  .ew-row.ew-row--align-top {
+    align-items: flex-start;
+  }
+
+  .ew-row.ew-row--align-middle {
+    align-items: center;
+  }
+
+  .ew-row.ew-row--align-bottom {
     align-items: flex-end;
   }
 

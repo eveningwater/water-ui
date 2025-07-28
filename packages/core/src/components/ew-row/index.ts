@@ -34,17 +34,27 @@ export class EwRow extends BaseComponent {
 
     // 将 CSS 类应用到组件本身
     this.className = this.getRowClasses();
+    
+    // 设置 CSS 变量到组件本身，让子组件可以继承
+    this.style.setProperty('--ew-row-gutter', `${gutter}px`);
+    // 设置响应式 gutter 变量，默认使用基础 gutter 值
+    this.style.setProperty('--ew-row-gutter-xs', `${gutter}px`);
+    this.style.setProperty('--ew-row-gutter-sm', `${gutter}px`);
+    this.style.setProperty('--ew-row-gutter-md', `${gutter}px`);
+    this.style.setProperty('--ew-row-gutter-lg', `${gutter}px`);
+    this.style.setProperty('--ew-row-gutter-xl', `${gutter}px`);
 
     // 创建行元素
     const row = this.createElement(tag || 'div', {
-      class: 'ew-row',
-      style: `--ew-row-gutter: ${gutter}px;`
+      class: `ew-row ${this.getRowClasses()}`,
+      style: `--ew-row-gutter: ${gutter}px; --ew-row-gutter-xs: ${gutter}px; --ew-row-gutter-sm: ${gutter}px; --ew-row-gutter-md: ${gutter}px; --ew-row-gutter-lg: ${gutter}px; --ew-row-gutter-xl: ${gutter}px;`
     });
 
     // 添加插槽内容
     const slot = this.createElement('slot');
     row.appendChild(slot);
 
+   
     // 添加行元素
     this.shadow.appendChild(row);
   }
