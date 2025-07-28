@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "pnpm -r --parallel dev",
     "build": "node build.js",
+    "test": "cd packages/core && pnpm test",
     "build:packages": "pnpm -r build",
     "build:themes": "cd packages/themes && pnpm build:themes",
     "lint": "pnpm -r lint",
