@@ -57,7 +57,7 @@ import './components/ew-icon';
 import './components/ew-text';
 import './components/ew-scrollbar';
 import './components/ew-space';
-import './components/ew-space-item';
+import './components/ew-space/ew-space-item';
 
 // 确保所有组件都已注册
 import {

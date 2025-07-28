@@ -1,5 +1,5 @@
-import { BaseComponent } from '../../utils/base-component';
-import { SpaceItemProps } from '../../types';
+import { BaseComponent } from '../../../utils/base-component';
+import { SpaceItemProps } from '../../../types';
 import { spaceItemStyles } from './index-style';
 
 export class EwSpaceItem extends BaseComponent {

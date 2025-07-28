@@ -1,9 +1,11 @@
 import { BaseComponent } from '../../utils/base-component';
 import { SpaceProps } from '../../types';
 import { spaceStyles } from './index-style';
+import { EwSpaceItem } from './ew-space-item';
 
 export class EwSpace extends BaseComponent {
   private spaceProps: SpaceProps = {};
+  static ewSpaceItem: typeof EwSpaceItem;
 
   protected initProps(): void {
     super.initProps();
@@ -160,3 +162,5 @@ export class EwSpace extends BaseComponent {
 
 // 注册组件
 customElements.define('ew-space', EwSpace); 
+
+EwSpace.ewSpaceItem = EwSpaceItem;
