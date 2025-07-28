@@ -302,4 +302,17 @@ export interface TextProps extends Omit<BaseComponentProps, 'size'> {
   clickable?: boolean;
   responsive?: boolean;
   tag?: string;
+}
+
+export interface ScrollbarProps extends BaseComponentProps {
+  height?: string | number;
+  maxHeight?: string | number;
+  wrapStyle?: string;
+  wrapClass?: string;
+  viewClass?: string;
+  viewStyle?: string;
+  noresize?: boolean;
+  tag?: string;
+  always?: boolean;
+  minSize?: number;
 } 

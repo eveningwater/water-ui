@@ -6,6 +6,7 @@
     <title>Water UI - 现代化组件库</title>
     <link rel="stylesheet" href="../packages/themes/dist/themes/theme-light.css">
     <style>
+        /* stylelint-disable */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
@@ -818,6 +819,114 @@
             </div>
 
             <div class="section">
+                <h2>📜 滚动条组件</h2>
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <h3>基础滚动条</h3>
+                        <ew-scrollbar height="200px" style="border: 1px solid #e5e7eb; border-radius: 4px;">
+                            <div style="padding: 20px;height:1000px">
+                                <p>这是一段很长的内容，用来测试滚动条功能。</p>
+                                <p>滚动条组件提供了自定义的滚动条样式，替代了浏览器默认的滚动条。</p>
+                                <p>支持垂直和水平滚动，可以根据内容自动显示或隐藏。</p>
+                                <p>滚动条组件支持多种配置选项，如高度、最大高度、样式类等。</p>
+                                <p>可以通过 always 属性让滚动条始终显示，即使内容不需要滚动。</p>
+                                <p>滚动条组件还提供了丰富的公共方法，如 scrollTo、scrollToTop 等。</p>
+                                <p>支持鼠标拖拽滚动条进行滚动操作，提供更好的用户体验。</p>
+                                <p>滚动条组件完全基于 Web Components 标准，无需额外依赖。</p>
+                                <p>样式可以通过 CSS 变量进行自定义，支持主题切换。</p>
+                                <p>响应式设计，在不同屏幕尺寸下都能正常工作。</p>
+                                <p>支持设置最小滚动条尺寸，确保滚动条始终可见。</p>
+                                <p>滚动条组件与 Element Plus 的 el-scrollbar 功能保持一致。</p>
+                            </div>
+                        </ew-scrollbar>
+                    </div>
+                    <div class="demo-item">
+                        <h3>始终显示滚动条</h3>
+                        <ew-scrollbar height="150px" always style="border: 1px solid #e5e7eb; border-radius: 4px;">
+                            <div style="padding: 20px;">
+                                <p>这个滚动条始终显示，即使内容不需要滚动。</p>
+                                <p>通过 always 属性可以强制显示滚动条。</p>
+                                <p>适用于需要保持布局一致性的场景。</p>
+                            </div>
+                        </ew-scrollbar>
+                    </div>
+                    <div class="demo-item">
+                        <h3>自定义样式</h3>
+                        <ew-scrollbar height="180px" wrap-class="custom-scrollbar" view-class="custom-content" style="border: 1px solid #e5e7eb; border-radius: 4px;">
+                            <div style="padding: 20px;height:1000px">
+                                <p>这个滚动条使用了自定义的样式类名。</p>
+                                <p>wrap-class 用于包装器元素的样式。</p>
+                                <p>view-class 用于内容视图的样式。</p>
+                                <p>可以通过这些类名进行样式定制。</p>
+                                <p>支持内联样式和外部样式表。</p>
+                                <p>样式隔离，不会影响其他组件。</p>
+                            </div>
+                        </ew-scrollbar>
+                    </div>
+                    <div class="demo-item">
+                        <h3>水平滚动</h3>
+                        <ew-scrollbar height="120px" style="border: 1px solid #e5e7eb; border-radius: 4px;">
+                            <div style="padding: 20px; white-space: nowrap; width: 800px;">
+                                <span style="display: inline-block; width: 200px; margin-right: 20px; background: #f3f4f6; padding: 10px; border-radius: 4px;">内容块 1</span>
+                                <span style="display: inline-block; width: 200px; margin-right: 20px; background: #f3f4f6; padding: 10px; border-radius: 4px;">内容块 2</span>
+                                <span style="display: inline-block; width: 200px; margin-right: 20px; background: #f3f4f6; padding: 10px; border-radius: 4px;">内容块 3</span>
+                                <span style="display: inline-block; width: 200px; margin-right: 20px; background: #f3f4f6; padding: 10px; border-radius: 4px;">内容块 4</span>
+                                <span style="display: inline-block; width: 200px; margin-right: 20px; background: #f3f4f6; padding: 10px; border-radius: 4px;">内容块 5</span>
+                            </div>
+                        </ew-scrollbar>
+                    </div>
+                    <div class="demo-item">
+                        <h3>滚动条操作</h3>
+                        <div class="button-group">
+                            <ew-button type="primary" onclick="scrollToTop()">滚动到顶部</ew-button>
+                            <ew-button type="success" onclick="scrollToBottom()">滚动到底部</ew-button>
+                            <ew-button type="warning" onclick="scrollToPosition()">滚动到指定位置</ew-button>
+                            <ew-button type="info" onclick="getScrollInfo()">获取滚动信息</ew-button>
+                            <ew-button type="danger" onclick="updateAllScrollbars()">更新滚动条</ew-button>
+                        </div>
+                        <ew-scrollbar id="demoScrollbar" height="150px" style="border: 1px solid #e5e7eb; border-radius: 4px; margin-top: 10px;">
+                            <div style="padding: 20px;height:1000px">
+                                <p>这是第 1 行内容</p>
+                                <p>这是第 2 行内容</p>
+                                <p>这是第 3 行内容</p>
+                                <p>这是第 4 行内容</p>
+                                <p>这是第 5 行内容</p>
+                                <p>这是第 6 行内容</p>
+                                <p>这是第 7 行内容</p>
+                                <p>这是第 8 行内容</p>
+                                <p>这是第 9 行内容</p>
+                                <p>这是第 10 行内容</p>
+                                <p>这是第 11 行内容</p>
+                                <p>这是第 12 行内容</p>
+                                <p>这是第 13 行内容</p>
+                                <p>这是第 14 行内容</p>
+                                <p>这是第 15 行内容</p>
+                            </div>
+                        </ew-scrollbar>
+                    </div>
+                    <div class="demo-item">
+                        <h3>响应式滚动条</h3>
+                        <ew-scrollbar height="200px" max-height="300px" style="border: 1px solid #e5e7eb; border-radius: 4px;">
+                            <div style="padding: 20px;height:1000px">
+                                <p>这个滚动条设置了最大高度限制。</p>
+                                <p>当内容超过最大高度时会显示滚动条。</p>
+                                <p>支持响应式设计，在不同屏幕尺寸下自适应。</p>
+                                <p>可以通过 CSS 媒体查询进一步定制样式。</p>
+                                <p>滚动条组件支持多种尺寸配置。</p>
+                                <p>可以通过 min-size 属性设置最小滚动条尺寸。</p>
+                                <p>支持设置包装器和视图的样式。</p>
+                                <p>滚动条组件提供了完整的 API。</p>
+                                <p>可以通过 JavaScript 进行编程控制。</p>
+                                <p>支持事件监听和回调处理。</p>
+                                <p>滚动条组件与整体设计风格保持一致。</p>
+                                <p>提供了丰富的配置选项和扩展性。</p>
+                            </div>
+                        </ew-scrollbar>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
                 <h2>🔘 单选框组件</h2>
                 <div class="demo-grid">
                     <div class="demo-item">
@@ -1204,6 +1313,62 @@
                 demoText.setAttribute('style', styles[nextIndex]);
             }
         };
+
+        // 滚动条操作
+        window.scrollToTop = function() {
+            const scrollbar = document.getElementById('demoScrollbar');
+            if (scrollbar) {
+                scrollbar.scrollToTop();
+            }
+        };
+
+        window.scrollToBottom = function() {
+            const scrollbar = document.getElementById('demoScrollbar');
+            if (scrollbar) {
+                scrollbar.scrollToBottom();
+            }
+        };
+
+        window.scrollToPosition = function() {
+            const scrollbar = document.getElementById('demoScrollbar');
+            if (scrollbar) {
+                scrollbar.scrollTo({ top: 200, behavior: 'smooth' });
+            }
+        };
+
+        window.getScrollInfo = function() {
+            const scrollbar = document.getElementById('demoScrollbar');
+            if (scrollbar) {
+                const info = {
+                    scrollTop: scrollbar.getScrollTop(),
+                    scrollLeft: scrollbar.getScrollLeft(),
+                    scrollHeight: scrollbar.getScrollHeight(),
+                    scrollWidth: scrollbar.getScrollWidth(),
+                    clientHeight: scrollbar.getClientHeight(),
+                    clientWidth: scrollbar.getClientWidth()
+                };
+                console.log('滚动信息:', info);
+                alert(`滚动信息:\n顶部: ${info.scrollTop}\n左侧: ${info.scrollLeft}\n总高度: ${info.scrollHeight}\n总宽度: ${info.scrollWidth}\n可视高度: ${info.clientHeight}\n可视宽度: ${info.clientWidth}`);
+            }
+        };
+
+        // 强制更新所有滚动条
+        window.updateAllScrollbars = function() {
+            const scrollbars = document.querySelectorAll('ew-scrollbar');
+            scrollbars.forEach(scrollbar => {
+                if (scrollbar.forceUpdateScrollbar) {
+                    scrollbar.forceUpdateScrollbar();
+                }
+            });
+            console.log('已更新所有滚动条');
+        };
+
+        // 页面加载完成后更新滚动条
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                updateAllScrollbars();
+            }, 500);
+        });
         
         // 主题切换
         window.toggleTheme = function() {
