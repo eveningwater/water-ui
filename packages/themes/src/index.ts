@@ -74,7 +74,6 @@ export class ThemeManager {
             document.head.appendChild(link);
           });
           loaded = true;
-          console.log(`✅ Theme CSS loaded from: ${path}`);
           break;
         } catch (error) {
           console.warn(`Failed to load theme from ${path}:`, error);

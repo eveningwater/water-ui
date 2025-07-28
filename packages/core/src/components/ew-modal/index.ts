@@ -26,18 +26,13 @@ export class EwModal extends BaseComponent {
       appendToBody: this.hasAttribute('append-to-body')
     };
     
-    console.log('Modal initProps:', {
-      modelValue: this.modalProps.modelValue,
-      modelValueAttr: this.getAttribute('model-value'),
-      title: this.modalProps.title
-    });
+
   }
 
   protected render(): void {
     const { modelValue, title } = this.modalProps;
     
-    console.log('Modal render:', { modelValue, title });
-    
+
     if (!modelValue) {
       this.shadow.innerHTML = '';
       return;
@@ -179,7 +174,6 @@ export class EwModal extends BaseComponent {
   }
 
   attributeChangedCallback(_name: string, oldValue: string | null, newValue: string | null): void {
-    console.log('Modal attributeChangedCallback:', { name: _name, oldValue, newValue });
     if (oldValue !== newValue) {
       this.initProps();
       this.render();

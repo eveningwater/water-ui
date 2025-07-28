@@ -6,6 +6,8 @@ import { buttonStyles } from './index-style';
 
 export class EwButton extends BaseComponent {
   private buttonProps: ButtonProps = {};
+  private buttonElement: HTMLButtonElement | null = null;
+  private eventListeners: Array<{ event: string; handler: (e: Event) => void }> = [];
 
   protected initProps(): void {
     super.initProps();
@@ -41,21 +43,35 @@ export class EwButton extends BaseComponent {
       class: this.getButtonClasses(),
       ...(disabled || loading ? { disabled: '' } : {}),
       autofocus: this.buttonProps.autofocus ? '' : ''
-    });
+    }) as HTMLButtonElement;
+
+    // 清理之前的事件监听器
+    this.cleanupEventListeners();
 
     // 手动添加事件监听器来处理内联事件
     for (const [eventName, eventCode] of Object.entries(eventAttributes)) {
       const actualEventName = eventName.slice(2).toLowerCase(); // 移除 "on" 前缀
       
+      const handler = (e: Event) => {
+        // 阻止事件冒泡，但不阻止默认行为
+        e.stopPropagation();
+        
+        // 如果按钮被禁用或正在加载，不执行事件
+        if (disabled || loading) {
+          return;
+        }
+        
+        executeInlineCode(eventCode, window, e);
+      };
+
+      // 记录事件监听器以便后续清理
+      this.eventListeners.push({ event: actualEventName, handler });
+      
       // 使用更直接的事件处理方式
       if (actualEventName === 'click') {
-        button.onclick = (e) => {
-          executeInlineCode(eventCode, window, e);
-        };
+        button.onclick = handler;
       } else {
-        button.addEventListener(actualEventName, (e) => {
-          executeInlineCode(eventCode, window, e);
-        });
+        button.addEventListener(actualEventName, handler);
       }
     }
 
@@ -85,6 +101,81 @@ export class EwButton extends BaseComponent {
     
     // 添加按钮元素
     this.shadow.appendChild(button);
+    this.buttonElement = button;
+  }
+
+  private cleanupEventListeners(): void {
+    if (this.buttonElement) {
+      // 清理之前的事件监听器
+      this.eventListeners.forEach(({ event, handler }) => {
+        if (event === 'click') {
+          this.buttonElement!.onclick = null;
+        } else {
+          this.buttonElement!.removeEventListener(event, handler);
+        }
+      });
+      this.eventListeners = [];
+    }
+  }
+
+  disconnectedCallback(): void {
+    // 组件销毁时清理事件监听器
+    this.cleanupEventListeners();
+  }
+
+  // 重写 attributeChangedCallback 来避免不必要的事件属性变化导致的重新渲染
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
+    // 如果是事件属性变化，只更新事件监听器，不重新渲染整个组件
+    if (name.startsWith('on')) {
+      this.updateEventListeners();
+      return;
+    }
+
+    // 对于其他属性变化，检查值是否真的改变了
+    if (oldValue !== newValue) {
+      this.initProps();
+      this.render();
+    }
+  }
+
+  private updateEventListeners(): void {
+    if (!this.buttonElement) return;
+
+    // 清理之前的事件监听器
+    this.cleanupEventListeners();
+
+    // 重新收集事件属性
+    const eventAttributes: Record<string, string> = {};
+    for (const attr of this.attributes) {
+      if (attr.name.startsWith('on')) {
+        eventAttributes[attr.name] = attr.value;
+      }
+    }
+
+    // 重新绑定事件监听器
+    for (const [eventName, eventCode] of Object.entries(eventAttributes)) {
+      const actualEventName = eventName.slice(2).toLowerCase();
+      
+      const handler = (e: Event) => {
+        // 阻止事件冒泡，但不阻止默认行为
+        e.stopPropagation();
+        
+        // 如果按钮被禁用或正在加载，不执行事件
+        if (this.buttonProps.disabled || this.buttonProps.loading) {
+          return;
+        }
+        
+        executeInlineCode(eventCode, window, e);
+      };
+
+      this.eventListeners.push({ event: actualEventName, handler });
+      
+      if (actualEventName === 'click') {
+        this.buttonElement!.onclick = handler;
+      } else {
+        this.buttonElement!.addEventListener(actualEventName, handler);
+      }
+    }
   }
 
   private getButtonClasses(): string {
@@ -123,7 +214,12 @@ export class EwButton extends BaseComponent {
       'size',
       'native-type',
       'autofocus',
-      'icon'
+      'icon',
+      'onclick',
+      'onmouseenter',
+      'onmouseleave',
+      'onfocus',
+      'onblur'
     ];
   }
 }
