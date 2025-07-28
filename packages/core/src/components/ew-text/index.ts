@@ -32,9 +32,12 @@ export class EwText extends BaseComponent {
     // 注入样式
     this.injectStyles(textStyles);
 
+    // 将类名添加到宿主元素
+    this.className = this.getTextClasses();
+
     // 创建文本元素
     const text = this.createElement(tag || 'span', {
-      class: this.getTextClasses()
+      class: 'ew-text'
     });
 
     // 添加插槽内容
@@ -96,7 +99,7 @@ export class EwText extends BaseComponent {
 
   private getTextClasses(): string {
     const { type, size, truncated, lineClamp, align, weight, style, disabled, clickable, responsive } = this.textProps;
-    const classes = ['ew-text'];
+    const classes = [];
 
     // 文本类型
     if (type) {
