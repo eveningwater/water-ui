@@ -61,7 +61,7 @@
         
         .demo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 20px;
             margin-bottom: 20px;
         }
@@ -77,6 +77,12 @@
             margin: 0 0 15px 0;
             color: #374151;
             font-size: 1.1rem;
+        }
+        
+        /* 布局组件特殊样式 */
+        .demo-item:has(ew-row) {
+            min-width: 400px;
+            overflow-x: auto;
         }
         
         .button-group {

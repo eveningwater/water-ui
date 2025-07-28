@@ -8,9 +8,10 @@ export abstract class BaseComponent extends HTMLElement {
 
   // 注入组件样式
   protected injectStyles(styles: string): void {
-    // 检查是否已经有样式
-    if (this.shadow.querySelector('style')) {
-      return;
+    // 移除已存在的样式
+    const existingStyle = this.shadow.querySelector('style');
+    if (existingStyle) {
+      existingStyle.remove();
     }
 
     const styleElement = document.createElement('style');

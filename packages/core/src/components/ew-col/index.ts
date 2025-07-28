@@ -34,20 +34,36 @@ export class EwCol extends BaseComponent {
   protected render(): void {
     const { tag } = this.colProps;
 
-    // 创建列元素
-    const col = this.createElement(tag || 'div', {
-      class: this.getColClasses()
-    });
-
-    // 添加插槽内容
-    const slot = this.createElement('slot');
-    col.appendChild(slot);
-
     // 清空并重新渲染
     this.shadow.innerHTML = '';
 
     // 注入样式
     this.injectStyles(colStyles);
+
+    // 将 CSS 类应用到组件本身
+    this.className = this.getColClasses();
+
+    // 获取父组件的 gutter 值
+    const parentRow = this.closest('ew-row');
+    let gutter = 0;
+    
+    if (parentRow) {
+      const rowElement = parentRow.shadowRoot?.querySelector('.ew-row') as HTMLElement;
+      if (rowElement) {
+        const gutterValue = rowElement.style.getPropertyValue('--ew-row-gutter');
+        gutter = parseInt(gutterValue) || 0;
+      }
+    }
+
+    // 创建列元素
+    const col = this.createElement(tag || 'div', {
+      class: 'ew-col',
+      style: `--ew-row-gutter: ${gutter}px;`
+    });
+
+    // 添加插槽内容
+    const slot = this.createElement('slot');
+    col.appendChild(slot);
 
     // 添加列元素
     this.shadow.appendChild(col);

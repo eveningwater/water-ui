@@ -21,6 +21,12 @@ export class EwContainer extends BaseComponent {
   }
 
   protected render(): void {
+    // 清空并重新渲染
+    this.shadow.innerHTML = '';
+
+    // 注入样式
+    this.injectStyles(containerStyles);
+
     // 创建容器元素
     const container = this.createElement('div', { 
       class: this.getContainerClasses() 
@@ -29,12 +35,6 @@ export class EwContainer extends BaseComponent {
     // 添加插槽内容
     const slot = this.createElement('slot');
     container.appendChild(slot);
-
-    // 清空并重新渲染
-    this.shadow.innerHTML = '';
-
-    // 注入样式
-    this.injectStyles(containerStyles);
 
     // 添加容器元素
     this.shadow.appendChild(container);

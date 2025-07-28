@@ -24,8 +24,7 @@ describe('EwRow', () => {
     });
 
     it('应该设置默认间距为0', () => {
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      const gutter = rowElement.style.getPropertyValue('--ew-row-gutter');
+      const gutter = row.style.getPropertyValue('--ew-row-gutter');
       expect(gutter).toBe('0px');
     });
 
@@ -40,8 +39,7 @@ describe('EwRow', () => {
       row.setAttribute('gutter', '20');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      const gutter = rowElement.style.getPropertyValue('--ew-row-gutter');
+      const gutter = row.style.getPropertyValue('--ew-row-gutter');
       expect(gutter).toBe('20px');
     });
 
@@ -49,8 +47,7 @@ describe('EwRow', () => {
       row.setAttribute('gutter', 'invalid');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      const gutter = rowElement.style.getPropertyValue('--ew-row-gutter');
+      const gutter = row.style.getPropertyValue('--ew-row-gutter');
       expect(gutter).toBe('0px');
     });
   });
@@ -60,8 +57,7 @@ describe('EwRow', () => {
       row.setAttribute('type', 'flex');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row--flex')).toBe(true);
+      expect(row.classList.contains('ew-row--flex')).toBe(true);
     });
   });
 
@@ -70,40 +66,35 @@ describe('EwRow', () => {
       row.setAttribute('justify', 'start');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row--justify-start')).toBe(true);
+      expect(row.classList.contains('ew-row--justify-start')).toBe(true);
     });
 
     it('应该设置end对齐', async () => {
       row.setAttribute('justify', 'end');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row--justify-end')).toBe(true);
+      expect(row.classList.contains('ew-row--justify-end')).toBe(true);
     });
 
     it('应该设置center对齐', async () => {
       row.setAttribute('justify', 'center');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row--justify-center')).toBe(true);
+      expect(row.classList.contains('ew-row--justify-center')).toBe(true);
     });
 
     it('应该设置space-around对齐', async () => {
       row.setAttribute('justify', 'space-around');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row--justify-space-around')).toBe(true);
+      expect(row.classList.contains('ew-row--justify-space-around')).toBe(true);
     });
 
     it('应该设置space-between对齐', async () => {
       row.setAttribute('justify', 'space-between');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row--justify-space-between')).toBe(true);
+      expect(row.classList.contains('ew-row--justify-space-between')).toBe(true);
     });
   });
 
@@ -112,24 +103,21 @@ describe('EwRow', () => {
       row.setAttribute('align', 'top');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row--align-top')).toBe(true);
+      expect(row.classList.contains('ew-row--align-top')).toBe(true);
     });
 
     it('应该设置middle对齐', async () => {
       row.setAttribute('align', 'middle');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row--align-middle')).toBe(true);
+      expect(row.classList.contains('ew-row--align-middle')).toBe(true);
     });
 
     it('应该设置bottom对齐', async () => {
       row.setAttribute('align', 'bottom');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row--align-bottom')).toBe(true);
+      expect(row.classList.contains('ew-row--align-bottom')).toBe(true);
     });
   });
 
@@ -150,8 +138,7 @@ describe('EwRow', () => {
 
   describe('样式验证', () => {
     it('应该应用正确的CSS类', () => {
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      expect(rowElement.classList.contains('ew-row')).toBe(true);
+      expect(row.classList.contains('ew-row')).toBe(true);
     });
 
     it('应该支持多个属性组合', async () => {
@@ -161,13 +148,12 @@ describe('EwRow', () => {
       row.setAttribute('align', 'middle');
       await new Promise(resolve => setTimeout(resolve, 10));
 
-      const rowElement = row.shadowRoot.querySelector('.ew-row');
-      const gutter = rowElement.style.getPropertyValue('--ew-row-gutter');
+      const gutter = row.style.getPropertyValue('--ew-row-gutter');
       expect(gutter).toBe('16px');
 
-      expect(rowElement.classList.contains('ew-row--flex')).toBe(true);
-      expect(rowElement.classList.contains('ew-row--justify-center')).toBe(true);
-      expect(rowElement.classList.contains('ew-row--align-middle')).toBe(true);
+      expect(row.classList.contains('ew-row--flex')).toBe(true);
+      expect(row.classList.contains('ew-row--justify-center')).toBe(true);
+      expect(row.classList.contains('ew-row--align-middle')).toBe(true);
     });
   });
 

@@ -26,21 +26,24 @@ export class EwRow extends BaseComponent {
   protected render(): void {
     const { gutter, tag } = this.rowProps;
 
+    // 清空并重新渲染
+    this.shadow.innerHTML = '';
+
+    // 注入样式
+    this.injectStyles(rowStyles);
+
+    // 将 CSS 类应用到组件本身
+    this.className = this.getRowClasses();
+
     // 创建行元素
     const row = this.createElement(tag || 'div', {
-      class: this.getRowClasses(),
+      class: 'ew-row',
       style: `--ew-row-gutter: ${gutter}px;`
     });
 
     // 添加插槽内容
     const slot = this.createElement('slot');
     row.appendChild(slot);
-
-    // 清空并重新渲染
-    this.shadow.innerHTML = '';
-
-    // 注入样式
-    this.injectStyles(rowStyles);
 
     // 添加行元素
     this.shadow.appendChild(row);
