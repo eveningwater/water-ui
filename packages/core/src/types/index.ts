@@ -315,4 +315,21 @@ export interface ScrollbarProps extends BaseComponentProps {
   tag?: string;
   always?: boolean;
   minSize?: number;
+}
+
+export interface SpaceProps extends Omit<BaseComponentProps, 'size'> {
+  direction?: 'horizontal' | 'vertical';
+  alignment?: 'start' | 'end' | 'center' | 'baseline' | 'stretch';
+  size?: number | 'small' | 'default' | 'large' | [number, number];
+  wrap?: boolean;
+  fill?: boolean;
+  fillRatio?: number;
+  spacer?: string | number;
+  tag?: string;
+}
+
+export interface SpaceItemProps extends Omit<BaseComponentProps, 'size'> {
+  direction?: 'horizontal' | 'vertical';
+  size?: number | 'small' | 'default' | 'large' | [number, number];
+  tag?: string;
 } 

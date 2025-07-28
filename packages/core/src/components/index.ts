@@ -21,4 +21,6 @@ export { EwCol } from './ew-col';
 export { EwLink } from './ew-link';
 export { EwIcon } from './ew-icon';
 export { EwText } from './ew-text';
-export { EwScrollbar } from './ew-scrollbar'; 
+export { EwScrollbar } from './ew-scrollbar';
+export { EwSpace } from './ew-space';
+export { EwSpaceItem } from './ew-space-item'; 

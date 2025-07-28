@@ -25,7 +25,9 @@ export type {
   IconProps,
   LinkProps,
   TextProps,
-  ScrollbarProps
+  ScrollbarProps,
+  SpaceProps,
+  SpaceItemProps
 } from './types';
 
 // 导出基础组件类
@@ -54,13 +56,15 @@ import './components/ew-link';
 import './components/ew-icon';
 import './components/ew-text';
 import './components/ew-scrollbar';
+import './components/ew-space';
+import './components/ew-space-item';
 
 // 确保所有组件都已注册
 import {
   EwButton, EwInput, EwTable, EwModal, EwCheckbox, EwCheckboxGroup,
   EwCheckboxButton, EwRadio, EwRadioButton, EwRadioGroup, EwInputNumber,
   EwContainer, EwHeader, EwAside, EwMain, EwFooter, EwRow, EwCol,
-  EwLink, EwIcon, EwText, EwScrollbar
+  EwLink, EwIcon, EwText, EwScrollbar, EwSpace, EwSpaceItem
 } from './components';
 
 // 手动注册组件（以防自动注册失败）
@@ -86,7 +90,9 @@ const components = [
   { name: 'ew-link', component: EwLink },
   { name: 'ew-icon', component: EwIcon },
   { name: 'ew-text', component: EwText },
-  { name: 'ew-scrollbar', component: EwScrollbar }
+  { name: 'ew-scrollbar', component: EwScrollbar },
+  { name: 'ew-space', component: EwSpace },
+  { name: 'ew-space-item', component: EwSpaceItem }
 ];
 
 components.forEach(({ name, component }) => {

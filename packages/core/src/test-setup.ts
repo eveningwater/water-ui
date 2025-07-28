@@ -24,6 +24,8 @@ import './components/ew-link';
 import './components/ew-icon';
 import './components/ew-text';
 import './components/ew-scrollbar';
+import './components/ew-space';
+import './components/ew-space-item';
 
 // 模拟浏览器环境
 beforeAll(() => {

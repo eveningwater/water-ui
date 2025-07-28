@@ -927,6 +927,115 @@
             </div>
 
             <div class="section">
+                <h2>📏 间距组件</h2>
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <h3>基础间距</h3>
+                        <ew-space>
+                            <ew-button>按钮1</ew-button>
+                            <ew-button>按钮2</ew-button>
+                            <ew-button>按钮3</ew-button>
+                        </ew-space>
+                    </div>
+                    <div class="demo-item">
+                        <h3>垂直间距</h3>
+                        <ew-space direction="vertical">
+                            <ew-button>按钮1</ew-button>
+                            <ew-button>按钮2</ew-button>
+                            <ew-button>按钮3</ew-button>
+                        </ew-space>
+                    </div>
+                    <div class="demo-item">
+                        <h3>不同尺寸</h3>
+                        <div class="input-group">
+                            <ew-space size="small">
+                                <ew-button size="small">小间距</ew-button>
+                                <ew-button size="small">按钮</ew-button>
+                            </ew-space>
+                            <ew-space size="default">
+                                <ew-button>默认间距</ew-button>
+                                <ew-button>按钮</ew-button>
+                            </ew-space>
+                            <ew-space size="large">
+                                <ew-button size="large">大间距</ew-button>
+                                <ew-button size="large">按钮</ew-button>
+                            </ew-space>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>自定义间距</h3>
+                        <ew-space size="30">
+                            <ew-button>自定义30px</ew-button>
+                            <ew-button>按钮</ew-button>
+                        </ew-space>
+                    </div>
+                    <div class="demo-item">
+                        <h3>对齐方式</h3>
+                        <div class="input-group">
+                            <ew-space alignment="start">
+                                <ew-button>start</ew-button>
+                                <ew-button>对齐</ew-button>
+                            </ew-space>
+                            <ew-space alignment="center">
+                                <ew-button>center</ew-button>
+                                <ew-button>对齐</ew-button>
+                            </ew-space>
+                            <ew-space alignment="end">
+                                <ew-button>end</ew-button>
+                                <ew-button>对齐</ew-button>
+                            </ew-space>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <h3>换行显示</h3>
+                        <ew-space wrap>
+                            <ew-button>按钮1</ew-button>
+                            <ew-button>按钮2</ew-button>
+                            <ew-button>按钮3</ew-button>
+                            <ew-button>按钮4</ew-button>
+                            <ew-button>按钮5</ew-button>
+                            <ew-button>按钮6</ew-button>
+                        </ew-space>
+                    </div>
+                    <div class="demo-item">
+                        <h3>填充模式</h3>
+                        <ew-space fill>
+                            <ew-button>按钮1</ew-button>
+                            <ew-button>按钮2</ew-button>
+                            <ew-button>按钮3</ew-button>
+                        </ew-space>
+                    </div>
+                    <div class="demo-item">
+                        <h3>间距项组件</h3>
+                        <ew-space>
+                            <ew-space-item>
+                                <ew-button>间距项1</ew-button>
+                            </ew-space-item>
+                            <ew-space-item>
+                                <ew-button>间距项2</ew-button>
+                            </ew-space-item>
+                            <ew-space-item>
+                                <ew-button>间距项3</ew-button>
+                            </ew-space-item>
+                        </ew-space>
+                    </div>
+                    <div class="demo-item">
+                        <h3>间距操作</h3>
+                        <div class="button-group">
+                            <ew-button type="primary" onclick="changeSpaceDirection()">切换方向</ew-button>
+                            <ew-button type="success" onclick="changeSpaceSize()">切换尺寸</ew-button>
+                            <ew-button type="warning" onclick="toggleSpaceWrap()">切换换行</ew-button>
+                        </div>
+                        <ew-space id="demoSpace" size="default">
+                            <ew-button>演示按钮1</ew-button>
+                            <ew-button>演示按钮2</ew-button>
+                            <ew-button>演示按钮3</ew-button>
+                        </ew-space>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
                 <h2>🔘 单选框组件</h2>
                 <div class="demo-grid">
                     <div class="demo-item">
@@ -1361,6 +1470,38 @@
                 }
             });
             console.log('已更新所有滚动条');
+        };
+
+        // 间距组件操作
+        window.changeSpaceDirection = function() {
+            const demoSpace = document.getElementById('demoSpace');
+            if (demoSpace) {
+                const currentDirection = demoSpace.getAttribute('direction') || 'horizontal';
+                const newDirection = currentDirection === 'horizontal' ? 'vertical' : 'horizontal';
+                demoSpace.setAttribute('direction', newDirection);
+            }
+        };
+
+        window.changeSpaceSize = function() {
+            const demoSpace = document.getElementById('demoSpace');
+            if (demoSpace) {
+                const sizes = ['small', 'default', 'large'];
+                const currentSize = demoSpace.getAttribute('size') || 'default';
+                const currentIndex = sizes.indexOf(currentSize);
+                const nextIndex = (currentIndex + 1) % sizes.length;
+                demoSpace.setAttribute('size', sizes[nextIndex]);
+            }
+        };
+
+        window.toggleSpaceWrap = function() {
+            const demoSpace = document.getElementById('demoSpace');
+            if (demoSpace) {
+                if (demoSpace.hasAttribute('wrap')) {
+                    demoSpace.removeAttribute('wrap');
+                } else {
+                    demoSpace.setAttribute('wrap', '');
+                }
+            }
         };
 
         // 页面加载完成后更新滚动条
