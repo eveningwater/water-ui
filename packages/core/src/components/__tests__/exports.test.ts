@@ -22,7 +22,11 @@ import {
   EwRow,
   EwCol,
   EwLink,
-  EwIcon
+  EwIcon,
+  EwText,
+  EwScrollbar,
+  EwSpace,
+  EwSpaceItem
 } from '../index';
 
 describe('组件导出测试', () => {
@@ -85,6 +89,26 @@ describe('组件导出测试', () => {
     it('应该正确导出 EwInputNumber', () => {
       expect(EwInputNumber).toBeDefined();
       expect(typeof EwInputNumber).toBe('function');
+    });
+
+    it('应该正确导出 EwText', () => {
+      expect(EwText).toBeDefined();
+      expect(typeof EwText).toBe('function');
+    });
+
+    it('应该正确导出 EwScrollbar', () => {
+      expect(EwScrollbar).toBeDefined();
+      expect(typeof EwScrollbar).toBe('function');
+    });
+
+    it('应该正确导出 EwSpace', () => {
+      expect(EwSpace).toBeDefined();
+      expect(typeof EwSpace).toBe('function');
+    });
+
+    it('应该正确导出 EwSpaceItem', () => {
+      expect(EwSpaceItem).toBeDefined();
+      expect(typeof EwSpaceItem).toBe('function');
     });
   });
 
@@ -177,6 +201,22 @@ describe('组件导出测试', () => {
     it('应该正确注册 EwIcon 组件', () => {
       expect(customElements.get('ew-icon')).toBe(EwIcon);
     });
+
+    it('应该正确注册 EwText 组件', () => {
+      expect(customElements.get('ew-text')).toBe(EwText);
+    });
+
+    it('应该正确注册 EwScrollbar 组件', () => {
+      expect(customElements.get('ew-scrollbar')).toBe(EwScrollbar);
+    });
+
+    it('应该正确注册 EwSpace 组件', () => {
+      expect(customElements.get('ew-space')).toBe(EwSpace);
+    });
+
+    it('应该正确注册 EwSpaceItem 组件', () => {
+      expect(customElements.get('ew-space-item')).toBe(EwSpaceItem);
+    });
   });
 
   describe('组件继承关系测试', () => {
@@ -214,6 +254,22 @@ describe('组件导出测试', () => {
 
     it('EwIcon 应该继承自 BaseComponent', () => {
       expect(EwIcon.prototype).toBeInstanceOf(HTMLElement);
+    });
+
+    it('EwText 应该继承自 BaseComponent', () => {
+      expect(EwText.prototype).toBeInstanceOf(HTMLElement);
+    });
+
+    it('EwScrollbar 应该继承自 BaseComponent', () => {
+      expect(EwScrollbar.prototype).toBeInstanceOf(HTMLElement);
+    });
+
+    it('EwSpace 应该继承自 BaseComponent', () => {
+      expect(EwSpace.prototype).toBeInstanceOf(HTMLElement);
+    });
+
+    it('EwSpaceItem 应该继承自 BaseComponent', () => {
+      expect(EwSpaceItem.prototype).toBeInstanceOf(HTMLElement);
     });
   });
 }); 
