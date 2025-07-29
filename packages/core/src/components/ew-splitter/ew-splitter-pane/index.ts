@@ -1,154 +1,356 @@
 import { BaseComponent } from '../../../utils/base-component';
-import { SplitterPaneProps } from '../../../types';
+import { createSplitterPaneStyles } from './index-style';
+import { ArrowIcon } from '@water-ui/icons';
 
 export class EwSplitterPane extends BaseComponent {
-  private paneProps: SplitterPaneProps = {};
+  private index = 0;
+  private size = '0%';
+  private resizable = true;
+  private collapsible = false;
+  private layout: 'horizontal' | 'vertical' = 'horizontal';
+  private isDragging = false;
+  private startPosition = { x: 0, y: 0 };
+  private startSizes: number[] = [];
+  private cacheCollapsedSize: number[] = [];
+
+  constructor() {
+    super();
+    this.initProps();
+  }
 
   protected initProps(): void {
-    super.initProps();
-    this.paneProps = {
-      size: this.getAttribute('size') ? 
-        (this.getAttribute('size')!.includes('%') ? this.getAttribute('size')! : `${this.getAttribute('size')}%`) : undefined,
-      min: this.getAttribute('min') ? 
-        (this.getAttribute('min')!.includes('%') ? this.getAttribute('min')! : `${this.getAttribute('min')}%`) : undefined,
-      max: this.getAttribute('max') ? 
-        (this.getAttribute('max')!.includes('%') ? this.getAttribute('max')! : `${this.getAttribute('max')}%`) : undefined,
-      resizable: this.getAttribute('resizable') !== 'false',
-      collapsible: this.hasAttribute('collapsible')
-    };
+    this.size = this.getAttribute('size') || '0%';
+    this.resizable = this.getAttribute('resizable') !== 'false';
+    this.collapsible = this.hasAttribute('collapsible');
+    
+    // 获取父级 splitter 的布局
+    const parentSplitter = this.closest('ew-splitter');
+    if (parentSplitter) {
+      this.layout = (parentSplitter as any).getLayout?.() || 'horizontal';
+    }
   }
 
   protected render(): void {
-    this.shadow.innerHTML = '';
-    const pane = this.createElement('div', { class: this.getPaneClasses() });
-    this.applyPaneStyles(pane);
-    const slot = this.createElement('slot');
-    pane.appendChild(slot);
-    if (this.paneProps.collapsible) {
-      this.addCollapseSlots(pane);
-    }
-    this.shadow.appendChild(pane);
-  }
-
-  private addCollapseSlots(pane: HTMLElement): void {
-    const startSlot = this.createElement('slot', { name: 'start-collapsible' });
-    const endSlot = this.createElement('slot', { name: 'end-collapsible' });
-    pane.appendChild(startSlot);
-    pane.appendChild(endSlot);
-  }
-
-  private applyPaneStyles(pane: HTMLElement): void {
-    const { size, min, max } = this.paneProps;
-    if (size) {
-      pane.style.flex = `0 0 ${size}`;
-    }
-    if (min) {
-      if (this.isHorizontal()) {
-        pane.style.minWidth = min.toString();
-      } else {
-        pane.style.minHeight = min.toString();
-      }
-    }
-    if (max) {
-      if (this.isHorizontal()) {
-        pane.style.maxWidth = max.toString();
-      } else {
-        pane.style.maxHeight = max.toString();
-      }
-    }
-  }
-
-  private isHorizontal(): boolean {
-    const splitter = this.closest('ew-splitter');
-    return splitter ? splitter.getAttribute('layout') !== 'vertical' : true;
-  }
-
-  private getPaneClasses(): string {
-    return 'ew-splitter-pane';
-  }
-
-  public setSize(size: string | number): void {
-    this.paneProps.size = size.toString();
-    this.setAttribute('size', size.toString());
-    this.render();
-    this.dispatchCustomEvent('update:size', { size: this.parseSize(size) });
-  }
-
-  public getSize(): string | number | undefined {
-    return this.paneProps.size;
-  }
-
-  public setMin(min: string | number): void {
-    this.paneProps.min = min.toString();
-    this.setAttribute('min', min.toString());
-    this.render();
-  }
-
-  public getMin(): string | number | undefined {
-    return this.paneProps.min;
-  }
-
-  public setMax(max: string | number): void {
-    this.paneProps.max = max.toString();
-    this.setAttribute('max', max.toString());
-    this.render();
-  }
-
-  public getMax(): string | number | undefined {
-    return this.paneProps.max;
-  }
-
-  public setResizable(resizable: boolean): void {
-    this.paneProps.resizable = resizable;
-    if (resizable) {
-      this.removeAttribute('resizable');
+    if (this.shadowRoot) {
+      this.shadowRoot.innerHTML = `
+        <style>${createSplitterPaneStyles()}</style>
+        <div class="ew-splitter-pane" style="flex-basis: ${this.size};">
+          <slot></slot>
+        </div>
+        ${this.shouldShowBar() ? this.createSplitBar() : ''}
+      `;
     } else {
-      this.setAttribute('resizable', 'false');
+      this.attachShadow({ mode: 'open' });
+      this.shadowRoot!.innerHTML = `
+        <style>${createSplitterPaneStyles()}</style>
+        <div class="ew-splitter-pane" style="flex-basis: ${this.size};">
+          <slot></slot>
+        </div>
+        ${this.shouldShowBar() ? this.createSplitBar() : ''}
+      `;
     }
+
+    this.addEventListeners();
   }
 
-  public isResizable(): boolean {
-    return this.paneProps.resizable || false;
+  private shouldShowBar(): boolean {
+    const parentSplitter = this.closest('ew-splitter');
+    if (!parentSplitter) return false;
+    
+    const panels = Array.from(parentSplitter.querySelectorAll('ew-splitter-pane'));
+    return this.index < panels.length - 1;
   }
 
-  public setCollapsible(collapsible: boolean): void {
-    this.paneProps.collapsible = collapsible;
-    if (collapsible) {
-      this.setAttribute('collapsible', '');
+  private createSplitBar(): string {
+    const isHorizontal = this.layout === 'horizontal';
+    const startCollapsible = this.isStartCollapsible();
+    const endCollapsible = this.isEndCollapsible();
+    
+    return `
+      <div class="ew-splitter-bar">
+        ${startCollapsible ? `
+          <div class="ew-splitter-collapse-icon ew-splitter-${this.layout}-collapse-icon-start" 
+               data-action="collapse-start" title="折叠左侧面板">
+            ${ArrowIcon({ direction: isHorizontal ? 'left' : 'left', size: '12px' })}
+          </div>
+        ` : ''}
+        
+        <div class="ew-splitter-dragger ${this.resizable ? '' : 'ew-splitter-dragger--disable'}" 
+             data-action="drag" 
+             style="
+               width: ${isHorizontal ? '16px' : '100%'};
+               height: ${isHorizontal ? '100%' : '16px'};
+               cursor: ${isHorizontal ? 'col-resize' : 'row-resize'};
+             ">
+        </div>
+        
+        ${endCollapsible ? `
+          <div class="ew-splitter-collapse-icon ew-splitter-${this.layout}-collapse-icon-end" 
+               data-action="collapse-end" title="折叠右侧面板">
+            ${ArrowIcon({ direction: isHorizontal ? 'right' : 'right', size: '12px' })}
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }
+
+  private isStartCollapsible(): boolean {
+    if (!this.collapsible) return false;
+    
+    const currentSize = this.getCurrentSizeValue();
+    const nextSize = this.getNextSize();
+    
+    // 当前面板可折叠且有尺寸
+    if (currentSize > 0) return true;
+    
+    // 下一个面板已折叠，当前面板有尺寸
+    if (nextSize === 0 && currentSize > 0) return true;
+    
+    return false;
+  }
+
+  private isEndCollapsible(): boolean {
+    const nextPanel = this.getNextPanel();
+    if (!nextPanel) return false;
+    
+    const nextCollapsible = nextPanel.hasAttribute('collapsible');
+    const currentSize = this.getCurrentSizeValue();
+    const nextSize = this.getNextSize();
+    
+    // 下一个面板可折叠且有尺寸
+    if (nextCollapsible && nextSize > 0) return true;
+    
+    // 当前面板已折叠，下一个面板有尺寸
+    if (currentSize === 0 && nextSize > 0) return true;
+    
+    return false;
+  }
+
+  private getCurrentSizeValue(): number {
+    const parentSplitter = this.closest('ew-splitter');
+    if (!parentSplitter) return 0;
+    
+    const container = parentSplitter.shadowRoot?.querySelector('.ew-splitter') as HTMLElement;
+    if (!container) return 0;
+    
+    const totalSize = this.layout === 'horizontal' ? container.offsetWidth : container.offsetHeight;
+    if (totalSize === 0) return 0;
+    
+    const panelElement = this.shadowRoot?.querySelector('.ew-splitter-pane') as HTMLElement;
+    if (!panelElement) return 0;
+    
+    const panelSize = this.layout === 'horizontal' ? panelElement.offsetWidth : panelElement.offsetHeight;
+    return (panelSize / totalSize) * 100;
+  }
+
+  private getNextSize(): number {
+    const nextPanel = this.getNextPanel();
+    if (!nextPanel) return 0;
+    
+    return (nextPanel as any).getCurrentSizeValue?.() || 0;
+  }
+
+  private getNextPanel(): HTMLElement | null {
+    const parentSplitter = this.closest('ew-splitter');
+    if (!parentSplitter) return null;
+    
+    const panels = Array.from(parentSplitter.querySelectorAll('ew-splitter-pane'));
+    return panels[this.index + 1] as HTMLElement | null;
+  }
+
+  private addEventListeners(): void {
+    const bar = this.shadowRoot?.querySelector('.ew-splitter-bar');
+    if (!bar) return;
+
+    // 拖拽事件
+    const dragger = bar.querySelector('[data-action="drag"]');
+    if (dragger && this.resizable) {
+      dragger.addEventListener('mousedown', (e) => this.startDrag(e as MouseEvent));
+      dragger.addEventListener('touchstart', (e) => this.startDrag(e as TouchEvent));
+    }
+
+    // 折叠事件
+    bar.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const actionElement = target.closest('[data-action]') as HTMLElement;
+      const action = actionElement?.getAttribute('data-action');
+      
+      if (action === 'collapse-start') {
+        this.handleCollapse('start');
+      } else if (action === 'collapse-end') {
+        this.handleCollapse('end');
+      }
+    });
+  }
+
+  private startDrag(event: MouseEvent | TouchEvent): void {
+    if (this.isDragging) return;
+    
+    this.isDragging = true;
+    const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX;
+    const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY;
+    this.startPosition = { x: clientX, y: clientY };
+    this.startSizes = this.getAllSizes();
+    
+    this.dispatchCustomEvent('resize-start', { index: this.index, sizes: this.startSizes });
+    
+    document.addEventListener('mousemove', this.handleDrag);
+    document.addEventListener('touchmove', this.handleDrag);
+    document.addEventListener('mouseup', this.stopDrag);
+    document.addEventListener('touchend', this.stopDrag);
+  }
+
+  private handleDrag = (event: MouseEvent | TouchEvent): void => {
+    if (!this.isDragging) return;
+    
+    const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX;
+    const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY;
+    const delta = this.layout === 'horizontal' ? clientX - this.startPosition.x : clientY - this.startPosition.y;
+    
+    this.updateSizes(delta);
+    this.dispatchCustomEvent('resize', { index: this.index, sizes: this.getAllSizes() });
+  };
+
+  private stopDrag = (): void => {
+    if (!this.isDragging) return;
+    
+    this.isDragging = false;
+    this.dispatchCustomEvent('resize-end', { index: this.index, sizes: this.getAllSizes() });
+    
+    document.removeEventListener('mousemove', this.handleDrag);
+    document.removeEventListener('touchmove', this.handleDrag);
+    document.removeEventListener('mouseup', this.stopDrag);
+    document.removeEventListener('touchend', this.stopDrag);
+  };
+
+  private handleCollapse(type: 'start' | 'end'): void {
+    if (!this.cacheCollapsedSize.length) {
+      this.cacheCollapsedSize = [...this.getAllSizes()];
+    }
+
+    const currentSizes = this.getAllSizes();
+    const currentIndex = type === 'start' ? this.index : this.index + 1;
+    const targetIndex = type === 'start' ? this.index + 1 : this.index;
+
+    const currentSize = currentSizes[currentIndex];
+    const targetSize = currentSizes[targetIndex];
+
+    if (currentSize !== 0 && targetSize !== 0) {
+      // 折叠
+      currentSizes[currentIndex] = 0;
+      currentSizes[targetIndex] += currentSize;
+      this.cacheCollapsedSize[this.index] = currentSize;
     } else {
-      this.removeAttribute('collapsible');
+      // 展开
+      const totalSize = currentSize + targetSize;
+      const targetCacheCollapsedSize = this.cacheCollapsedSize[this.index];
+      const currentCacheCollapsedSize = totalSize - targetCacheCollapsedSize;
+
+      currentSizes[targetIndex] = targetCacheCollapsedSize;
+      currentSizes[currentIndex] = currentCacheCollapsedSize;
     }
+
+    this.applySizes(currentSizes);
+    this.dispatchCustomEvent('collapse', { 
+      index: this.index, 
+      type, 
+      sizes: currentSizes 
+    });
+    
+    // 重新渲染以更新按钮显示
     this.render();
   }
 
-  public isCollapsible(): boolean {
-    return this.paneProps.collapsible || false;
+  private getAllSizes(): number[] {
+    const parentSplitter = this.closest('ew-splitter');
+    if (!parentSplitter) return [];
+    
+    const panels = Array.from(parentSplitter.querySelectorAll('ew-splitter-pane'));
+    return panels.map(panel => (panel as any).getCurrentSizeValue?.() || 0);
   }
 
-  private parseSize(size: string | number): number {
-    if (typeof size === 'number') {
-      return size;
+  private updateSizes(delta: number): void {
+    const parentSplitter = this.closest('ew-splitter');
+    if (!parentSplitter) return;
+    
+    const container = parentSplitter.shadowRoot?.querySelector('.ew-splitter') as HTMLElement;
+    if (!container) return;
+    
+    const totalSize = this.layout === 'horizontal' ? container.offsetWidth : container.offsetHeight;
+    if (totalSize === 0) return;
+    
+    const deltaPercent = (delta / totalSize) * 100;
+    const newSizes = [...this.startSizes];
+    newSizes[this.index] += deltaPercent;
+    newSizes[this.index + 1] -= deltaPercent;
+    
+    this.applySizes(newSizes);
+  }
+
+  private applySizes(sizes: number[]): void {
+    const parentSplitter = this.closest('ew-splitter');
+    if (!parentSplitter) return;
+    
+    const panels = Array.from(parentSplitter.querySelectorAll('ew-splitter-pane'));
+    panels.forEach((panel: any, index) => {
+      if (panel.setSize && sizes[index] !== undefined) {
+        panel.setSize(`${sizes[index]}%`);
+      }
+    });
+  }
+
+  // 公共方法
+  public setIndex(index: number): void {
+    this.index = index;
+  }
+
+  public setSize(size: string): void {
+    this.size = size;
+    const panelElement = this.shadowRoot?.querySelector('.ew-splitter-pane') as HTMLElement;
+    if (panelElement) {
+      panelElement.style.flexBasis = size;
     }
-    if (size.includes('%')) {
-      return parseFloat(size) / 100;
+  }
+
+  public getSize(): string {
+    return this.size;
+  }
+
+  public getCurrentSize(): number {
+    return this.getCurrentSizeValue();
+  }
+
+  // 属性变化监听
+  static get observedAttributes(): string[] {
+    return ['size', 'min', 'max', 'resizable', 'collapsible'];
+  }
+
+  attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+    if (oldValue === newValue) return;
+    
+    switch (name) {
+      case 'size':
+        this.size = newValue;
+        this.setSize(newValue);
+        break;
+      case 'min':
+        break;
+      case 'max':
+        break;
+      case 'resizable':
+        this.resizable = newValue !== 'false';
+        this.render();
+        break;
+      case 'collapsible':
+        this.collapsible = this.hasAttribute('collapsible');
+        this.render();
+        break;
     }
-    return parseFloat(size);
   }
 
   connectedCallback(): void {
     super.connectedCallback();
     this.render();
-  }
-
-  static get observedAttributes(): string[] {
-    return ['size', 'min', 'max', 'resizable', 'collapsible'];
-  }
-
-  attributeChangedCallback(_name: string, oldValue: string | null, newValue: string | null): void {
-    if (oldValue !== newValue) {
-      this.initProps();
-      this.render();
-    }
   }
 }
 
