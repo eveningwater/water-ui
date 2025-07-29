@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EW Splitter 组件演示</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .demo-header {
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .demo-title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .demo-description {
+      margin: 10px 0 0 0;
+      opacity: 0.9;
+    }
+    
+    .demo-section {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .demo-section:last-child {
+      border-bottom: none;
+    }
+    
+    .section-title {
+      margin: 0 0 15px 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .section-description {
+      margin: 0 0 20px 0;
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    .splitter-demo {
+      height: 300px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .splitter-pane {
+      padding: 20px;
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #495057;
+    }
+    
+    .splitter-pane.left {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .splitter-pane.right {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+    }
+    
+    .splitter-pane.top {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: white;
+    }
+    
+    .splitter-pane.bottom {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      color: white;
+    }
+    
+    .splitter-pane.center {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      color: white;
+    }
+    
+
+    
+    .event-log {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 15px;
+      height: 150px;
+      overflow-y: auto;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    
+    .event-log .event {
+      margin-bottom: 5px;
+      padding: 5px;
+      background: white;
+      border-radius: 3px;
+      border-left: 3px solid #007bff;
+    }
+    
+    .event-log .event.resize {
+      border-left-color: #28a745;
+    }
+    
+    .event-log .event.resize-start {
+      border-left-color: #ffc107;
+    }
+    
+    .event-log .event.resize-end {
+      border-left-color: #dc3545;
+    }
+    
+    .event-log .event.collapse {
+      border-left-color: #6f42c1;
+    }
+    
+    .controls {
+      margin-bottom: 15px;
+    }
+    
+    .control-group {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    
+    .control-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #333;
+    }
+    
+    .control-group select,
+    .control-group input {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .control-group button {
+      padding: 8px 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .control-group button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-header">
+      <h1 class="demo-title">EW Splitter 组件演示</h1>
+      <p class="demo-description">展示分割面板组件的各种功能和用法</p>
+    </div>
+
+    <!-- 基础水平分割 -->
+    <div class="demo-section">
+      <h2 class="section-title">基础水平分割</h2>
+      <p class="section-description">默认的水平布局，可以拖拽分割条调整面板大小</p>
+      <div class="splitter-demo">
+        <ew-splitter>
+          <ew-splitter-pane size="30%">
+            <div class="splitter-pane left">左侧面板 (30%)</div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="70%">
+            <div class="splitter-pane right">右侧面板 (70%)</div>
+          </ew-splitter-pane>
+        </ew-splitter>
+      </div>
+    </div>
+
+    <!-- 垂直分割 -->
+    <div class="demo-section">
+      <h2 class="section-title">垂直分割</h2>
+      <p class="section-description">垂直布局，适合上下分割的场景</p>
+      <div class="splitter-demo">
+        <ew-splitter layout="vertical">
+          <ew-splitter-pane size="40%">
+            <div class="splitter-pane top">顶部面板 (40%)</div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="60%">
+            <div class="splitter-pane bottom">底部面板 (60%)</div>
+          </ew-splitter-pane>
+        </ew-splitter>
+      </div>
+    </div>
+
+    <!-- 三面板分割 -->
+    <div class="demo-section">
+      <h2 class="section-title">三面板分割</h2>
+      <p class="section-description">支持多个面板的分割，每个面板都可以独立调整</p>
+      <div class="splitter-demo">
+        <ew-splitter>
+          <ew-splitter-pane size="25%">
+            <div class="splitter-pane left">左侧面板 (25%)</div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="50%">
+            <div class="splitter-pane center">中间面板 (50%)</div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="25%">
+            <div class="splitter-pane right">右侧面板 (25%)</div>
+          </ew-splitter-pane>
+        </ew-splitter>
+      </div>
+    </div>
+
+    <!-- 可折叠面板 -->
+    <div class="demo-section">
+      <h2 class="section-title">可折叠面板</h2>
+      <p class="section-description">鼠标悬浮到分割线上会显示折叠按钮，点击可以折叠面板</p>
+      <div class="splitter-demo">
+        <ew-splitter>
+          <ew-splitter-pane size="30%" collapsible>
+            <div class="splitter-pane left">可折叠面板</div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="40%">
+            <div class="splitter-pane center">主内容区域</div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="30%">
+            <div class="splitter-pane right">可折叠面板</div>
+          </ew-splitter-pane>
+        </ew-splitter>
+      </div>
+    </div>
+
+    <!-- 尺寸限制 -->
+    <div class="demo-section">
+      <h2 class="section-title">尺寸限制</h2>
+      <p class="section-description">设置最小和最大尺寸限制，防止面板过小或过大</p>
+      <div class="splitter-demo">
+        <ew-splitter>
+          <ew-splitter-pane size="30%" min="20%" max="50%">
+            <div class="splitter-pane left">最小 20%，最大 50%</div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="70%" min="30%" max="80%">
+            <div class="splitter-pane right">最小 30%，最大 80%</div>
+          </ew-splitter-pane>
+        </ew-splitter>
+      </div>
+    </div>
+
+    <!-- 事件监听 -->
+    <div class="demo-section">
+      <h2 class="section-title">事件监听</h2>
+      <p class="section-description">监听分割面板的各种事件</p>
+      <div class="controls">
+        <div class="control-group">
+          <label>布局方向：</label>
+          <select id="layoutSelect">
+            <option value="horizontal">水平</option>
+            <option value="vertical">垂直</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>左侧面板尺寸：</label>
+          <input type="range" id="sizeSlider" min="10" max="90" value="30">
+          <span id="sizeValue">30%</span>
+        </div>
+        <div class="control-group">
+          <button id="resetBtn">重置尺寸</button>
+        </div>
+      </div>
+      <div class="splitter-demo">
+        <ew-splitter id="eventSplitter">
+          <ew-splitter-pane id="leftPane" size="30%">
+            <div class="splitter-pane left">左侧面板</div>
+          </ew-splitter-pane>
+          <ew-splitter-pane id="rightPane" size="70%">
+            <div class="splitter-pane right">右侧面板</div>
+          </ew-splitter-pane>
+        </ew-splitter>
+      </div>
+      <div class="event-log" id="eventLog">
+        <div class="event">等待事件...</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import '../packages/core/dist/index.esm.js';
+
+    // 事件监听示例
+    const eventSplitter = document.getElementById('eventSplitter');
+    const leftPane = document.getElementById('leftPane');
+    const rightPane = document.getElementById('rightPane');
+    const eventLog = document.getElementById('eventLog');
+    const layoutSelect = document.getElementById('layoutSelect');
+    const sizeSlider = document.getElementById('sizeSlider');
+    const sizeValue = document.getElementById('sizeValue');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function addEventLog(message, type = '') {
+      const eventDiv = document.createElement('div');
+      eventDiv.className = `event ${type}`;
+      eventDiv.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      eventLog.appendChild(eventDiv);
+      eventLog.scrollTop = eventLog.scrollHeight;
+    }
+
+    // 监听分割面板事件
+    eventSplitter.addEventListener('resize-start', (e) => {
+      addEventLog(`开始调整大小: 分割条索引 ${e.detail.index}`, 'resize-start');
+    });
+
+    eventSplitter.addEventListener('resize', (e) => {
+      addEventLog(`调整大小: 索引 ${e.detail.index}, 尺寸 ${e.detail.sizes.join(', ')}`, 'resize');
+    });
+
+    eventSplitter.addEventListener('resize-end', (e) => {
+      addEventLog(`结束调整大小: 分割条索引 ${e.detail.index}`, 'resize-end');
+    });
+
+    eventSplitter.addEventListener('collapse', (e) => {
+      const action = e.detail.collapsed ? '折叠' : '展开';
+      addEventLog(`${action}面板: 分割条索引 ${e.detail.index}, 方向 ${e.detail.direction}`, 'collapse');
+    });
+
+    // 监听面板尺寸变化事件
+    leftPane.addEventListener('update:size', (e) => {
+      addEventLog(`左侧面板尺寸更新: ${e.detail.size}`, 'update');
+    });
+
+    rightPane.addEventListener('update:size', (e) => {
+      addEventLog(`右侧面板尺寸更新: ${e.detail.size}`, 'update');
+    });
+
+    // 布局切换
+    layoutSelect.addEventListener('change', (e) => {
+      eventSplitter.setLayout(e.target.value);
+      addEventLog(`布局切换为: ${e.target.value}`, 'layout');
+    });
+
+    // 尺寸滑块
+    sizeSlider.addEventListener('input', (e) => {
+      const size = e.target.value;
+      sizeValue.textContent = size + '%';
+      leftPane.setSize(size + '%');
+    });
+
+    // 重置按钮
+    resetBtn.addEventListener('click', () => {
+      leftPane.setSize('30%');
+      rightPane.setSize('70%');
+      sizeSlider.value = 30;
+      sizeValue.textContent = '30%';
+      addEventLog('重置面板尺寸', 'reset');
+    });
+
+    // 初始化
+    addEventLog('页面加载完成，开始监听事件...', 'init');
+  </script>
+</body>
+</html> 

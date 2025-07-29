@@ -26,6 +26,8 @@ import './components/ew-text';
 import './components/ew-scrollbar';
 import './components/ew-space';
 import './components/ew-space/ew-space-item';
+import './components/ew-splitter';
+import './components/ew-splitter/ew-splitter-pane';
 
 // 模拟浏览器环境
 beforeAll(() => {

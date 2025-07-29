@@ -332,4 +332,18 @@ export interface SpaceItemProps extends Omit<BaseComponentProps, 'size'> {
   direction?: 'horizontal' | 'vertical';
   size?: number | 'small' | 'default' | 'large' | [number, number];
   tag?: string;
+}
+
+// 分割面板组件属性
+export interface SplitterProps extends BaseComponentProps {
+  layout?: 'horizontal' | 'vertical';
+}
+
+// 分割面板子面板属性
+export interface SplitterPaneProps extends Omit<BaseComponentProps, 'size'> {
+  size?: string | number;
+  min?: string | number;
+  max?: string | number;
+  resizable?: boolean;
+  collapsible?: boolean;
 } 

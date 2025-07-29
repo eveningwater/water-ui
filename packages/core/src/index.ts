@@ -58,13 +58,15 @@ import './components/ew-text';
 import './components/ew-scrollbar';
 import './components/ew-space';
 import './components/ew-space/ew-space-item';
+import './components/ew-splitter';
+import './components/ew-splitter/ew-splitter-pane';
 
 // 确保所有组件都已注册
 import {
   EwButton, EwInput, EwTable, EwModal, EwCheckbox, EwCheckboxGroup,
   EwCheckboxButton, EwRadio, EwRadioButton, EwRadioGroup, EwInputNumber,
   EwContainer, EwHeader, EwAside, EwMain, EwFooter, EwRow, EwCol,
-  EwLink, EwIcon, EwText, EwScrollbar, EwSpace, EwSpaceItem
+  EwLink, EwIcon, EwText, EwScrollbar, EwSpace, EwSpaceItem, EwSplitter, EwSplitterPane
 } from './components';
 
 // 手动注册组件（以防自动注册失败）
@@ -92,7 +94,9 @@ const components = [
   { name: 'ew-text', component: EwText },
   { name: 'ew-scrollbar', component: EwScrollbar },
   { name: 'ew-space', component: EwSpace },
-  { name: 'ew-space-item', component: EwSpaceItem }
+  { name: 'ew-space-item', component: EwSpaceItem },
+  { name: 'ew-splitter', component: EwSplitter },
+  { name: 'ew-splitter-pane', component: EwSplitterPane }
 ];
 
 components.forEach(({ name, component }) => {

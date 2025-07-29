@@ -26,7 +26,9 @@ import {
   EwText,
   EwScrollbar,
   EwSpace,
-  EwSpaceItem
+  EwSpaceItem,
+  EwSplitter,
+  EwSplitterPane
 } from '../index';
 
 describe('组件导出测试', () => {
@@ -109,6 +111,16 @@ describe('组件导出测试', () => {
     it('应该正确导出 EwSpaceItem', () => {
       expect(EwSpaceItem).toBeDefined();
       expect(typeof EwSpaceItem).toBe('function');
+    });
+
+    it('应该正确导出 EwSplitter', () => {
+      expect(EwSplitter).toBeDefined();
+      expect(typeof EwSplitter).toBe('function');
+    });
+
+    it('应该正确导出 EwSplitterPane', () => {
+      expect(EwSplitterPane).toBeDefined();
+      expect(typeof EwSplitterPane).toBe('function');
     });
   });
 
@@ -217,6 +229,14 @@ describe('组件导出测试', () => {
     it('应该正确注册 EwSpaceItem 组件', () => {
       expect(customElements.get('ew-space-item')).toBe(EwSpaceItem);
     });
+
+    it('应该正确注册 EwSplitter 组件', () => {
+      expect(customElements.get('ew-splitter')).toBe(EwSplitter);
+    });
+
+    it('应该正确注册 EwSplitterPane 组件', () => {
+      expect(customElements.get('ew-splitter-pane')).toBe(EwSplitterPane);
+    });
   });
 
   describe('组件继承关系测试', () => {
@@ -270,6 +290,14 @@ describe('组件导出测试', () => {
 
     it('EwSpaceItem 应该继承自 BaseComponent', () => {
       expect(EwSpaceItem.prototype).toBeInstanceOf(HTMLElement);
+    });
+
+    it('EwSplitter 应该继承自 BaseComponent', () => {
+      expect(EwSplitter.prototype).toBeInstanceOf(HTMLElement);
+    });
+
+    it('EwSplitterPane 应该继承自 BaseComponent', () => {
+      expect(EwSplitterPane.prototype).toBeInstanceOf(HTMLElement);
     });
   });
 }); 

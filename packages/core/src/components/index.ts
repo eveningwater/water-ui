@@ -23,4 +23,6 @@ export { EwIcon } from './ew-icon';
 export { EwText } from './ew-text';
 export { EwScrollbar } from './ew-scrollbar';
 export { EwSpace } from './ew-space';
-export { EwSpaceItem } from './ew-space/ew-space-item'; 
+export { EwSpaceItem } from './ew-space/ew-space-item';
+export { EwSplitter } from './ew-splitter';
+export { EwSplitterPane } from './ew-splitter/ew-splitter-pane'; 

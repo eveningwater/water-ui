@@ -21,7 +21,7 @@ importers:
         version: 5.0.0(@types/node@20.0.0)
       vitest:
         specifier: ^1.0.0
-        version: 1.0.0(@types/node@20.0.0)
+        version: 1.0.0(@types/node@20.0.0)(jsdom@22.1.0)
 
   packages/core:
     dependencies:
@@ -45,8 +45,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(@types/node@20.0.0)
       vitest:
-        specifier: ^0.34.6
-        version: 0.34.6(jsdom@22.1.0)
+        specifier: ^1.0.0
+        version: 1.0.0(@types/node@20.0.0)(jsdom@22.1.0)
 
   packages/icons:
     devDependencies:
@@ -1985,7 +1985,7 @@ packages:
       - terser
     dev: true
 
-  /vitest@1.0.0(@types/node@20.0.0):
+  /vitest@1.0.0(@types/node@20.0.0)(jsdom@22.1.0):
     resolution: {integrity: sha512-jpablj5+ifiFHV3QGOxPews3uxBuu6rQUzTaQYtEd6ocBpdQBil6AvmmGRQ3Rn0WPgyzb+Ni+JekfMyng+qYng==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -2021,6 +2021,7 @@ packages:
       chai: 4.5.0
       debug: 4.4.1
       execa: 8.0.1
+      jsdom: 22.1.0
       local-pkg: 0.5.1
       magic-string: 0.30.17
       pathe: 1.1.2

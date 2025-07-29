@@ -1,6 +1,6 @@
 {
   "name": "@water-ui/themes",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Water UI 主题包",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
