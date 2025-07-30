@@ -6,11 +6,12 @@ const path = require('path');
 
 console.log('🚀 开始构建 Water UI 组件库...\n');
 
-// 构建所有包
+// 按依赖顺序构建包
 const packages = [
-  'packages/core',
-  'packages/themes',
-  'packages/utils'
+  'packages/utils',    // 基础工具包，无依赖
+  'packages/themes',   // 主题包，无依赖
+  'packages/icons',    // 图标包，无依赖
+  'packages/core'      // 核心包，依赖上述所有包
 ];
 
 packages.forEach(pkg => {
