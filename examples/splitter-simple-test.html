@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EW Splitter 简单测试</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f8fafc;
+    }
+
+    .test-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .splitter-test {
+      height: 300px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .pane-content {
+      padding: 16px;
+      height: 100%;
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+
+    .pane-header {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1e293b;
+    }
+
+    .pane-text {
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .controls {
+      margin: 20px 0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: #0ea5e9;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background: #0284c7;
+    }
+
+    .status {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px;
+      margin: 20px 0;
+      font-family: monospace;
+      font-size: 12px;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>EW Splitter 组件测试</h1>
+    
+    <div class="controls">
+      <button onclick="toggleLayout()">切换布局</button>
+      <button onclick="toggleDisabled()">切换禁用状态</button>
+      <button onclick="toggleCollapse()">折叠/展开面板</button>
+    </div>
+
+    <div class="status" id="status">
+      状态: 组件已加载
+    </div>
+
+    <div class="splitter-test">
+      <ew-splitter id="test-splitter">
+        <ew-splitter-pane size="30%" collapsible>
+          <div class="pane-content">
+            <div class="pane-header">左侧面板</div>
+            <div class="pane-text">
+              这是左侧面板，可以拖拽调整大小，也可以折叠。
+            </div>
+          </div>
+        </ew-splitter-pane>
+        <ew-splitter-pane size="70%">
+          <div class="pane-content">
+            <div class="pane-header">右侧面板</div>
+            <div class="pane-text">
+              这是右侧面板，占据更多空间。
+            </div>
+          </div>
+        </ew-splitter-pane>
+      </ew-splitter>
+    </div>
+
+    <div class="status" id="event-log">
+      事件日志: 等待事件...
+    </div>
+  </div>
+
+  <script type="module">
+    // 导入组件
+    import '../../packages/core/dist/index.esm.js';
+
+    const splitter = document.getElementById('test-splitter');
+    const status = document.getElementById('status');
+    const eventLog = document.getElementById('event-log');
+
+    let isVertical = false;
+    let isDisabled = false;
+
+    function updateStatus(message) {
+      status.textContent = `状态: ${message}`;
+    }
+
+    function addEventLog(message) {
+      const timestamp = new Date().toLocaleTimeString();
+      eventLog.textContent = `事件日志: [${timestamp}] ${message}`;
+    }
+
+    // 监听事件
+    splitter.addEventListener('resize', (event) => {
+      addEventLog(`面板大小变化: ${event.detail.sizes.map(s => s.toFixed(1) + '%').join(', ')}`);
+    });
+
+    const panes = splitter.querySelectorAll('ew-splitter-pane');
+    panes.forEach((pane, index) => {
+      pane.addEventListener('collapse', (event) => {
+        addEventLog(`面板 ${index + 1} 折叠: ${event.detail.collapsed ? '是' : '否'}`);
+      });
+    });
+
+    // 全局函数
+    window.toggleLayout = function() {
+      isVertical = !isVertical;
+      splitter.setAttribute('layout', isVertical ? 'vertical' : 'horizontal');
+      updateStatus(`布局已切换为: ${isVertical ? '垂直' : '水平'}`);
+      addEventLog(`布局切换为: ${isVertical ? '垂直' : '水平'}`);
+    };
+
+    window.toggleDisabled = function() {
+      isDisabled = !isDisabled;
+      if (isDisabled) {
+        splitter.setAttribute('disabled', '');
+      } else {
+        splitter.removeAttribute('disabled');
+      }
+      updateStatus(`拖拽功能已${isDisabled ? '禁用' : '启用'}`);
+      addEventLog(`拖拽功能${isDisabled ? '禁用' : '启用'}`);
+    };
+
+    window.toggleCollapse = function() {
+      const collapsiblePane = splitter.querySelector('ew-splitter-pane[collapsible]');
+      if (collapsiblePane) {
+        if (collapsiblePane.isCollapsedState()) {
+          collapsiblePane.expandPane();
+        } else {
+          collapsiblePane.collapsePane();
+        }
+      }
+    };
+
+    // 初始化
+    updateStatus('组件已加载完成');
+    addEventLog('页面初始化完成');
+  </script>
+</body>
+</html> 

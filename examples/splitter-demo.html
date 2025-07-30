@@ -3,282 +3,435 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EW Splitter 演示</title>
+  <title>EW Splitter 组件演示</title>
   <style>
     body {
       margin: 0;
       padding: 20px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #f8fafc;
     }
 
     .demo-container {
       max-width: 1200px;
       margin: 0 auto;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
-
-    .demo-header {
-      padding: 20px;
-      border-bottom: 1px solid #e4e7ed;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-    }
-
-    .demo-title {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 600;
-    }
-
-    .demo-description {
-      margin: 10px 0 0 0;
-      opacity: 0.9;
-      font-size: 14px;
     }
 
     .demo-section {
-      padding: 20px;
-      border-bottom: 1px solid #e4e7ed;
+      margin-bottom: 40px;
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     }
 
-    .section-title {
-      margin: 0 0 15px 0;
-      font-size: 18px;
+    .demo-title {
+      font-size: 24px;
       font-weight: 600;
-      color: #303133;
+      color: #1e293b;
+      margin-bottom: 16px;
     }
 
-    .section-description {
-      margin: 0 0 20px 0;
-      color: #606266;
-      font-size: 14px;
-      line-height: 1.5;
+    .demo-description {
+      color: #64748b;
+      margin-bottom: 20px;
+      line-height: 1.6;
     }
 
     .splitter-demo {
       height: 400px;
-      border: 1px solid #e4e7ed;
-      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
       overflow: hidden;
     }
 
-    .splitter-pane {
+    .pane-content {
+      padding: 20px;
+      height: 100%;
+      overflow: auto;
+      background: #f8fafc;
+      border-radius: 6px;
+    }
+
+    .pane-header {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .pane-text {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .control-group {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 16px;
+      gap: 8px;
+    }
+
+    .control-group label {
       font-weight: 500;
-      color: #303133;
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      transition: all 0.3s ease;
+      color: #374151;
     }
 
-    .splitter-pane.left {
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    .control-group select,
+    .control-group button {
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: white;
+      font-size: 14px;
+      cursor: pointer;
     }
 
-    .splitter-pane.center {
-      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    .control-group button {
+      background: #0ea5e9;
+      color: white;
+      border-color: #0ea5e9;
     }
 
-    .splitter-pane.right {
-      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    .control-group button:hover {
+      background: #0284c7;
     }
 
-    .splitter-pane:hover {
-      transform: scale(1.02);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    .event-log {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 16px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 12px;
+      color: #475569;
+    }
+
+    .event-log .event {
+      margin-bottom: 4px;
+      padding: 4px 8px;
+      background: white;
+      border-radius: 4px;
+      border-left: 3px solid #0ea5e9;
+    }
+
+    .event-log .timestamp {
+      color: #94a3b8;
+      font-size: 11px;
     }
 
     .code-example {
-      background: #f8f9fa;
-      border: 1px solid #e9ecef;
-      border-radius: 4px;
-      padding: 15px;
-      margin: 15px 0;
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-      font-size: 13px;
-      line-height: 1.4;
+      font-size: 14px;
+      line-height: 1.5;
       overflow-x: auto;
     }
 
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 15px 0;
+    .code-example .comment {
+      color: #64748b;
     }
 
-    .feature-list li {
-      padding: 8px 0;
-      border-bottom: 1px solid #f0f0f0;
-      display: flex;
-      align-items: center;
+    .code-example .tag {
+      color: #f87171;
     }
 
-    .feature-list li:before {
-      content: "✓";
-      color: #67c23a;
-      font-weight: bold;
-      margin-right: 10px;
+    .code-example .attr {
+      color: #fbbf24;
     }
 
-    .feature-list li:last-child {
-      border-bottom: none;
+    .code-example .value {
+      color: #34d399;
     }
   </style>
 </head>
 <body>
   <div class="demo-container">
-    <div class="demo-header">
-      <h1 class="demo-title">EW Splitter 分割面板组件</h1>
-      <p class="demo-description">基于 Element Plus 设计的分割面板组件，支持拖拽调整大小和折叠功能</p>
-    </div>
+    <h1 style="text-align: center; color: #1e293b; margin-bottom: 40px;">EW Splitter 组件演示</h1>
 
+    <!-- 基础用法 -->
     <div class="demo-section">
-      <h2 class="section-title">基础用法</h2>
-      <p class="section-description">最简单的分割面板，支持拖拽调整大小</p>
+      <h2 class="demo-title">基础用法</h2>
+      <p class="demo-description">默认水平分割，可以通过拖拽调整器来改变面板大小。</p>
+      
       <div class="splitter-demo">
         <ew-splitter>
           <ew-splitter-pane size="30%">
-            <div class="splitter-pane left">左侧面板 (30%)</div>
+            <div class="pane-content">
+              <div class="pane-header">左侧面板</div>
+              <div class="pane-text">
+                这是左侧面板的内容。你可以拖拽中间的分割线来调整面板大小。
+                面板支持最小尺寸限制，防止内容被压缩得太小。
+              </div>
+            </div>
           </ew-splitter-pane>
           <ew-splitter-pane size="70%">
-            <div class="splitter-pane center">右侧面板 (70%)</div>
+            <div class="pane-content">
+              <div class="pane-header">右侧面板</div>
+              <div class="pane-text">
+                这是右侧面板的内容。右侧面板占据更多的空间，适合显示主要内容。
+                分割面板支持响应式设计，在移动设备上会自动切换为垂直布局。
+              </div>
+            </div>
           </ew-splitter-pane>
         </ew-splitter>
       </div>
-      <div class="code-example">
-&lt;ew-splitter&gt;
-  &lt;ew-splitter-pane size="30%"&gt;
-    &lt;div&gt;左侧面板 (30%)&lt;/div&gt;
-  &lt;/ew-splitter-pane&gt;
-  &lt;ew-splitter-pane size="70%"&gt;
-    &lt;div&gt;右侧面板 (70%)&lt;/div&gt;
-  &lt;/ew-splitter-pane&gt;
-&lt;/ew-splitter&gt;
-      </div>
     </div>
 
+    <!-- 垂直分割 -->
     <div class="demo-section">
-      <h2 class="section-title">可折叠面板</h2>
-      <p class="section-description">支持折叠功能的面板，鼠标悬浮到分割线上会显示折叠按钮</p>
-      <div class="splitter-demo">
-        <ew-splitter>
-          <ew-splitter-pane size="25%" collapsible min="10%">
-            <div class="splitter-pane left">面板1 (可折叠)</div>
-          </ew-splitter-pane>
-          <ew-splitter-pane size="25%" collapsible>
-            <div class="splitter-pane center">面板2 (可折叠)</div>
-          </ew-splitter-pane>
-          <ew-splitter-pane size="25%">
-            <div class="splitter-pane right">面板3 (不可折叠)</div>
-          </ew-splitter-pane>
-          <ew-splitter-pane size="25%" collapsible>
-            <div class="splitter-pane left">面板4 (可折叠)</div>
-          </ew-splitter-pane>
-        </ew-splitter>
-      </div>
-      <div class="code-example">
-&lt;ew-splitter&gt;
-  &lt;ew-splitter-pane size="25%" collapsible min="10%"&gt;
-    &lt;div&gt;面板1 (可折叠)&lt;/div&gt;
-  &lt;/ew-splitter-pane&gt;
-  &lt;ew-splitter-pane size="25%" collapsible&gt;
-    &lt;div&gt;面板2 (可折叠)&lt;/div&gt;
-  &lt;/ew-splitter-pane&gt;
-  &lt;ew-splitter-pane size="25%"&gt;
-    &lt;div&gt;面板3 (不可折叠)&lt;/div&gt;
-  &lt;/ew-splitter-pane&gt;
-  &lt;ew-splitter-pane size="25%" collapsible&gt;
-    &lt;div&gt;面板4 (可折叠)&lt;/div&gt;
-  &lt;/ew-splitter-pane&gt;
-&lt;/ew-splitter&gt;
-      </div>
-    </div>
-
-    <div class="demo-section">
-      <h2 class="section-title">垂直布局</h2>
-      <p class="section-description">垂直方向的分割面板</p>
+      <h2 class="demo-title">垂直分割</h2>
+      <p class="demo-description">设置 layout="vertical" 可以创建垂直分割的面板。</p>
+      
       <div class="splitter-demo">
         <ew-splitter layout="vertical">
-          <ew-splitter-pane size="40%" collapsible>
-            <div class="splitter-pane left">上方面板 (40%)</div>
+          <ew-splitter-pane size="40%">
+            <div class="pane-content">
+              <div class="pane-header">顶部面板</div>
+              <div class="pane-text">
+                这是顶部面板，占据40%的高度。垂直分割适合创建上下布局的界面。
+              </div>
+            </div>
           </ew-splitter-pane>
-          <ew-splitter-pane size="60%" collapsible>
-            <div class="splitter-pane center">下方面板 (60%)</div>
+          <ew-splitter-pane size="60%">
+            <div class="pane-content">
+              <div class="pane-header">底部面板</div>
+              <div class="pane-text">
+                这是底部面板，占据60%的高度。垂直分割常用于创建代码编辑器的布局。
+              </div>
+            </div>
           </ew-splitter-pane>
         </ew-splitter>
       </div>
-      <div class="code-example">
-&lt;ew-splitter layout="vertical"&gt;
-  &lt;ew-splitter-pane size="40%" collapsible&gt;
-    &lt;div&gt;上方面板 (40%)&lt;/div&gt;
-  &lt;/ew-splitter-pane&gt;
-  &lt;ew-splitter-pane size="60%" collapsible&gt;
-    &lt;div&gt;下方面板 (60%)&lt;/div&gt;
-  &lt;/ew-splitter-pane&gt;
-&lt;/ew-splitter&gt;
+    </div>
+
+    <!-- 可折叠面板 -->
+    <div class="demo-section">
+      <h2 class="demo-title">可折叠面板</h2>
+      <p class="demo-description">添加 collapsible 属性可以创建可折叠的面板。</p>
+      
+      <div class="splitter-demo">
+        <ew-splitter>
+          <ew-splitter-pane size="25%" collapsible>
+            <div class="pane-content">
+              <div class="pane-header">可折叠面板</div>
+              <div class="pane-text">
+                这个面板可以折叠。点击右上角的按钮来折叠或展开面板。
+                折叠后，面板会隐藏内容并释放空间给其他面板。
+              </div>
+            </div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="75%">
+            <div class="pane-content">
+              <div class="pane-header">主内容区</div>
+              <div class="pane-text">
+                这是主内容区域。当左侧面板折叠时，这个区域会自动扩展。
+                可折叠面板非常适合创建可调节的侧边栏。
+              </div>
+            </div>
+          </ew-splitter-pane>
+        </ew-splitter>
       </div>
     </div>
 
+    <!-- 多面板分割 -->
     <div class="demo-section">
-      <h2 class="section-title">功能特性</h2>
-      <ul class="feature-list">
-        <li>支持水平和垂直布局</li>
-        <li>拖拽调整面板大小</li>
-        <li>面板折叠/展开功能</li>
-        <li>最小/最大尺寸限制</li>
-        <li>可禁用拖拽调整</li>
-        <li>响应式设计</li>
-        <li>暗色主题支持</li>
-        <li>完全兼容 Element Plus API</li>
-      </ul>
+      <h2 class="demo-title">多面板分割</h2>
+      <p class="demo-description">支持多个面板的分割，每个面板都可以独立调整大小。</p>
+      
+      <div class="splitter-demo">
+        <ew-splitter>
+          <ew-splitter-pane size="20%">
+            <div class="pane-content">
+              <div class="pane-header">面板 1</div>
+              <div class="pane-text">第一个面板，占据20%宽度。</div>
+            </div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="30%">
+            <div class="pane-content">
+              <div class="pane-header">面板 2</div>
+              <div class="pane-text">第二个面板，占据30%宽度。</div>
+            </div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="50%">
+            <div class="pane-content">
+              <div class="pane-header">面板 3</div>
+              <div class="pane-text">第三个面板，占据50%宽度。</div>
+            </div>
+          </ew-splitter-pane>
+        </ew-splitter>
+      </div>
     </div>
 
+    <!-- 禁用拖拽 -->
     <div class="demo-section">
-      <h2 class="section-title">API 参考</h2>
+      <h2 class="demo-title">禁用拖拽</h2>
+      <p class="demo-description">设置 disabled 属性可以禁用拖拽功能。</p>
+      
+      <div class="splitter-demo">
+        <ew-splitter disabled>
+          <ew-splitter-pane size="40%">
+            <div class="pane-content">
+              <div class="pane-header">固定面板</div>
+              <div class="pane-text">
+                这个分割面板已禁用拖拽功能，面板大小无法调整。
+                适用于需要固定布局的场景。
+              </div>
+            </div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="60%">
+            <div class="pane-content">
+              <div class="pane-header">固定面板</div>
+              <div class="pane-text">
+                右侧面板也是固定的，无法通过拖拽调整大小。
+              </div>
+            </div>
+          </ew-splitter-pane>
+        </ew-splitter>
+      </div>
+    </div>
+
+    <!-- 事件监听 -->
+    <div class="demo-section">
+      <h2 class="demo-title">事件监听</h2>
+      <p class="demo-description">监听 resize 事件来获取面板大小变化。</p>
+      
+      <div class="controls">
+        <div class="control-group">
+          <button onclick="clearEventLog()">清空日志</button>
+        </div>
+      </div>
+
+      <div class="splitter-demo">
+        <ew-splitter id="event-splitter">
+          <ew-splitter-pane size="50%" collapsible>
+            <div class="pane-content">
+              <div class="pane-header">事件面板</div>
+              <div class="pane-text">
+                拖拽调整器或折叠面板来查看事件日志。
+              </div>
+            </div>
+          </ew-splitter-pane>
+          <ew-splitter-pane size="50%">
+            <div class="pane-content">
+              <div class="pane-header">事件日志</div>
+              <div id="event-log" class="event-log">
+                <div class="event">
+                  <span class="timestamp">[初始化]</span> 分割面板已创建
+                </div>
+              </div>
+            </div>
+          </ew-splitter-pane>
+        </ew-splitter>
+      </div>
+    </div>
+
+    <!-- 代码示例 -->
+    <div class="demo-section">
+      <h2 class="demo-title">代码示例</h2>
+      <p class="demo-description">以下是使用 EW Splitter 组件的代码示例。</p>
+      
       <div class="code-example">
-// ew-splitter 属性
-layout: 'horizontal' | 'vertical'  // 布局方向，默认 horizontal
+<span class="comment">&lt;!-- 基础用法 --&gt;</span>
+<span class="tag">&lt;ew-splitter&gt;</span>
+  <span class="tag">&lt;ew-splitter-pane</span> <span class="attr">size=</span><span class="value">"30%"</span><span class="tag">&gt;</span>
+    左侧面板内容
+  <span class="tag">&lt;/ew-splitter-pane&gt;</span>
+  <span class="tag">&lt;ew-splitter-pane</span> <span class="attr">size=</span><span class="value">"70%"</span><span class="tag">&gt;</span>
+    右侧面板内容
+  <span class="tag">&lt;/ew-splitter-pane&gt;</span>
+<span class="tag">&lt;/ew-splitter&gt;</span>
 
-// ew-splitter-pane 属性
-size: string | number              // 面板尺寸，支持百分比或像素
-min: string | number               // 最小尺寸
-max: string | number               // 最大尺寸
-resizable: boolean                 // 是否可调整大小，默认 true
-collapsible: boolean               // 是否可折叠，默认 false
+<span class="comment">&lt;!-- 垂直分割 --&gt;</span>
+<span class="tag">&lt;ew-splitter</span> <span class="attr">layout=</span><span class="value">"vertical"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;ew-splitter-pane</span> <span class="attr">size=</span><span class="value">"40%"</span><span class="tag">&gt;</span>
+    顶部面板
+  <span class="tag">&lt;/ew-splitter-pane&gt;</span>
+  <span class="tag">&lt;ew-splitter-pane</span> <span class="attr">size=</span><span class="value">"60%"</span><span class="tag">&gt;</span>
+    底部面板
+  <span class="tag">&lt;/ew-splitter-pane&gt;</span>
+<span class="tag">&lt;/ew-splitter&gt;</span>
 
-// 事件
-resize-start: 拖拽开始
-resize: 拖拽中
-resize-end: 拖拽结束
-collapse: 折叠/展开
+<span class="comment">&lt;!-- 可折叠面板 --&gt;</span>
+<span class="tag">&lt;ew-splitter&gt;</span>
+  <span class="tag">&lt;ew-splitter-pane</span> <span class="attr">collapsible</span> <span class="attr">size=</span><span class="value">"25%"</span><span class="tag">&gt;</span>
+    可折叠面板
+  <span class="tag">&lt;/ew-splitter-pane&gt;</span>
+  <span class="tag">&lt;ew-splitter-pane</span> <span class="attr">size=</span><span class="value">"75%"</span><span class="tag">&gt;</span>
+    主内容区
+  <span class="tag">&lt;/ew-splitter-pane&gt;</span>
+<span class="tag">&lt;/ew-splitter&gt;</span>
+
+<span class="comment">&lt;!-- 禁用拖拽 --&gt;</span>
+<span class="tag">&lt;ew-splitter</span> <span class="attr">disabled</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;ew-splitter-pane</span> <span class="attr">size=</span><span class="value">"50%"</span><span class="tag">&gt;</span>
+    固定面板
+  <span class="tag">&lt;/ew-splitter-pane&gt;</span>
+<span class="tag">&lt;/ew-splitter&gt;</span>
+
+<span class="comment">// JavaScript 事件监听</span>
+<span class="tag">const</span> splitter = document.querySelector(<span class="value">'ew-splitter'</span>);
+splitter.addEventListener(<span class="value">'resize'</span>, (event) => {
+  console.log(<span class="value">'面板大小变化:'</span>, event.detail.sizes);
+});
+
+<span class="tag">const</span> pane = document.querySelector(<span class="value">'ew-splitter-pane'</span>);
+pane.addEventListener(<span class="value">'collapse'</span>, (event) => {
+  console.log(<span class="value">'面板折叠:'</span>, event.detail.collapsed);
+});
       </div>
     </div>
   </div>
 
   <script type="module">
-    import '../packages/core/dist/index.esm.js';
-    
-    // 监听事件
-    document.addEventListener('resize-start', (e) => {
-      console.log('拖拽开始:', e.detail);
+    // 导入组件
+    import '../../packages/core/dist/index.esm.js';
+
+    // 事件监听示例
+    const eventSplitter = document.getElementById('event-splitter');
+    const eventLog = document.getElementById('event-log');
+
+    function addEventLog(message) {
+      const timestamp = new Date().toLocaleTimeString();
+      const eventDiv = document.createElement('div');
+      eventDiv.className = 'event';
+      eventDiv.innerHTML = `<span class="timestamp">[${timestamp}]</span> ${message}`;
+      eventLog.appendChild(eventDiv);
+      eventLog.scrollTop = eventLog.scrollHeight;
+    }
+
+    // 监听分割面板的resize事件
+    eventSplitter.addEventListener('resize', (event) => {
+      addEventLog(`面板大小变化: ${event.detail.sizes.map(s => s.toFixed(1) + '%').join(', ')}`);
     });
-    
-    document.addEventListener('resize', (e) => {
-      console.log('拖拽中:', e.detail);
+
+    // 监听面板的折叠/展开事件
+    const panes = eventSplitter.querySelectorAll('ew-splitter-pane');
+    panes.forEach((pane, index) => {
+      pane.addEventListener('collapse', (event) => {
+        addEventLog(`面板 ${index + 1} 折叠: ${event.detail.collapsed ? '是' : '否'}`);
+      });
     });
-    
-    document.addEventListener('resize-end', (e) => {
-      console.log('拖拽结束:', e.detail);
-    });
-    
-    document.addEventListener('collapse', (e) => {
-      console.log('折叠/展开:', e.detail);
+
+    // 清空日志函数
+    window.clearEventLog = function() {
+      eventLog.innerHTML = '<div class="event"><span class="timestamp">[清空]</span> 事件日志已清空</div>';
+    };
+
+    // 页面加载完成后的初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      addEventLog('页面加载完成，分割面板已初始化');
     });
   </script>
 </body>

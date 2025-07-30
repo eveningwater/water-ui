@@ -6,7 +6,7 @@ declare module '@water-ui/icons' {
   export function CloseIcon(props: { size?: string }): string;
   export function PlusIcon(props: { size?: string }): string;
   export function MinusIcon(props: { size?: string }): string;
-  export function ArrowIcon(props: { direction?: 'left' | 'right', size?: string }): string;
+  export function ArrowIcon(props: { direction?: 'up' | 'down' | 'left' | 'right', size?: string }): string;
 }
 
 declare module '@water-ui/utils' {

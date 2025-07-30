@@ -1,18 +1,30 @@
 # EW Splitter 分割面板组件
 
-`ew-splitter` 是一个可拖拽调整大小的分割面板组件，支持水平和垂直布局，可以创建多个可调整大小的面板区域。
+EW Splitter 是一个功能强大的分割面板组件，支持水平/垂直分割、面板折叠、拖拽调整大小等功能。
 
-## 基本用法
+## 功能特性
 
-### 水平分割
+- ✅ 水平/垂直分割布局
+- ✅ 拖拽调整面板大小
+- ✅ 面板折叠/展开功能
+- ✅ 最小/最大尺寸限制
+- ✅ 禁用拖拽功能
+- ✅ 响应式设计
+- ✅ 暗色主题支持
+- ✅ 触摸设备支持
+- ✅ 事件监听
+
+## 基础用法
+
+### 水平分割（默认）
 
 ```html
 <ew-splitter>
   <ew-splitter-pane size="30%">
-    <div>左侧面板</div>
+    左侧面板内容
   </ew-splitter-pane>
   <ew-splitter-pane size="70%">
-    <div>右侧面板</div>
+    右侧面板内容
   </ew-splitter-pane>
 </ew-splitter>
 ```
@@ -22,105 +34,10 @@
 ```html
 <ew-splitter layout="vertical">
   <ew-splitter-pane size="40%">
-    <div>顶部面板</div>
+    顶部面板内容
   </ew-splitter-pane>
   <ew-splitter-pane size="60%">
-    <div>底部面板</div>
-  </ew-splitter-pane>
-</ew-splitter>
-```
-
-## API
-
-### ew-splitter 属性
-
-| 属性 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| layout | 分割方向 | `'horizontal' \| 'vertical'` | `'horizontal'` |
-
-### ew-splitter-pane 属性
-
-| 属性 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| size | 面板尺寸 | `string \| number` | - |
-| min | 最小尺寸 | `string \| number` | - |
-| max | 最大尺寸 | `string \| number` | - |
-| resizable | 是否可调整大小 | `boolean` | `true` |
-| collapsible | 是否可折叠 | `boolean` | `false` |
-
-### ew-splitter 事件
-
-| 事件名 | 说明 | 回调参数 |
-|--------|------|----------|
-| resize-start | 开始调整大小时触发 | `{ index: number }` |
-| resize | 调整大小时触发 | `{ index: number, sizes: number[] }` |
-| resize-end | 结束调整大小时触发 | `{ index: number }` |
-
-### ew-splitter-pane 事件
-
-| 事件名 | 说明 | 回调参数 |
-|--------|------|----------|
-| update:size | 尺寸更新时触发 | `{ size: number }` |
-
-### ew-splitter 方法
-
-| 方法名 | 说明 | 参数 |
-|--------|------|------|
-| setLayout | 设置布局方向 | `layout: 'horizontal' \| 'vertical'` |
-| getLayout | 获取布局方向 | - |
-
-### ew-splitter-pane 方法
-
-| 方法名 | 说明 | 参数 |
-|--------|------|------|
-| setSize | 设置面板尺寸 | `size: string \| number` |
-| getSize | 获取面板尺寸 | - |
-| setMin | 设置最小尺寸 | `min: string \| number` |
-| getMin | 获取最小尺寸 | - |
-| setMax | 设置最大尺寸 | `max: string \| number` |
-| getMax | 获取最大尺寸 | - |
-| setResizable | 设置是否可调整大小 | `resizable: boolean` |
-| isResizable | 获取是否可调整大小 | - |
-| setCollapsible | 设置是否可折叠 | `collapsible: boolean` |
-| isCollapsible | 获取是否可折叠 | - |
-
-## 插槽
-
-### ew-splitter-pane 插槽
-
-| 插槽名 | 说明 |
-|--------|------|
-| default | 面板内容 |
-| start-collapsible | 开始折叠按钮（仅在 collapsible 为 true 时可用） |
-| end-collapsible | 结束折叠按钮（仅在 collapsible 为 true 时可用） |
-
-## 使用示例
-
-### 基础用法
-
-```html
-<ew-splitter>
-  <ew-splitter-pane size="25%">
-    <div>导航面板</div>
-  </ew-splitter-pane>
-  <ew-splitter-pane size="50%">
-    <div>主内容区域</div>
-  </ew-splitter-pane>
-  <ew-splitter-pane size="25%">
-    <div>侧边栏</div>
-  </ew-splitter-pane>
-</ew-splitter>
-```
-
-### 尺寸限制
-
-```html
-<ew-splitter>
-  <ew-splitter-pane size="30%" min="20%" max="50%">
-    <div>左侧面板（最小20%，最大50%）</div>
-  </ew-splitter-pane>
-  <ew-splitter-pane size="70%" min="30%" max="80%">
-    <div>右侧面板（最小30%，最大80%）</div>
+    底部面板内容
   </ew-splitter-pane>
 </ew-splitter>
 ```
@@ -129,85 +46,185 @@
 
 ```html
 <ew-splitter>
-  <ew-splitter-pane size="30%" collapsible>
-    <div>可折叠面板</div>
-    <button slot="start-collapsible">◀</button>
-    <button slot="end-collapsible">▶</button>
+  <ew-splitter-pane size="25%" collapsible>
+    可折叠面板内容
   </ew-splitter-pane>
-  <ew-splitter-pane size="70%">
-    <div>主内容区域</div>
+  <ew-splitter-pane size="75%">
+    主内容区域
   </ew-splitter-pane>
 </ew-splitter>
 ```
 
-### 事件监听
+### 禁用拖拽
+
+```html
+<ew-splitter disabled>
+  <ew-splitter-pane size="50%">
+    固定面板内容
+  </ew-splitter-pane>
+</ew-splitter>
+```
+
+## API 参考
+
+### EwSplitter 属性
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `layout` | `'horizontal' \| 'vertical'` | `'horizontal'` | 分割方向 |
+| `disabled` | `boolean` | `false` | 是否禁用拖拽 |
+| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | 调整器尺寸 |
+
+### EwSplitterPane 属性
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `size` | `string \| number` | - | 面板大小（百分比或像素） |
+| `min` | `string \| number` | `'50'` | 最小尺寸 |
+| `max` | `string \| number` | - | 最大尺寸 |
+| `resizable` | `boolean` | `true` | 是否可调整大小 |
+| `collapsible` | `boolean` | `false` | 是否可折叠 |
+
+### 事件
+
+#### EwSplitter 事件
+
+| 事件名 | 说明 | 回调参数 |
+|--------|------|----------|
+| `resize` | 面板大小变化时触发 | `{ sizes: number[] }` |
+
+#### EwSplitterPane 事件
+
+| 事件名 | 说明 | 回调参数 |
+|--------|------|----------|
+| `collapse` | 面板折叠时触发 | `{ collapsed: boolean }` |
+| `expand` | 面板展开时触发 | `{ collapsed: boolean }` |
+
+### 方法
+
+#### EwSplitterPane 方法
+
+| 方法名 | 说明 | 参数 |
+|--------|------|------|
+| `collapsePane()` | 折叠面板 | - |
+| `expandPane()` | 展开面板 | - |
+| `isCollapsedState()` | 获取折叠状态 | - |
+| `setSize(size: string)` | 设置面板大小 | `size: string` |
+| `getSize()` | 获取面板大小 | - |
+
+## 使用示例
+
+### 基础示例
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EW Splitter 示例</title>
+</head>
+<body>
+  <ew-splitter>
+    <ew-splitter-pane size="30%">
+      <div style="padding: 20px;">
+        <h3>左侧面板</h3>
+        <p>这是左侧面板的内容</p>
+      </div>
+    </ew-splitter-pane>
+    <ew-splitter-pane size="70%">
+      <div style="padding: 20px;">
+        <h3>右侧面板</h3>
+        <p>这是右侧面板的内容</p>
+      </div>
+    </ew-splitter-pane>
+  </ew-splitter>
+
+  <script type="module">
+    import '@water-ui/core/components/ew-splitter';
+    import '@water-ui/core/components/ew-splitter-pane';
+  </script>
+</body>
+</html>
+```
+
+### 事件监听示例
 
 ```javascript
 const splitter = document.querySelector('ew-splitter');
 const pane = document.querySelector('ew-splitter-pane');
 
-// 监听分割面板事件
-splitter.addEventListener('resize-start', (e) => {
-  console.log('开始调整大小:', e.detail.index);
+// 监听面板大小变化
+splitter.addEventListener('resize', (event) => {
+  console.log('面板大小变化:', event.detail.sizes);
 });
 
-splitter.addEventListener('resize', (e) => {
-  console.log('调整大小:', e.detail.index, e.detail.sizes);
+// 监听面板折叠/展开
+pane.addEventListener('collapse', (event) => {
+  console.log('面板折叠:', event.detail.collapsed);
 });
 
-splitter.addEventListener('resize-end', (e) => {
-  console.log('结束调整大小:', e.detail.index);
-});
-
-// 监听面板尺寸变化
-pane.addEventListener('update:size', (e) => {
-  console.log('面板尺寸更新:', e.detail.size);
+pane.addEventListener('expand', (event) => {
+  console.log('面板展开:', event.detail.collapsed);
 });
 ```
 
-### 编程式控制
+### 编程控制示例
 
 ```javascript
-const splitter = document.querySelector('ew-splitter');
-const pane = document.querySelector('ew-splitter-pane');
+const pane = document.querySelector('ew-splitter-pane[collapsible]');
 
-// 设置布局
-splitter.setLayout('vertical');
+// 折叠面板
+pane.collapsePane();
 
-// 设置面板尺寸
+// 展开面板
+pane.expandPane();
+
+// 检查折叠状态
+if (pane.isCollapsedState()) {
+  console.log('面板已折叠');
+}
+
+// 设置面板大小
 pane.setSize('40%');
 
-// 设置尺寸限制
-pane.setMin('20%');
-pane.setMax('60%');
-
-// 设置是否可调整大小
-pane.setResizable(false);
-
-// 设置是否可折叠
-pane.setCollapsible(true);
+// 获取面板大小
+const size = pane.getSize();
+console.log('当前大小:', size);
 ```
 
-## 注意事项
+## 样式定制
 
-1. **尺寸单位**: 支持百分比（%）和像素（px）单位，建议使用百分比以获得更好的响应式效果。
+组件使用 CSS 自定义属性，可以通过以下变量进行样式定制：
 
-2. **最小面板数量**: 至少需要两个 `ew-splitter-pane` 子元素才能正常工作。
+```css
+:root {
+  /* 基础颜色 */
+  --ew-color-primary: #0ea5e9;
+  --ew-color-primary-light: #38bdf8;
+  --ew-color-primary-dark: #0284c7;
+  
+  /* 背景颜色 */
+  --ew-bg-color: #ffffff;
+  --ew-bg-color-dark: #1e293b;
+  
+  /* 边框颜色 */
+  --ew-border-color: #e2e8f0;
+  --ew-border-color-dark: #475569;
+  
+  /* 圆角 */
+  --ew-border-radius: 8px;
+  
+  /* 过渡动画 */
+  --ew-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+```
 
-3. **尺寸限制**: 设置 `min` 和 `max` 属性可以防止面板被调整得过小或过大。
+## 响应式设计
 
-4. **可折叠功能**: 当 `collapsible` 为 `true` 时，可以通过 `start-collapsible` 和 `end-collapsible` 插槽自定义折叠按钮。
+组件支持响应式设计，在移动设备上会自动调整布局：
 
-5. **事件处理**: 在拖拽过程中会触发多个事件，建议在 `resize` 事件中进行实时更新，在 `resize-end` 事件中进行最终处理。
-
-6. **样式定制**: 可以通过 CSS 变量自定义分割条的样式：
-   ```css
-   :root {
-     --ew-splitter-divider-bg-color: #e4e7ed;
-     --ew-splitter-divider-hover-bg-color: #c0c4cc;
-     --ew-splitter-divider-active-bg-color: #909399;
-   }
-   ```
+- 屏幕宽度小于 768px 时，水平分割会自动切换为垂直分割
+- 调整器尺寸会根据屏幕大小自动调整
+- 触摸设备支持触摸拖拽操作
 
 ## 浏览器兼容性
 
@@ -216,4 +233,10 @@ pane.setCollapsible(true);
 - Safari 11.1+
 - Edge 79+
 
-支持现代浏览器的 Web Components 标准。 
+## 注意事项
+
+1. 组件需要至少两个 `ew-splitter-pane` 子元素才能正常工作
+2. 面板大小支持百分比和像素值，建议使用百分比以获得更好的响应式效果
+3. 折叠功能需要设置 `collapsible` 属性
+4. 最小尺寸限制可以防止面板被压缩得太小
+5. 组件会自动处理触摸事件，无需额外配置 

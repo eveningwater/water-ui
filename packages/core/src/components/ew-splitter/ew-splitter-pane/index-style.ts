@@ -1,116 +1,157 @@
-export function createSplitterPaneStyles(): string {
-  return `
-    .ew-splitter-pane {
-      position: relative;
-      overflow: hidden;
-      box-sizing: border-box;
+export const splitterPaneStyles = `
+  .ew-splitter-pane {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--ew-bg-color, #ffffff);
+    border-radius: var(--ew-border-radius, 8px);
+    transition: all var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .ew-splitter-pane--collapsible {
+    position: relative;
+  }
+
+  .ew-splitter-pane--collapsed {
+    flex: 0 0 0% !important;
+    overflow: hidden;
+  }
+
+  .ew-splitter-pane--collapsed .ew-splitter-pane__collapse-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+  }
+
+  /* 折叠按钮样式 */
+  .ew-splitter-pane__collapse-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--ew-color-primary, #0ea5e9);
+    color: var(--ew-color-white, #ffffff);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    transition: all var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .ew-splitter-pane__collapse-btn:hover {
+    background: var(--ew-color-primary-light, #38bdf8);
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.2);
+  }
+
+  .ew-splitter-pane__collapse-btn:active {
+    transform: scale(0.95);
+  }
+
+  .ew-splitter-pane__collapse-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.3);
+  }
+
+  /* 折叠图标样式 */
+  .ew-splitter-pane__collapse-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 10px;
+    font-weight: bold;
+    transition: transform var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
+  }
+
+  .ew-splitter-pane--collapsed .ew-splitter-pane__collapse-icon {
+    transform: rotate(180deg);
+  }
+
+  /* 面板内容样式 */
+  .ew-splitter-pane > slot {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  /* 折叠状态下的内容隐藏 */
+  .ew-splitter-pane--collapsed > slot {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* 暗色主题 */
+  [data-theme="dark"] .ew-splitter-pane,
+  .dark .ew-splitter-pane {
+    background: var(--ew-bg-color-dark, #1e293b);
+  }
+
+  [data-theme="dark"] .ew-splitter-pane__collapse-btn,
+  .dark .ew-splitter-pane__collapse-btn {
+    background: var(--ew-color-primary, #38bdf8);
+    color: var(--ew-color-white, #0f172a);
+  }
+
+  [data-theme="dark"] .ew-splitter-pane__collapse-btn:hover,
+  .dark .ew-splitter-pane__collapse-btn:hover {
+    background: var(--ew-color-primary-light, #7dd3fc);
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .ew-splitter-pane__collapse-btn {
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
     }
 
-    .ew-splitter-bar {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 6px;
-      background-color: var(--ew-splitter-divider-bg-color, #e4e7ed);
-      transition: background-color var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .ew-splitter-pane__collapse-icon {
+      font-size: 12px;
     }
+  }
 
-    .ew-splitter-bar:hover {
-      background-color: var(--ew-splitter-divider-hover-bg-color, #c0c4cc);
-    }
-
-    .ew-splitter-dragger {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      cursor: col-resize;
-      touch-action: none;
-    }
-
-    .ew-splitter-dragger--disable {
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-
-    .ew-splitter-collapse-icon {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 20;
-      background-color: var(--ew-splitter-collapse-button-bg-color, #ffffff);
-      border: 1px solid var(--ew-splitter-collapse-button-border-color, #e4e7ed);
-      border-radius: 4px;
-      padding: 4px;
-      cursor: pointer;
-      transition: all var(--ew-transition, 200ms cubic-bezier(0.4, 0, 0.2, 1));
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .ew-splitter-bar:hover .ew-splitter-collapse-icon {
+  /* 动画效果 */
+  @keyframes ew-splitter-pane-collapse {
+    0% {
       opacity: 1;
-      visibility: visible;
+      transform: scale(1);
     }
-
-    .ew-splitter-horizontal-collapse-icon-start {
-      left: -30px;
+    100% {
+      opacity: 0;
+      transform: scale(0.95);
     }
+  }
 
-    .ew-splitter-horizontal-collapse-icon-end {
-      right: -30px;
+  @keyframes ew-splitter-pane-expand {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
     }
-
-    .ew-splitter-vertical-collapse-icon-start {
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
+    100% {
+      opacity: 1;
+      transform: scale(1);
     }
+  }
 
-    .ew-splitter-vertical-collapse-icon-end {
-      bottom: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+  .ew-splitter-pane--collapsed {
+    animation: ew-splitter-pane-collapse 0.2s ease-in-out;
+  }
 
-    .ew-splitter-collapse-icon:hover {
-      background-color: var(--ew-splitter-collapse-button-hover-bg-color, #f5f7fa);
-      border-color: var(--ew-splitter-collapse-button-hover-border-color, #c0c4cc);
-    }
-
-    .ew-splitter-collapse-icon:active {
-      background-color: var(--ew-splitter-collapse-button-active-bg-color, #e4e7ed);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .ew-splitter-bar {
-        background-color: var(--ew-splitter-divider-bg-color-dark, #4b5563);
-      }
-
-      .ew-splitter-bar:hover {
-        background-color: var(--ew-splitter-divider-hover-bg-color-dark, #6b7280);
-      }
-
-      .ew-splitter-collapse-icon {
-        background-color: var(--ew-splitter-collapse-button-bg-color-dark, #1f2937);
-        border-color: var(--ew-splitter-collapse-button-border-color-dark, #374151);
-      }
-
-      .ew-splitter-collapse-icon:hover {
-        background-color: var(--ew-splitter-collapse-button-hover-bg-color-dark, #374151);
-        border-color: var(--ew-splitter-collapse-button-hover-border-color-dark, #4b5563);
-      }
-
-      .ew-splitter-collapse-icon:active {
-        background-color: var(--ew-splitter-collapse-button-active-bg-color-dark, #4b5563);
-      }
-    }
-  `;
-} 
+  .ew-splitter-pane:not(.ew-splitter-pane--collapsed) {
+    animation: ew-splitter-pane-expand 0.2s ease-in-out;
+  }
+`; 
