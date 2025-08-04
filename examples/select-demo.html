@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EW Select 组件演示</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2d3748;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .demo-section {
+      margin-bottom: 40px;
+      padding: 30px;
+      background: #f7fafc;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .demo-section h2 {
+      color: #4a5568;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .demo-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .demo-item {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .demo-item label {
+      display: block;
+      margin-bottom: 8px;
+      color: #4a5568;
+      font-weight: 500;
+    }
+
+    .demo-item ew-select {
+      width: 100%;
+    }
+
+    .code-block {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+
+    .status {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .status.success {
+      background: #c6f6d5;
+      color: #22543d;
+      border: 1px solid #9ae6b4;
+    }
+
+    .status.info {
+      background: #bee3f8;
+      color: #2a4365;
+      border: 1px solid #90cdf4;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>EW Select 组件演示</h1>
+
+    <!-- 基础用法 -->
+    <div class="demo-section">
+      <h2>基础用法</h2>
+      <div class="demo-row">
+        <div class="demo-item">
+          <label>基础选择器</label>
+          <ew-select id="basic-select" placeholder="请选择一个选项">
+            <ew-select-option value="option1" label="选项1"></ew-select-option>
+            <ew-select-option value="option2" label="选项2"></ew-select-option>
+            <ew-select-option value="option3" label="选项3"></ew-select-option>
+          </ew-select>
+          <div class="status info">选中值: <span id="basic-value">未选择</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 多选模式 -->
+    <div class="demo-section">
+      <h2>多选模式</h2>
+      <div class="demo-row">
+        <div class="demo-item">
+          <label>多选选择器</label>
+          <ew-select id="multiple-select" multiple placeholder="请选择多个选项">
+            <ew-select-option value="apple" label="苹果"></ew-select-option>
+            <ew-select-option value="banana" label="香蕉"></ew-select-option>
+            <ew-select-option value="orange" label="橙子"></ew-select-option>
+            <ew-select-option value="grape" label="葡萄"></ew-select-option>
+          </ew-select>
+          <div class="status info">选中值: <span id="multiple-value">未选择</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 可过滤 -->
+    <div class="demo-section">
+      <h2>可过滤</h2>
+      <div class="demo-row">
+        <div class="demo-item">
+          <label>可过滤选择器</label>
+          <ew-select id="filterable-select" filterable placeholder="输入关键词搜索">
+            <ew-select-option value="beijing" label="北京"></ew-select-option>
+            <ew-select-option value="shanghai" label="上海"></ew-select-option>
+            <ew-select-option value="guangzhou" label="广州"></ew-select-option>
+            <ew-select-option value="shenzhen" label="深圳"></ew-select-option>
+            <ew-select-option value="hangzhou" label="杭州"></ew-select-option>
+            <ew-select-option value="nanjing" label="南京"></ew-select-option>
+          </ew-select>
+          <div class="status info">选中值: <span id="filterable-value">未选择</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 可清除 -->
+    <div class="demo-section">
+      <h2>可清除</h2>
+      <div class="demo-row">
+        <div class="demo-item">
+          <label>可清除选择器</label>
+          <ew-select id="clearable-select" clearable placeholder="选择后可清除">
+            <ew-select-option value="red" label="红色"></ew-select-option>
+            <ew-select-option value="green" label="绿色"></ew-select-option>
+            <ew-select-option value="blue" label="蓝色"></ew-select-option>
+          </ew-select>
+          <div class="status info">选中值: <span id="clearable-value">未选择</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 不同尺寸 -->
+    <div class="demo-section">
+      <h2>不同尺寸</h2>
+      <div class="demo-row">
+        <div class="demo-item">
+          <label>小尺寸</label>
+          <ew-select size="small" placeholder="小尺寸">
+            <ew-select-option value="small1" label="小选项1"></ew-select-option>
+            <ew-select-option value="small2" label="小选项2"></ew-select-option>
+          </ew-select>
+        </div>
+        <div class="demo-item">
+          <label>默认尺寸</label>
+          <ew-select placeholder="默认尺寸">
+            <ew-select-option value="default1" label="默认选项1"></ew-select-option>
+            <ew-select-option value="default2" label="默认选项2"></ew-select-option>
+          </ew-select>
+        </div>
+        <div class="demo-item">
+          <label>大尺寸</label>
+          <ew-select size="large" placeholder="大尺寸">
+            <ew-select-option value="large1" label="大选项1"></ew-select-option>
+            <ew-select-option value="large2" label="大选项2"></ew-select-option>
+          </ew-select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 禁用状态 -->
+    <div class="demo-section">
+      <h2>禁用状态</h2>
+      <div class="demo-row">
+        <div class="demo-item">
+          <label>禁用选择器</label>
+          <ew-select disabled placeholder="禁用状态">
+            <ew-select-option value="disabled1" label="禁用选项1"></ew-select-option>
+            <ew-select-option value="disabled2" label="禁用选项2"></ew-select-option>
+          </ew-select>
+        </div>
+        <div class="demo-item">
+          <label>禁用选项</label>
+          <ew-select placeholder="包含禁用选项">
+            <ew-select-option value="enabled" label="可用选项"></ew-select-option>
+            <ew-select-option value="disabled" label="禁用选项" disabled></ew-select-option>
+          </ew-select>
+        </div>
+      </div>
+    </div>
+
+         <!-- 选项分组 -->
+     <div class="demo-section">
+       <h2>选项分组</h2>
+       <div class="demo-row">
+         <div class="demo-item">
+           <label>分组选择器</label>
+           <ew-select id="group-select" placeholder="选择分组选项">
+             <ew-select-option-group label="热门城市">
+               <ew-select-option value="beijing" label="北京"></ew-select-option>
+               <ew-select-option value="shanghai" label="上海"></ew-select-option>
+               <ew-select-option value="guangzhou" label="广州"></ew-select-option>
+             </ew-select-option-group>
+             <ew-select-option-group label="其他城市">
+               <ew-select-option value="shenzhen" label="深圳"></ew-select-option>
+               <ew-select-option value="hangzhou" label="杭州"></ew-select-option>
+               <ew-select-option value="nanjing" label="南京"></ew-select-option>
+             </ew-select-option-group>
+           </ew-select>
+           <div class="status info">选中值: <span id="group-value">未选择</span></div>
+         </div>
+       </div>
+     </div>
+
+     <!-- 自定义选项 -->
+     <div class="demo-section">
+       <h2>自定义选项</h2>
+       <div class="demo-row">
+         <div class="demo-item">
+           <label>带图标的选项</label>
+           <ew-select id="custom-select" placeholder="选择带图标的选项">
+             <ew-select-option value="github" label="GitHub">
+               <span style="display: flex; align-items: center; gap: 8px;">
+                 <span style="color: #333;">🐙</span>
+                 <span>GitHub</span>
+               </span>
+             </ew-select-option>
+             <ew-select-option value="gitlab" label="GitLab">
+               <span style="display: flex; align-items: center; gap: 8px;">
+                 <span style="color: #fc6d26;">🦊</span>
+                 <span>GitLab</span>
+               </span>
+             </ew-select-option>
+             <ew-select-option value="bitbucket" label="Bitbucket">
+               <span style="display: flex; align-items: center; gap: 8px;">
+                 <span style="color: #0052cc;">🐟</span>
+                 <span>Bitbucket</span>
+               </span>
+             </ew-select-option>
+           </ew-select>
+           <div class="status info">选中值: <span id="custom-value">未选择</span></div>
+         </div>
+       </div>
+     </div>
+
+     <!-- 远程搜索 -->
+     <div class="demo-section">
+       <h2>远程搜索</h2>
+       <div class="demo-row">
+         <div class="demo-item">
+           <label>远程搜索选择器</label>
+           <ew-select id="remote-select" remote filterable placeholder="输入关键词搜索">
+             <ew-select-option value="loading" label="请输入关键词搜索..."></ew-select-option>
+           </ew-select>
+           <div class="status info">选中值: <span id="remote-value">未选择</span></div>
+         </div>
+       </div>
+     </div>
+
+     <!-- 可创建选项 -->
+     <div class="demo-section">
+       <h2>可创建选项</h2>
+       <div class="demo-row">
+         <div class="demo-item">
+           <label>可创建选项选择器</label>
+           <ew-select id="create-select" allow-create filterable placeholder="输入关键词或创建新选项">
+             <ew-select-option value="option1" label="选项1"></ew-select-option>
+             <ew-select-option value="option2" label="选项2"></ew-select-option>
+           </ew-select>
+           <div class="status info">选中值: <span id="create-value">未选择</span></div>
+         </div>
+       </div>
+     </div>
+
+    <!-- 多选限制 -->
+    <div class="demo-section">
+      <h2>多选限制</h2>
+      <div class="demo-row">
+        <div class="demo-item">
+          <label>最多选择2项</label>
+          <ew-select id="limit-select" multiple multiple-limit="2" placeholder="最多选择2项">
+            <ew-select-option value="item1" label="项目1"></ew-select-option>
+            <ew-select-option value="item2" label="项目2"></ew-select-option>
+            <ew-select-option value="item3" label="项目3"></ew-select-option>
+            <ew-select-option value="item4" label="项目4"></ew-select-option>
+          </ew-select>
+          <div class="status info">选中值: <span id="limit-value">未选择</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 代码示例 -->
+    <div class="demo-section">
+      <h2>代码示例</h2>
+      <div class="code-block">
+&lt;!-- 基础用法 --&gt;
+&lt;ew-select placeholder="请选择一个选项"&gt;
+  &lt;ew-select-option value="option1" label="选项1"&gt;&lt;/ew-select-option&gt;
+  &lt;ew-select-option value="option2" label="选项2"&gt;&lt;/ew-select-option&gt;
+&lt;/ew-select&gt;
+
+&lt;!-- 多选模式 --&gt;
+&lt;ew-select multiple placeholder="请选择多个选项"&gt;
+  &lt;ew-select-option value="apple" label="苹果"&gt;&lt;/ew-select-option&gt;
+  &lt;ew-select-option value="banana" label="香蕉"&gt;&lt;/ew-select-option&gt;
+&lt;/ew-select&gt;
+
+&lt;!-- 可过滤 --&gt;
+&lt;ew-select filterable placeholder="输入关键词搜索"&gt;
+  &lt;ew-select-option value="beijing" label="北京"&gt;&lt;/ew-select-option&gt;
+  &lt;ew-select-option value="shanghai" label="上海"&gt;&lt;/ew-select-option&gt;
+&lt;/ew-select&gt;
+
+&lt;!-- 可清除 --&gt;
+&lt;ew-select clearable placeholder="选择后可清除"&gt;
+  &lt;ew-select-option value="red" label="红色"&gt;&lt;/ew-select-option&gt;
+  &lt;ew-select-option value="green" label="绿色"&gt;&lt;/ew-select-option&gt;
+&lt;/ew-select&gt;
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { EwSelect, EwSelectOption, EwSelectOptionGroup } from '../packages/core/dist/index.esm.js';
+
+    // 等待组件加载完成
+    await customElements.whenDefined('ew-select');
+
+    // 监听选择器变化
+    function setupSelectListener(selectId, valueId) {
+      const select = document.getElementById(selectId);
+      const valueSpan = document.getElementById(valueId);
+      
+      if (select && valueSpan) {
+        select.addEventListener('change', (event) => {
+          const value = event.detail;
+          if (Array.isArray(value)) {
+            valueSpan.textContent = value.length > 0 ? value.join(', ') : '未选择';
+          } else {
+            valueSpan.textContent = value || '未选择';
+          }
+        });
+      }
+    }
+
+         // 设置所有选择器的监听器
+     setupSelectListener('basic-select', 'basic-value');
+     setupSelectListener('multiple-select', 'multiple-value');
+     setupSelectListener('filterable-select', 'filterable-value');
+     setupSelectListener('clearable-select', 'clearable-value');
+     setupSelectListener('group-select', 'group-value');
+     setupSelectListener('limit-select', 'limit-value');
+     setupSelectListener('custom-select', 'custom-value');
+     setupSelectListener('create-select', 'create-value');
+     setupSelectListener('remote-select', 'remote-value');
+
+         // 添加一些交互演示
+     document.addEventListener('DOMContentLoaded', () => {
+       console.log('EW Select 组件演示页面已加载');
+       
+       // 演示动态添加选项
+       setTimeout(() => {
+         const basicSelect = document.getElementById('basic-select');
+         if (basicSelect) {
+           const newOption = document.createElement('ew-select-option');
+           newOption.setAttribute('value', 'option4');
+           newOption.setAttribute('label', '动态添加的选项');
+           basicSelect.appendChild(newOption);
+         }
+       }, 2000);
+
+       // 演示远程搜索
+       const remoteSelect = document.getElementById('remote-select');
+       if (remoteSelect) {
+         // 模拟远程搜索数据
+         const mockData = [
+           { value: 'react', label: 'React' },
+           { value: 'vue', label: 'Vue.js' },
+           { value: 'angular', label: 'Angular' },
+           { value: 'svelte', label: 'Svelte' },
+           { value: 'solid', label: 'Solid.js' }
+         ];
+
+         remoteSelect.addEventListener('input', (event) => {
+           const query = event.detail;
+           if (query && query.length > 0) {
+             // 模拟网络延迟
+             setTimeout(() => {
+               const filteredData = mockData.filter(item => 
+                 item.label.toLowerCase().includes(query.toLowerCase())
+               );
+               remoteSelect.setRemoteOptions(filteredData);
+             }, 500);
+           } else {
+             remoteSelect.setRemoteOptions([]);
+           }
+         });
+       }
+     });
+  </script>
+</body>
+</html> 

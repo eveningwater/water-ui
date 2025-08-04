@@ -25,4 +25,7 @@ export { EwScrollbar } from './ew-scrollbar';
 export { EwSpace } from './ew-space';
 export { EwSpaceItem } from './ew-space/ew-space-item';
 export { EwSplitter } from './ew-splitter';
-export { EwSplitterPane } from './ew-splitter/ew-splitter-pane'; 
+export { EwSplitterPane } from './ew-splitter/ew-splitter-pane';
+export { EwSelect } from './ew-select';
+export { EwSelectOption } from './ew-select/ew-select-option';
+export { EwSelectOptionGroup } from './ew-select/ew-select-option-group'; 

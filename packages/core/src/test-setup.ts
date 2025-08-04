@@ -28,6 +28,9 @@ import './components/ew-space';
 import './components/ew-space/ew-space-item';
 import './components/ew-splitter';
 import './components/ew-splitter/ew-splitter-pane';
+import './components/ew-select';
+import './components/ew-select/ew-select-option';
+import './components/ew-select/ew-select-option-group';
 
 // 模拟浏览器环境
 beforeAll(() => {

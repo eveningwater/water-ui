@@ -346,4 +346,58 @@ export interface SplitterPaneProps extends Omit<BaseComponentProps, 'size'> {
   max?: string | number;
   resizable?: boolean;
   collapsible?: boolean;
+}
+
+// Select 组件属性
+export interface SelectProps extends BaseComponentProps {
+  modelValue?: string | number | (string | number)[];
+  multiple?: boolean;
+  disabled?: boolean;
+  clearable?: boolean;
+  collapseTags?: boolean;
+  collapseTagsTooltip?: boolean;
+  multipleLimit?: number;
+  name?: string;
+  id?: string;
+  autocomplete?: string;
+  autoComplete?: string;
+  automaticDropdown?: boolean;
+  size?: 'small' | 'medium' | 'large';
+  effect?: 'light' | 'dark';
+  placeholder?: string;
+  filterable?: boolean;
+  allowCreate?: boolean;
+  filterMethod?: (query: string) => boolean;
+  remote?: boolean;
+  remoteMethod?: (query: string) => void;
+  loading?: boolean;
+  loadingText?: string;
+  noMatchText?: string;
+  noDataText?: string;
+  popperClass?: string;
+  reserveKeyword?: boolean;
+  defaultFirstOption?: boolean;
+  teleported?: boolean;
+  persistentPlaceholder?: boolean;
+  clearIcon?: string;
+  suffixIcon?: string;
+  tagType?: 'success' | 'info' | 'warning' | 'danger';
+  validateEvent?: boolean;
+  placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end';
+  maxCollapseTags?: number;
+  maxCollapseTagsTooltip?: boolean;
+}
+
+// Select Option 组件属性
+export interface SelectOptionProps extends BaseComponentProps {
+  value?: string | number;
+  label?: string;
+  disabled?: boolean;
+  created?: boolean;
+}
+
+// Select Option Group 组件属性
+export interface SelectOptionGroupProps extends BaseComponentProps {
+  label?: string;
+  disabled?: boolean;
 } 
