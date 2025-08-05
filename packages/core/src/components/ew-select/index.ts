@@ -2,6 +2,7 @@ import { BaseComponent } from '../../utils/base-component';
 import { ArrowIcon, ClearIcon, LoadingIcon } from '@water-ui/icons';
 import { SelectProps } from '../../types';
 import { selectStyles } from './index-style';
+import '../ew-checkbox';
 
 interface SelectOption {
   value: string | number;
@@ -446,18 +447,19 @@ export class EwSelect extends BaseComponent {
 
     // 多选模式使用 checkbox
     if (this.selectProps.multiple) {
-      const checkbox = this.createElement('ew-checkbox', {
-        value: option.value.toString(),
-        checked: this.selectedValues.includes(option.value) ? 'true' : 'false',
-        disabled: option.disabled ? 'true' : 'false'
-      });
+      const checkbox = document.createElement('ew-checkbox') as any;
+      checkbox.setAttribute('value', option.value.toString());
+      checkbox.setAttribute('checked', this.selectedValues.includes(option.value) ? 'true' : 'false');
+      if (option.disabled) {
+        checkbox.setAttribute('disabled', 'true');
+      }
+      
       checkbox.addEventListener('change', (event: any) => {
-        const isChecked = event.detail;
-        if (isChecked) {
-          this.addValue(option.value);
-        } else {
-          this.removeValue(option.value);
-        }
+        // 阻止事件冒泡，避免触发全局点击事件关闭下拉菜单
+        event.stopPropagation();
+        
+        // 直接使用toggleValue方法，让checkbox的状态与selectedValues保持同步
+        this.toggleValue(option.value);
       });
       li.appendChild(checkbox);
     } else {
@@ -480,8 +482,14 @@ export class EwSelect extends BaseComponent {
     
     li.appendChild(label);
 
-    if (!option.disabled && !this.selectProps.multiple) {
-      li.addEventListener('click', () => this.handleOptionClick(option));
+    // 为整个选项元素添加点击事件
+    if (!option.disabled) {
+      li.addEventListener('click', (event) => {
+        if ((event.target as HTMLElement).closest('ew-checkbox')) {
+          return;
+        }
+        this.handleOptionClick(option);
+      });
     }
 
     return li;
@@ -673,34 +681,27 @@ export class EwSelect extends BaseComponent {
   private toggleValue(value: string | number): void {
     const index = this.selectedValues.indexOf(value);
     if (index > -1) {
+      // 如果已选中，则取消选中
       this.selectedValues.splice(index, 1);
     } else {
+      // 如果未选中，则添加选中
       if (this.selectProps.multipleLimit && this.selectedValues.length >= this.selectProps.multipleLimit) {
         return;
       }
       this.selectedValues.push(value);
     }
     this.updateModelValue();
-    this.render();
+    this.updateDisplay();
   }
 
-  private addValue(value: string | number): void {
-    if (!this.selectedValues.includes(value)) {
-      if (this.selectProps.multipleLimit && this.selectedValues.length >= this.selectProps.multipleLimit) {
-        return;
-      }
-      this.selectedValues.push(value);
-      this.updateModelValue();
-      this.render();
-    }
-  }
+
 
   private removeValue(value: string | number): void {
     const index = this.selectedValues.indexOf(value);
     if (index > -1) {
       this.selectedValues.splice(index, 1);
       this.updateModelValue();
-      this.render();
+      this.updateDisplay();
       
       // 触发移除标签事件
       this.dispatchCustomEvent('remove-tag', value);
@@ -727,6 +728,61 @@ export class EwSelect extends BaseComponent {
     this.dispatchCustomEvent('update:modelValue', value);
     this.dispatchCustomEvent('change', value);
   }
+
+  private updateDisplay(): void {
+    // 只更新标签显示，不重新渲染整个组件
+    if (this.selectProps.multiple) {
+      this.updateTags();
+    }
+  }
+
+  private updateTags(): void {
+    if (!this.wrapperElement) {
+      return;
+    }
+    
+    const tagsContainer = this.wrapperElement.querySelector('.ew-select__tags');
+    if (!tagsContainer) {
+      return;
+    }
+    
+    // 清除现有标签
+    const existingTags = tagsContainer.querySelectorAll('.ew-select__tag:not(.ew-select__tag--collapse)');
+    existingTags.forEach(tag => tag.remove());
+    
+    // 重新创建标签
+    if (this.selectProps.collapseTags && this.selectedValues.length > (this.selectProps.maxCollapseTags || 1)) {
+      // 显示前几个标签
+      for (let i = 0; i < (this.selectProps.maxCollapseTags || 1); i++) {
+        const value = this.selectedValues[i];
+        const option = this.options.find(opt => opt.value === value);
+        if (option) {
+          const tag = this.createTag(option, i);
+          tagsContainer.insertBefore(tag, tagsContainer.firstChild);
+        }
+      }
+      
+      // 更新折叠提示
+      const collapseTag = tagsContainer.querySelector('.ew-select__tag--collapse');
+      if (collapseTag) {
+        const collapseLabel = collapseTag.querySelector('.ew-select__tag-label');
+        if (collapseLabel) {
+          collapseLabel.textContent = `+${this.selectedValues.length - (this.selectProps.maxCollapseTags || 1)}`;
+        }
+      }
+    } else {
+      // 显示所有标签
+      this.selectedValues.forEach((value, index) => {
+        const option = this.options.find(opt => opt.value === value);
+        if (option) {
+          const tag = this.createTag(option, index);
+          tagsContainer.insertBefore(tag, tagsContainer.firstChild);
+        }
+      });
+    }
+  }
+
+
 
   private filterOptions(): void {
     if (!this.searchQuery) {
@@ -774,9 +830,23 @@ export class EwSelect extends BaseComponent {
   }
 
   private handleGlobalClick(event: Event): void {
-    if (!this.shadow.contains(event.target as Node)) {
-      this.closeDropdown();
+    // 检查点击的目标是否在shadow DOM内
+    if (this.shadow.contains(event.target as Node)) {
+      return;
     }
+    
+    // 检查点击的目标是否是checkbox或其子元素
+    const target = event.target as HTMLElement;
+    if (target.closest('ew-checkbox')) {
+      return;
+    }
+    
+    // 检查点击的目标是否在select组件内
+    if (this.contains(target)) {
+      return;
+    }
+    
+    this.closeDropdown();
   }
 
   private handleGlobalKeydown(event: KeyboardEvent): void {
@@ -805,6 +875,10 @@ export class EwSelect extends BaseComponent {
     this.options = options;
     this.filterOptions();
     this.render();
+    // 如果有多选值，更新标签显示
+    if (this.selectProps.multiple && this.selectedValues.length > 0) {
+      this.updateDisplay();
+    }
   }
 
   public getValue(): string | number | (string | number)[] {

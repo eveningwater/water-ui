@@ -118,6 +118,11 @@ export class EwCheckbox extends BaseComponent {
       return;
     }
 
+    // 阻止事件冒泡，避免触发父级的事件处理
+    if (event.stopPropagation) {
+      event.stopPropagation();
+    }
+
     this.isChecked = target.checked;
     this.isIndeterminate = target.indeterminate;
     
