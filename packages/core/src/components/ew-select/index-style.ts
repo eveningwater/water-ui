@@ -12,7 +12,6 @@ export const selectStyles = `
     position: relative;
     display: flex;
     align-items: center;
-    width: 100%;
     min-height: var(--ew-input-height, 36px);
     padding: 0 var(--ew-input-padding-x, 12px);
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -83,8 +82,16 @@ export const selectStyles = `
     background: transparent;
     border: none;
     outline: none;
-    cursor: pointer;
+    cursor: text;
+  }
+
+  .ew-select__input:not([readonly]) {
+    pointer-events: auto;
+  }
+
+  .ew-select__input[readonly] {
     pointer-events: none;
+    cursor: pointer;
   }
 
   .ew-select__input::placeholder {
@@ -289,6 +296,10 @@ export const selectStyles = `
     height: 16px;
     margin-right: 8px;
     color: inherit;
+  }
+
+  .ew-select__option ew-checkbox {
+    margin-right: 8px;
   }
 
   .ew-select__option-label {

@@ -67,9 +67,18 @@ export class EwSelect extends BaseComponent {
   protected render(): void {
     const { multiple, disabled, clearable, loading, placeholder, filterable } = this.selectProps;
     
+    console.log('render 被调用');
+    console.log('当前 options 数量:', this.options.length);
+    console.log('当前子元素数量:', this.children.length);
+    
     // 只有在没有通过 setOptions 设置选项时才更新选项数据
     if (this.options.length === 0) {
+      console.log('调用 updateOptionsFromChildren');
       this.updateOptionsFromChildren();
+    } else {
+      // 确保 filteredOptions 是最新的
+      console.log('调用 filterOptions');
+      this.filterOptions();
     }
     
     // 创建选择器容器
@@ -264,6 +273,10 @@ export class EwSelect extends BaseComponent {
   private renderDropdown(): void {
     if (!this.dropdownElement) return;
 
+    console.log('renderDropdown 被调用');
+    console.log('子元素数量:', this.children.length);
+    console.log('filteredOptions 数量:', this.filteredOptions.length);
+
     this.dropdownElement.innerHTML = '';
 
     // 添加下拉菜单头部（如果有）
@@ -281,13 +294,23 @@ export class EwSelect extends BaseComponent {
       const loadingItem = this.createElement('div', { class: 'ew-select__loading' });
       loadingItem.textContent = this.selectProps.loadingText || '加载中...';
       list.appendChild(loadingItem);
-    } else if (this.filteredOptions.length === 0) {
-      const emptyItem = this.createElement('div', { class: 'ew-select__empty' });
-      emptyItem.textContent = this.searchQuery ? (this.selectProps.noMatchText || '无匹配数据') : (this.selectProps.noDataText || '暂无数据');
-      list.appendChild(emptyItem);
     } else {
-      // 渲染分组选项
-      this.renderGroupedOptions(list);
+      // 检查是否有子元素（选项）
+      const hasChildren = this.children.length > 0;
+      
+      console.log('hasChildren:', hasChildren);
+      console.log('filteredOptions.length === 0:', this.filteredOptions.length === 0);
+      
+      if (!hasChildren && this.filteredOptions.length === 0) {
+        console.log('显示空状态');
+        const emptyItem = this.createElement('div', { class: 'ew-select__empty' });
+        emptyItem.textContent = this.searchQuery ? (this.selectProps.noMatchText || '无匹配数据') : (this.selectProps.noDataText || '暂无数据');
+        list.appendChild(emptyItem);
+      } else {
+        console.log('渲染分组选项');
+        // 渲染分组选项
+        this.renderGroupedOptions(list);
+      }
     }
 
     body.appendChild(list);
@@ -307,6 +330,11 @@ export class EwSelect extends BaseComponent {
     const groups: HTMLElement[] = [];
     const standaloneOptions: HTMLElement[] = [];
 
+    console.log('renderGroupedOptions - 子元素数量:', children.length);
+    children.forEach((child, index) => {
+      console.log(`子元素 ${index}:`, child.tagName, child);
+    });
+
     // 分离分组和独立选项
     children.forEach(child => {
       if (child.tagName.toLowerCase() === 'ew-select-option-group') {
@@ -316,14 +344,45 @@ export class EwSelect extends BaseComponent {
       }
     });
 
+    console.log('独立选项数量:', standaloneOptions.length);
+    console.log('分组数量:', groups.length);
+
     // 渲染独立选项
-    standaloneOptions.forEach(optionElement => {
+    standaloneOptions.forEach((optionElement, index) => {
+      console.log(`处理选项 ${index}:`, optionElement);
+      console.log('optionElement instanceof HTMLElement:', optionElement instanceof HTMLElement);
+      console.log("'getOptionData' in optionElement:", 'getOptionData' in optionElement);
+      
+      // 如果组件还没有完全初始化，等待一下
+      if (optionElement instanceof HTMLElement && !('getOptionData' in optionElement)) {
+        console.log('组件未初始化，等待初始化...');
+        // 等待组件初始化
+        setTimeout(() => {
+          if ('getOptionData' in optionElement) {
+            const optionData = (optionElement as any).getOptionData();
+            console.log('延迟获取的 optionData:', optionData);
+            if (this.isOptionVisible(optionData)) {
+              const optionEl = this.createOptionElement(optionData);
+              list.appendChild(optionEl);
+              console.log('选项已添加到列表（延迟）');
+            }
+          }
+        }, 0);
+        return;
+      }
+      
       if (optionElement instanceof HTMLElement && 'getOptionData' in optionElement) {
         const optionData = (optionElement as any).getOptionData();
+        console.log('optionData:', optionData);
         if (this.isOptionVisible(optionData)) {
           const optionEl = this.createOptionElement(optionData);
           list.appendChild(optionEl);
+          console.log('选项已添加到列表');
+        } else {
+          console.log('选项不可见');
         }
+      } else {
+        console.log('选项元素不符合条件');
       }
     });
 
@@ -363,6 +422,11 @@ export class EwSelect extends BaseComponent {
   }
 
   private isOptionVisible(option: any): boolean {
+    // 如果没有搜索查询，所有选项都可见
+    if (!this.searchQuery) {
+      return true;
+    }
+    
     // 检查选项是否在过滤结果中
     return this.filteredOptions.some(filteredOption => 
       filteredOption.value === option.value && filteredOption.label === option.label
@@ -380,13 +444,29 @@ export class EwSelect extends BaseComponent {
       li.classList.add('ew-select__option--selected');
     }
 
-    // 添加选中图标
+    // 多选模式使用 checkbox
     if (this.selectProps.multiple) {
-      const check = this.createElement('span', { class: 'ew-select__option-check' });
+      const checkbox = this.createElement('ew-checkbox', {
+        value: option.value.toString(),
+        checked: this.selectedValues.includes(option.value) ? 'true' : 'false',
+        disabled: option.disabled ? 'true' : 'false'
+      });
+      checkbox.addEventListener('change', (event: any) => {
+        const isChecked = event.detail;
+        if (isChecked) {
+          this.addValue(option.value);
+        } else {
+          this.removeValue(option.value);
+        }
+      });
+      li.appendChild(checkbox);
+    } else {
+      // 单选模式使用选中图标
       if (this.selectedValues.includes(option.value)) {
+        const check = this.createElement('span', { class: 'ew-select__option-check' });
         check.innerHTML = '✓';
+        li.appendChild(check);
       }
-      li.appendChild(check);
     }
 
     const label = this.createElement('span', { class: 'ew-select__option-label' });
@@ -400,7 +480,7 @@ export class EwSelect extends BaseComponent {
     
     li.appendChild(label);
 
-    if (!option.disabled) {
+    if (!option.disabled && !this.selectProps.multiple) {
       li.addEventListener('click', () => this.handleOptionClick(option));
     }
 
@@ -555,12 +635,16 @@ export class EwSelect extends BaseComponent {
   private openDropdown(): void {
     if (this.selectProps.disabled) return;
     
+    console.log('openDropdown 被调用');
+    
     this.isOpen = true;
     if (this.wrapperElement) {
       this.wrapperElement.classList.add('ew-select__wrapper--focused');
     }
     if (this.dropdownElement) {
       this.dropdownElement.classList.add('ew-select__dropdown--visible');
+      // 重新渲染下拉菜单内容
+      this.renderDropdown();
     }
     if (this.suffixElement) {
       this.suffixElement.innerHTML = ArrowIcon({ size: '16px', direction: 'up' });
@@ -598,6 +682,17 @@ export class EwSelect extends BaseComponent {
     }
     this.updateModelValue();
     this.render();
+  }
+
+  private addValue(value: string | number): void {
+    if (!this.selectedValues.includes(value)) {
+      if (this.selectProps.multipleLimit && this.selectedValues.length >= this.selectProps.multipleLimit) {
+        return;
+      }
+      this.selectedValues.push(value);
+      this.updateModelValue();
+      this.render();
+    }
   }
 
   private removeValue(value: string | number): void {

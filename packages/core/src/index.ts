@@ -60,13 +60,17 @@ import './components/ew-space';
 import './components/ew-space/ew-space-item';
 import './components/ew-splitter';
 import './components/ew-splitter/ew-splitter-pane';
+import './components/ew-select';
+import './components/ew-select/ew-select-option';
+import './components/ew-select/ew-select-option-group';
 
 // 确保所有组件都已注册
 import {
   EwButton, EwInput, EwTable, EwModal, EwCheckbox, EwCheckboxGroup,
   EwCheckboxButton, EwRadio, EwRadioButton, EwRadioGroup, EwInputNumber,
   EwContainer, EwHeader, EwAside, EwMain, EwFooter, EwRow, EwCol,
-  EwLink, EwIcon, EwText, EwScrollbar, EwSpace, EwSpaceItem, EwSplitter, EwSplitterPane
+  EwLink, EwIcon, EwText, EwScrollbar, EwSpace, EwSpaceItem, EwSplitter, EwSplitterPane,
+  EwSelect, EwSelectOption, EwSelectOptionGroup
 } from './components';
 
 // 手动注册组件（以防自动注册失败）
@@ -96,7 +100,10 @@ const components = [
   { name: 'ew-space', component: EwSpace },
   { name: 'ew-space-item', component: EwSpaceItem },
   { name: 'ew-splitter', component: EwSplitter },
-  { name: 'ew-splitter-pane', component: EwSplitterPane }
+  { name: 'ew-splitter-pane', component: EwSplitterPane },
+  { name: 'ew-select', component: EwSelect },
+  { name: 'ew-select-option', component: EwSelectOption },
+  { name: 'ew-select-option-group', component: EwSelectOptionGroup }
 ];
 
 components.forEach(({ name, component }) => {

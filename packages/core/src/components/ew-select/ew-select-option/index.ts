@@ -30,7 +30,8 @@ export class EwSelectOption extends BaseComponent {
   }
 
   public getLabel(): string {
-    return this.optionProps.label || '';
+    // 优先使用 label 属性，如果没有则使用 textContent
+    return this.getAttribute('label') || this.textContent || '';
   }
 
   public isDisabled(): boolean {
@@ -42,13 +43,20 @@ export class EwSelectOption extends BaseComponent {
   }
 
   public getOptionData() {
-    return {
+    const data: any = {
       value: this.getValue(),
       label: this.getLabel(),
       disabled: this.isDisabled(),
-      created: this.isCreated(),
-      slotContent: this.getSlotContent()
+      created: this.isCreated()
     };
+    
+    // 只有在有插槽内容时才添加 slotContent 字段
+    const slotContent = this.getSlotContent();
+    if (slotContent) {
+      data.slotContent = slotContent;
+    }
+    
+    return data;
   }
 
   static get observedAttributes(): string[] {
